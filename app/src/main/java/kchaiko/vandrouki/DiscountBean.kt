@@ -9,7 +9,7 @@ import java.util.*
  */
 class DiscountBean {
 
-    var title: String = null!!
+    var title: String? = null
     var date: String? = null
 
 }
