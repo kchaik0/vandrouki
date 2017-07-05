@@ -1,4 +1,4 @@
-package kchaiko.vandrouki.kotlin
+package kchaiko.vandrouki.network
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.Retrofit

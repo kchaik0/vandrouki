@@ -1,4 +1,4 @@
-package kchaiko.vandrouki.kotlin
+package kchaiko.vandrouki.network
 
 import io.reactivex.Flowable
 import okhttp3.ResponseBody
