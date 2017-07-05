@@ -1,4 +1,4 @@
-package kchaiko.vandrouki
+package kchaiko.vandrouki.kotlin
 
 import java.util.*
 
