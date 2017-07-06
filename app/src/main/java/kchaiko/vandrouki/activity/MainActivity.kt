@@ -1,36 +1,35 @@
 package kchaiko.vandrouki.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.View
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.disposables.CompositeDisposable
 import kchaiko.vandrouki.R
+import kchaiko.vandrouki.VandroukiApp
 import kchaiko.vandrouki.adapters.DiscountAdapter
 import kchaiko.vandrouki.beans.DiscountBean
-import kchaiko.vandrouki.network.LoadUrlService
-import kchaiko.vandrouki.network.RequestManager
-import kchaiko.vandrouki.parsers.HtmlParser
+import kchaiko.vandrouki.beans.DiscountBeanList
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class MainActivity : AppCompatActivity() {
+
+    var disposable: CompositeDisposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         am_recycler.layoutManager = LinearLayoutManager(this)
+        disposable = CompositeDisposable()
+        disposable!!.add(VandroukiApp.getBusSingleton().asFlowable().subscribe({
+            am_recycler.adapter = DiscountAdapter((it as DiscountBeanList).discountBeanList)
+            showLoadingIndicator(false)
+        }))
         showLoadingIndicator(true)
-        val retrofit = RequestManager.init()
-        val loadUrlService = retrofit.create(LoadUrlService::class.java)
-        val flowable = loadUrlService.html
-        flowable.map<MutableList<DiscountBean>> {
-            HtmlParser().parse(it.string())
-        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    am_recycler.adapter = DiscountAdapter(it)
-                    showLoadingIndicator(false)
-                }
+        am_click.setOnClickListener({ startActivity(Intent(this, DiscountActivity::class.java)) })
     }
 
     fun showLoadingIndicator(show: Boolean) {

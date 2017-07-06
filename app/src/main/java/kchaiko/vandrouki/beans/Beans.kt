@@ -11,3 +11,5 @@ import java.util.*
 data class DiscountBean(var title: String?, var date: Date?) {
     constructor() : this(null, null)
 }
+
+data class DiscountBeanList(var discountBeanList: MutableList<DiscountBean>)

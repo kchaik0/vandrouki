@@ -9,15 +9,20 @@ import retrofit2.Retrofit
  * Created by kchaiko on 05.07.2017.
  */
 
-object RequestManager {
+class RetrofitManager private constructor() {
 
-    private val BASE_URL = "https://vandrouki.by"
+    private object Holder {
 
-    fun init(): Retrofit {
-        return Retrofit.Builder()
+        private val BASE_URL = "https://vandrouki.by"
+
+        val instance = Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
+    }
+
+    companion object {
+        val retrofit: Retrofit by lazy { Holder.instance }
     }
 
 }
