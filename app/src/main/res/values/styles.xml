@@ -6,8 +6,36 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
 
         <item name="colorToolbarText">@color/colorToolbarText</item>
+        <item name="colorSecondaryText">@color/colorSecondaryText</item>
+    </style>
+
+    <style name="TextViewStyle" />
+
+    <style name="TextViewStyle.Light">
+        <item name="android:textColor">?attr/colorToolbarText</item>
+    </style>
+
+    <style name="TextViewStyle.Light.Large">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextViewStyle.Secondary">
+        <item name="android:textColor">?attr/colorSecondaryText</item>
+    </style>
+
+    <style name="TextViewStyle.Secondary.Normal">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextViewStyle.ToolbarText">
+        <item name="android:textAppearance">@style/TextViewStyle.Light.Large</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

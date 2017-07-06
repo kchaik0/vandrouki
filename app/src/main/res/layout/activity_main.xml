@@ -15,21 +15,28 @@
 
         <TextView
             android:id="@+id/am_toolbar_text"
+            style="@style/TextViewStyle.ToolbarText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:text="@string/toolbar.text"
-            android:textColor="?attr/colorToolbarText"
-            android:textSize="18sp" />
+            android:text="@string/toolbar.text" />
 
     </android.support.v7.widget.Toolbar>
 
-    <TextView
-        android:id="@+id/am_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="asdqweqwe" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/am_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ProgressBar
+            android:id="@+id/am_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+    </FrameLayout>
 
 </LinearLayout>

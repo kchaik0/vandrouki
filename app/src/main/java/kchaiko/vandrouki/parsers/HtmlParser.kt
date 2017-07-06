@@ -15,7 +15,7 @@ import java.util.*
  */
 class HtmlParser {
 
-    fun parse(html: String): List<DiscountBean> {
+    fun parse(html: String): MutableList<DiscountBean> {
         var document: Document? = null
         try {
             document = Jsoup.parse(html)
@@ -28,7 +28,7 @@ class HtmlParser {
         val dateFormat = SimpleDateFormat(DateFormats.HTML_FORMAT.format, Locale.getDefault())
         for (elem in discountElements) {
             val bean = DiscountBean()
-            bean.title = elem.getElementsByAttributeValue("rel", "bookmark").attr("title")
+            bean.title = elem.getElementsByAttributeValue("rel", "bookmark").text()
             bean.date = dateFormat.parse(elem.getElementsByClass("published").text())
             discountBeanList.add(bean)
         }
