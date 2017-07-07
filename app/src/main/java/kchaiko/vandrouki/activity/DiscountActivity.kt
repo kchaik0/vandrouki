@@ -2,9 +2,6 @@ package kchaiko.vandrouki.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
-import io.reactivex.Observer
-import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Consumer
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.VandroukiApp
@@ -24,7 +21,7 @@ class DiscountActivity : AppCompatActivity() {
         setContentView(R.layout.activity_discount)
         LoadUrlManager.getDiscountBeanList(
                 Consumer<MutableList<DiscountBean>> {
-                    VandroukiApp.getBusSingleton().send(DiscountBeanList(it))
+                    VandroukiApp.bus.send(DiscountBeanList(it))
                 },
                 Consumer<Throwable> {
 

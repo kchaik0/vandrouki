@@ -14,15 +14,7 @@ class VandroukiApp : Application() {
     }
 
     companion object {
-        var bus: RxBus? = null
-
-        init {
-            bus = RxBus()
-        }
-
-        fun getBusSingleton(): RxBus {
-            return bus as RxBus
-        }
+        val bus: RxBus = RxBus()
     }
 
 }

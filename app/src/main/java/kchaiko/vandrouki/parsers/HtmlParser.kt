@@ -13,7 +13,7 @@ import java.util.*
  *
  * Created by kchaiko on 05.07.2017.
  */
-class HtmlParser {
+object HtmlParser {
 
     fun parse(html: String): MutableList<DiscountBean> {
         var document: Document? = null

@@ -4,7 +4,6 @@ import com.jakewharton.rxrelay2.PublishRelay
 import com.jakewharton.rxrelay2.Relay
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
-import io.reactivex.Observable
 
 /**
  * Bus by rx
@@ -16,15 +15,13 @@ class RxBus {
     val bus: Relay<Any> = PublishRelay.create()
 
     fun send(event: Any) {
-        bus.accept(event)
+        if (bus.hasObservers()) {
+            bus.accept(event)
+        }
     }
 
-    fun asFlowable() : Flowable<Any> {
+    fun asFlowable(): Flowable<Any> {
         return bus.toFlowable(BackpressureStrategy.LATEST)
-    }
-
-    fun hasObservers() : Boolean {
-        return bus.hasObservers()
     }
 
 }

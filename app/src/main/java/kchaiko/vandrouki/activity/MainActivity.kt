@@ -4,13 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.View
 import io.reactivex.disposables.CompositeDisposable
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.VandroukiApp
 import kchaiko.vandrouki.adapters.DiscountAdapter
-import kchaiko.vandrouki.beans.DiscountBean
 import kchaiko.vandrouki.beans.DiscountBeanList
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -24,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         am_recycler.layoutManager = LinearLayoutManager(this)
         disposable = CompositeDisposable()
-        disposable!!.add(VandroukiApp.getBusSingleton().asFlowable().subscribe({
+        disposable?.add(VandroukiApp.bus.asFlowable().subscribe({
             am_recycler.adapter = DiscountAdapter((it as DiscountBeanList).discountBeanList)
             showLoadingIndicator(false)
         }))

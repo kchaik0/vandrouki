@@ -5,24 +5,16 @@ import retrofit2.Retrofit
 
 /**
  * Manager for request
-
- * Created by kchaiko on 05.07.2017.
+ *
+ * Created by kchaiko on 07.07.2017.
  */
+object RetrofitManager {
 
-class RetrofitManager private constructor() {
+    private val BASE_URL = "https://vandrouki.by"
 
-    private object Holder {
-
-        private val BASE_URL = "https://vandrouki.by"
-
-        val instance = Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build()
-    }
-
-    companion object {
-        val retrofit: Retrofit by lazy { Holder.instance }
-    }
+    val retrofit: Retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
 
 }
