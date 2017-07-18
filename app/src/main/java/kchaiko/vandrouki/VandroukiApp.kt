@@ -1,6 +1,7 @@
 package kchaiko.vandrouki
 
 import android.app.Application
+import kchaiko.vandrouki.bus.RxBus
 
 /**
  * Application
