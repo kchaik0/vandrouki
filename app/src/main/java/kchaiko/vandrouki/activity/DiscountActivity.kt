@@ -19,14 +19,6 @@ class DiscountActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_discount)
-        LoadUrlManager.getDiscountBeanList(
-                Consumer<MutableList<DiscountBean>> {
-                    VandroukiApp.bus.send(DiscountBeanList(it))
-                },
-                Consumer<Throwable> {
-
-                }
-        )
     }
 
 }
