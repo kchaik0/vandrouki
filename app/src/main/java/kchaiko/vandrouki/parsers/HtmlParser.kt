@@ -26,8 +26,9 @@ object HtmlParser {
                 .getElementsByAttributeValueContaining("id", "post-")
         val discountBeanList = ArrayList<DiscountBean>()
         val dateFormat = SimpleDateFormat(DateFormats.HTML_FORMAT.format, Locale.getDefault())
+        var bean : DiscountBean
         for (elem in discountElements) {
-            val bean = DiscountBean()
+            bean = DiscountBean()
             bean.title = elem.getElementsByAttributeValue("rel", "bookmark").text()
             bean.date = dateFormat.parse(elem.getElementsByClass("published").text())
             discountBeanList.add(bean)

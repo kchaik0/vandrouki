@@ -8,8 +8,4 @@ import java.util.*
  * Created by kchaiko on 05.07.2017.
  */
 
-data class DiscountBean(var title: String?, var date: Date?) {
-    constructor() : this(null, null)
-}
-
-data class DiscountBeanList(var discountBeanList: MutableList<DiscountBean>)
+data class DiscountBean(var title: String? = null, var date: Date? = null)
