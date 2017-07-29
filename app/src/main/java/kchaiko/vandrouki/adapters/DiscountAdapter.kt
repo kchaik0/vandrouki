@@ -18,7 +18,8 @@ import java.util.*
  *
  * Created by kchaiko on 05.07.2017.
  */
-class DiscountAdapter(var dataset: MutableList<DiscountBean>) : RecyclerView.Adapter<DiscountAdapter.ViewHolder>() {
+class DiscountAdapter(val dataset: MutableList<DiscountBean>, val itemClick: (DiscountBean) -> Unit)
+    : RecyclerView.Adapter<DiscountAdapter.ViewHolder>() {
 
     val dateFormat: DateFormat
 
@@ -28,6 +29,9 @@ class DiscountAdapter(var dataset: MutableList<DiscountBean>) : RecyclerView.Ada
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val discountBean = dataset[position]
+        holder.itemView.setOnClickListener {
+            itemClick(discountBean)
+        }
         holder.tvTitle.text = discountBean.title
         holder.tvDate.text = dateFormat.format(discountBean.date)
     }

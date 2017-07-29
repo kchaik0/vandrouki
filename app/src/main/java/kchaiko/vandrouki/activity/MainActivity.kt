@@ -20,7 +20,9 @@ class MainActivity : LifecycleActivity() {
         val viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         showLoadingIndicator(true)
         viewModel.discountBeanList.observe(this, Observer {
-            am_recycler.adapter = DiscountAdapter(it!!)
+            am_recycler.adapter = DiscountAdapter(it!!) {
+                startActivity(DiscountActivity.getIntent(this, it))
+            }
             showLoadingIndicator(false)
         })
     }
