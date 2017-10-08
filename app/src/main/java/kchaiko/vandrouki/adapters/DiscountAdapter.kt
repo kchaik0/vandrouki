@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.beans.DiscountBean
@@ -18,10 +19,10 @@ import java.util.*
  *
  * Created by kchaiko on 05.07.2017.
  */
-class DiscountAdapter(val dataset: List<DiscountBean>, val itemClick: (DiscountBean) -> Unit)
+class DiscountAdapter(private val dataset: List<DiscountBean>, private val itemClick: (DiscountBean) -> Unit)
     : RecyclerView.Adapter<DiscountAdapter.ViewHolder>() {
 
-    val dateFormat: DateFormat
+    private val dateFormat: DateFormat
 
     init {
         dateFormat = SimpleDateFormat(DateFormats.SHOW_FORMAT.format, Locale.getDefault())
@@ -34,6 +35,7 @@ class DiscountAdapter(val dataset: List<DiscountBean>, val itemClick: (DiscountB
         }
         holder.tvTitle.text = discountBean.title
         holder.tvDate.text = dateFormat.format(discountBean.date)
+        holder.ivType.setImageResource(discountBean.type.iconId)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -46,13 +48,9 @@ class DiscountAdapter(val dataset: List<DiscountBean>, val itemClick: (DiscountB
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val tvTitle: TextView
-        val tvDate: TextView
-
-        init {
-            tvTitle = itemView.id_title
-            tvDate = itemView.id_date
-        }
+        val tvTitle: TextView = itemView.id_title
+        val tvDate: TextView = itemView.id_date
+        val ivType: ImageView = itemView.id_type
 
     }
 

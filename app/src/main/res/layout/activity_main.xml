@@ -6,38 +6,20 @@
     android:orientation="vertical"
     tools:context="kchaiko.vandrouki.activity.MainActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/am_toolbar"
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize">
-
-        <TextView
-            android:id="@+id/am_toolbar_text"
-            style="@style/TextViewStyle.ToolbarText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/toolbar.text" />
-
-    </android.support.v7.widget.Toolbar>
+        android:layout_height="wrap_content"
+        android:background="@drawable/header_image"
+        tools:ignore="ContentDescription" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/am_recycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/am_recycler"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-        </LinearLayout>
+            android:layout_height="match_parent" />
 
         <ProgressBar
             android:id="@+id/am_progress"
