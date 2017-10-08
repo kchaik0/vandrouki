@@ -1,4 +1,4 @@
-package kchaiko.vandrouki.arch
+package kchaiko.vandrouki.viewmodel
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel

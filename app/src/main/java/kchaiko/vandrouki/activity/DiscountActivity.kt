@@ -3,7 +3,6 @@ package kchaiko.vandrouki.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.beans.DiscountBean
 import kotlinx.android.synthetic.main.activity_discount.*
@@ -13,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_discount.*
  *
  * Created by kchaiko on 06.07.2017.
  */
-class DiscountActivity : AppCompatActivity() {
+class DiscountActivity : BaseActivity() {
 
     companion object {
 

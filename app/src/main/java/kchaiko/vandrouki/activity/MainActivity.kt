@@ -3,15 +3,14 @@ package kchaiko.vandrouki.activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.adapters.DiscountAdapter
-import kchaiko.vandrouki.arch.MainViewModel
+import kchaiko.vandrouki.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
