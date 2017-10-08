@@ -15,7 +15,7 @@ import java.util.*
  */
 object HtmlParser {
 
-    fun parse(html: String): MutableList<DiscountBean> {
+    fun parse(html: String): List<DiscountBean> {
         var document: Document? = null
         try {
             document = Jsoup.parse(html)

@@ -1,9 +1,9 @@
 package kchaiko.vandrouki.activity
 
-import android.arch.lifecycle.LifecycleActivity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import kchaiko.vandrouki.R
@@ -11,7 +11,7 @@ import kchaiko.vandrouki.adapters.DiscountAdapter
 import kchaiko.vandrouki.arch.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : LifecycleActivity() {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +19,7 @@ class MainActivity : LifecycleActivity() {
         am_recycler.layoutManager = LinearLayoutManager(this)
         val viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         showLoadingIndicator(true)
-        viewModel.discountBeanList.observe(this, Observer {
+        viewModel.discountList.observe(this, Observer {
             am_recycler.adapter = DiscountAdapter(it!!) {
                 startActivity(DiscountActivity.getIntent(this, it))
             }

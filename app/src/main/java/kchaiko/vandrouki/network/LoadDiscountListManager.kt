@@ -15,10 +15,10 @@ import kchaiko.vandrouki.parsers.HtmlParser
  */
 object LoadDiscountListManager {
 
-    fun getDiscountBeanList(consumerSuccess: Consumer<MutableList<DiscountBean>>, consumerError: Consumer<Throwable>): Disposable {
+    fun getDiscountBeanList(consumerSuccess: Consumer<List<DiscountBean>>, consumerError: Consumer<Throwable>): Disposable {
         val retrofit = RetrofitManager.retrofit
         val loadUrlService = retrofit.create(LoadUrlService::class.java)
-        return loadUrlService.html.map<MutableList<DiscountBean>>({ HtmlParser.parse(it.string()) })
+        return loadUrlService.html.map<List<DiscountBean>>({ HtmlParser.parse(it.string()) })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(consumerSuccess, consumerError)

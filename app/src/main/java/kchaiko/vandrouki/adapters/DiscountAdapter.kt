@@ -18,7 +18,7 @@ import java.util.*
  *
  * Created by kchaiko on 05.07.2017.
  */
-class DiscountAdapter(val dataset: MutableList<DiscountBean>, val itemClick: (DiscountBean) -> Unit)
+class DiscountAdapter(val dataset: List<DiscountBean>, val itemClick: (DiscountBean) -> Unit)
     : RecyclerView.Adapter<DiscountAdapter.ViewHolder>() {
 
     val dateFormat: DateFormat
