@@ -7,7 +7,6 @@ import io.reactivex.schedulers.Schedulers
 import kchaiko.vandrouki.beans.DiscountBean
 import kchaiko.vandrouki.parsers.HtmlParser
 
-
 /**
  * Manager for load url request
  *

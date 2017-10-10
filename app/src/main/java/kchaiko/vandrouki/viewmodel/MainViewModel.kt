@@ -7,7 +7,6 @@ import io.reactivex.functions.Consumer
 import kchaiko.vandrouki.beans.DiscountBean
 import kchaiko.vandrouki.network.LoadDiscountListManager
 
-
 /**
  * View model class
  *
