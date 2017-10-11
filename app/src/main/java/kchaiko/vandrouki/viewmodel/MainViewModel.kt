@@ -3,8 +3,9 @@ package kchaiko.vandrouki.viewmodel
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
-import io.reactivex.functions.Consumer
+import io.reactivex.rxkotlin.subscribeBy
 import kchaiko.vandrouki.beans.DiscountBean
+import kchaiko.vandrouki.beans.RequestBean
 import kchaiko.vandrouki.network.LoadDiscountListManager
 
 /**
@@ -14,14 +15,12 @@ import kchaiko.vandrouki.network.LoadDiscountListManager
  */
 class MainViewModel(application: Application?) : AndroidViewModel(application) {
 
-    val discountList: MutableLiveData<List<DiscountBean>> by lazy {
-        LoadDiscountListManager.getDiscountBeanList(
-                Consumer {
-                    discountList.value = it
-                },
-                Consumer { }
-        )
-        MutableLiveData<List<DiscountBean>>()
+    val discountList: MutableLiveData<RequestBean<DiscountBean>> by lazy {
+        LoadDiscountListManager.getDiscountBeanList().subscribeBy(
+                onError = { discountList.value = RequestBean(it.message) },
+                onComplete = { },
+                onNext = { discountList.value = it })
+        MutableLiveData<RequestBean<DiscountBean>>()
     }
 
 

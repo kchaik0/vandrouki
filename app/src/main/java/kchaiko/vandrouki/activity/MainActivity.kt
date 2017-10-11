@@ -19,10 +19,14 @@ class MainActivity : BaseActivity() {
         val viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         showLoadingIndicator(true)
         viewModel.discountList.observe(this, Observer {
-            am_recycler.adapter = DiscountAdapter(it!!) {
-                startActivity(DiscountActivity.getIntent(this, it))
-            }
             showLoadingIndicator(false)
+            if (it!!.isSuccess()) {
+                am_recycler.adapter = DiscountAdapter(it.data!!, {
+                    startActivity(DiscountActivity.getIntent(this, it))
+                })
+            } else {
+                proceedError(it.error)
+            }
         })
     }
 
