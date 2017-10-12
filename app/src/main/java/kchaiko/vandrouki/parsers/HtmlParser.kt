@@ -1,6 +1,6 @@
 package kchaiko.vandrouki.parsers
 
-import kchaiko.vandrouki.beans.DiscountBean
+import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.enumes.DateFormats
 import kchaiko.vandrouki.enumes.discount.Type
 import org.jsoup.Jsoup
@@ -18,7 +18,7 @@ import kotlin.collections.ArrayList
  */
 object HtmlParser {
 
-    fun parse(html: String): List<DiscountBean> {
+    fun parse(html: String): List<Discount> {
         var document: Document? = null
         try {
             document = Jsoup.parse(html)
@@ -27,7 +27,7 @@ object HtmlParser {
         }
         val discountElements = document!!.getElementById("primary")
                 .getElementsByAttributeValueContaining("id", "post-")
-        val discountBeanList = ArrayList<DiscountBean>()
+        val discountBeanList = ArrayList<Discount>()
         val dateFormat = SimpleDateFormat(DateFormats.HTML_FORMAT.format, Locale.getDefault())
         var title: String
         var date: Date
@@ -36,7 +36,7 @@ object HtmlParser {
             title = elem.getElementsByAttributeValue("rel", "bookmark").text()
             date = dateFormat.parse(elem.getElementsByClass("published").text())
             categoryList = parseCategoryList(elem)
-            discountBeanList.add(DiscountBean(title, date, categoryList, getType(categoryList)))
+            discountBeanList.add(Discount(title, date, categoryList, getType(categoryList)))
         }
         return discountBeanList
     }

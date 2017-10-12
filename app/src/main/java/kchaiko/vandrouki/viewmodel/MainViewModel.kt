@@ -4,9 +4,10 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import io.reactivex.rxkotlin.subscribeBy
-import kchaiko.vandrouki.beans.DiscountBean
-import kchaiko.vandrouki.beans.RequestBean
-import kchaiko.vandrouki.network.LoadDiscountListManager
+import kchaiko.vandrouki.beans.Discount
+import kchaiko.vandrouki.enumes.request.RequestStatus
+import kchaiko.vandrouki.beans.ResponseBean
+import kchaiko.vandrouki.network.manager.DiscountManager
 
 /**
  * View model class
@@ -15,12 +16,20 @@ import kchaiko.vandrouki.network.LoadDiscountListManager
  */
 class MainViewModel(application: Application?) : AndroidViewModel(application) {
 
-    val discountList: MutableLiveData<RequestBean<DiscountBean>> by lazy {
-        LoadDiscountListManager.getDiscountBeanList().subscribeBy(
-                onError = { discountList.value = RequestBean(it.message) },
-                onComplete = { },
-                onNext = { discountList.value = it })
-        MutableLiveData<RequestBean<DiscountBean>>()
+    lateinit var status: RequestStatus
+
+    val discountList: MutableLiveData<ResponseBean<List<Discount>>> by lazy {
+        status = RequestStatus.LOADING
+        DiscountManager.getDiscountList().subscribeBy(
+                onSuccess = {
+                    status = RequestStatus.SUCCESS
+                    discountList.value = it
+                },
+                onError = {
+                    status = RequestStatus.ERROR
+                    discountList.value = ResponseBean(it.message)
+                })
+        MutableLiveData<ResponseBean<List<Discount>>>()
     }
 
 

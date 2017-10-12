@@ -10,7 +10,7 @@ import java.util.*
  *
  * Created by kchaiko on 08.10.2017.
  */
-data class DiscountBean(val title: String, val date: Date, val categoryList: List<String>, val type: Type) : Parcelable {
+data class Discount(val title: String, val date: Date, val categoryList: List<String>, val type: Type) : Parcelable {
 
     constructor(source: Parcel) : this(
             source.readString(),
@@ -30,9 +30,9 @@ data class DiscountBean(val title: String, val date: Date, val categoryList: Lis
 
     companion object {
         @JvmField
-        val CREATOR: Parcelable.Creator<DiscountBean> = object : Parcelable.Creator<DiscountBean> {
-            override fun createFromParcel(source: Parcel): DiscountBean = DiscountBean(source)
-            override fun newArray(size: Int): Array<DiscountBean?> = arrayOfNulls(size)
+        val CREATOR: Parcelable.Creator<Discount> = object : Parcelable.Creator<Discount> {
+            override fun createFromParcel(source: Parcel): Discount = Discount(source)
+            override fun newArray(size: Int): Array<Discount?> = arrayOfNulls(size)
         }
     }
 }

@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.adapters.DiscountAdapter
+import kchaiko.vandrouki.enumes.request.RequestStatus
 import kchaiko.vandrouki.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -20,12 +21,10 @@ class MainActivity : BaseActivity() {
         showLoadingIndicator(true)
         viewModel.discountList.observe(this, Observer {
             showLoadingIndicator(false)
-            if (it!!.isSuccess()) {
-                am_recycler.adapter = DiscountAdapter(it.data!!, {
-                    startActivity(DiscountActivity.getIntent(this, it))
-                })
-            } else {
-                proceedError(it.error)
+            when (viewModel.status) {
+                RequestStatus.SUCCESS -> am_recycler.adapter = DiscountAdapter(it?.data!!, { startActivity(DiscountActivity.getIntent(this, it)) })
+                RequestStatus.ERROR -> proceedError(it?.error)
+                RequestStatus.LOADING -> TODO()
             }
         })
     }

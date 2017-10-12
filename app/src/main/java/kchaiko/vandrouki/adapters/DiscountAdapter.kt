@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import kchaiko.vandrouki.R
-import kchaiko.vandrouki.beans.DiscountBean
+import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.enumes.DateFormats
 import kotlinx.android.synthetic.main.item_discount.view.*
 import java.text.SimpleDateFormat
@@ -18,7 +18,7 @@ import java.util.*
  *
  * Created by kchaiko on 05.07.2017.
  */
-class DiscountAdapter(private val dataset: List<DiscountBean>, private val itemClick: (DiscountBean) -> Unit)
+class DiscountAdapter(private val dataset: List<Discount>, private val itemClick: (Discount) -> Unit)
     : RecyclerView.Adapter<DiscountAdapter.ViewHolder>() {
 
     private val dateFormat: SimpleDateFormat

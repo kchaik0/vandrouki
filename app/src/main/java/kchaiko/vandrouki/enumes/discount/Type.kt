@@ -3,7 +3,7 @@ package kchaiko.vandrouki.enumes.discount
 import kchaiko.vandrouki.R
 
 /**
- * Type for discount bean [kchaiko.vandrouki.beans.DiscountBean]
+ * Type for discount bean [kchaiko.vandrouki.beans.Discount]
  *
  * Created by kchaiko on 08.10.2017.
  */

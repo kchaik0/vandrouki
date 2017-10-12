@@ -5,10 +5,6 @@ package kchaiko.vandrouki.beans
  *
  * Created by kchaiko on 11.10.2017.
  */
-data class RequestBean<T>(val data: List<T>?, val error: String? = null) {
+data class ResponseBean<T>(val data: T?, val error: String? = null) {
     constructor(error: String?) : this(null, error)
-
-    fun isSuccess(): Boolean {
-        return data != null
-    }
 }

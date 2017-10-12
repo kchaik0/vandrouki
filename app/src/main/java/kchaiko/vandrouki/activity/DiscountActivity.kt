@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import kchaiko.vandrouki.R
-import kchaiko.vandrouki.beans.DiscountBean
+import kchaiko.vandrouki.beans.Discount
 import kotlinx.android.synthetic.main.activity_discount.*
 
 /**
@@ -18,9 +18,9 @@ class DiscountActivity : BaseActivity() {
 
         private val DISCOUNT_BEAN_EXTRA = "discount_bean"
 
-        fun getIntent(context: Context, discountBean: DiscountBean): Intent {
+        fun getIntent(context: Context, discount: Discount): Intent {
             val intent = Intent(context, DiscountActivity::class.java)
-            intent.putExtra(DISCOUNT_BEAN_EXTRA, discountBean)
+            intent.putExtra(DISCOUNT_BEAN_EXTRA, discount)
             return intent
         }
     }
@@ -28,7 +28,7 @@ class DiscountActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_discount)
-        val discountBean = intent.extras.getParcelable<DiscountBean>(DISCOUNT_BEAN_EXTRA)
+        val discountBean = intent.extras.getParcelable<Discount>(DISCOUNT_BEAN_EXTRA)
         ad_title.text = discountBean.title
     }
 
