@@ -5,8 +5,8 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import io.reactivex.rxkotlin.subscribeBy
 import kchaiko.vandrouki.beans.Discount
-import kchaiko.vandrouki.enumes.request.RequestStatus
 import kchaiko.vandrouki.beans.ResponseBean
+import kchaiko.vandrouki.enumes.request.RequestStatus
 import kchaiko.vandrouki.network.manager.DiscountManager
 
 /**
@@ -14,7 +14,7 @@ import kchaiko.vandrouki.network.manager.DiscountManager
  *
  * Created by kchaiko on 28.07.2017.
  */
-class MainViewModel(application: Application?) : AndroidViewModel(application) {
+class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     lateinit var status: RequestStatus
 
