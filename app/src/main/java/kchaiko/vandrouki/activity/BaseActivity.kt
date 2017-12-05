@@ -2,6 +2,7 @@ package kchaiko.vandrouki.activity
 
 import android.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import kchaiko.vandrouki.network.exception.BaseException
 
 /**
  * Base activity for all programm activity
@@ -11,11 +12,11 @@ import android.support.v7.app.AppCompatActivity
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    fun proceedError(error: String?) {
+    fun proceedError(exception: BaseException) {
         AlertDialog.Builder(this)
-                .setMessage(error)
+                .setMessage(exception.message)
                 .setCancelable(false)
-                .setPositiveButton(android.R.string.ok, { dialogInterface, i -> dialogInterface.dismiss() })
+                .setPositiveButton(android.R.string.ok, { dialogInterface, _ -> dialogInterface.dismiss() })
                 .create().show()
     }
 

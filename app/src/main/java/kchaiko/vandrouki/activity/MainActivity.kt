@@ -18,15 +18,17 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
         am_recycler.layoutManager = LinearLayoutManager(this)
         val viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        showLoadingIndicator(true)
-        viewModel.discountList.observe(this, Observer {
-            showLoadingIndicator(false)
-            when (viewModel.status) {
-                RequestStatus.SUCCESS -> am_recycler.adapter = DiscountAdapter(it?.data!!, { startActivity(DiscountActivity.getIntent(this, it)) })
-                RequestStatus.ERROR -> proceedError(it?.error)
-                RequestStatus.LOADING -> TODO()
+        viewModel.discountListLiveData.observe(this, Observer {
+            when (it?.status) {
+                RequestStatus.SUCCESS -> {
+                    am_recycler.adapter = it.data?.let { data -> DiscountAdapter(data, { startActivity(DiscountActivity.getIntent(this, it)) }) }
+                    showLoadingIndicator(false)
+                }
+                RequestStatus.ERROR -> it.exception?.let { exception -> proceedError(exception) }
+                RequestStatus.LOADING -> showLoadingIndicator(true)
             }
         })
+        viewModel.loadDiscounts()
     }
 
     private fun showLoadingIndicator(show: Boolean) {
