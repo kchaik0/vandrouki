@@ -24,7 +24,10 @@ class MainActivity : BaseActivity() {
                     am_recycler.adapter = it.data?.let { data -> DiscountAdapter(data, { startActivity(DiscountActivity.getIntent(this, it)) }) }
                     showLoadingIndicator(false)
                 }
-                RequestStatus.ERROR -> it.exception?.let { exception -> proceedError(exception) }
+                RequestStatus.ERROR -> {
+                    showLoadingIndicator(false)
+                    it.exception?.let { exception -> proceedError(exception) }
+                }
                 RequestStatus.LOADING -> showLoadingIndicator(true)
             }
         })

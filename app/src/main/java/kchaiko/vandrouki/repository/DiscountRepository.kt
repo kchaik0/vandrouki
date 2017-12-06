@@ -1,4 +1,4 @@
-package kchaiko.vandrouki.network.repository
+package kchaiko.vandrouki.repository
 
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers

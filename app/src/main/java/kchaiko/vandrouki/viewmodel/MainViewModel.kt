@@ -5,7 +5,7 @@ import android.arch.lifecycle.ViewModel
 import io.reactivex.rxkotlin.subscribeBy
 import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.beans.Resource
-import kchaiko.vandrouki.network.repository.DiscountRepository
+import kchaiko.vandrouki.repository.DiscountRepository
 
 /**
  * View model class
