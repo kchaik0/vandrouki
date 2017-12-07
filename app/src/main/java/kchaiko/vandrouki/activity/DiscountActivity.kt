@@ -30,8 +30,6 @@ class DiscountActivity : BaseActivity() {
         setContentView(R.layout.activity_discount)
         val discountBean = intent.extras.getParcelable<Discount>(DISCOUNT_BEAN_EXTRA)
         ad_title.text = discountBean.title
-
-        
     }
 
 }
