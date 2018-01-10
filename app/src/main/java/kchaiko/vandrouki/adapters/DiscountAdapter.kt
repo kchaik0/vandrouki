@@ -7,11 +7,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import kchaiko.vandrouki.R
+import kchaiko.vandrouki.VandroukiApp
 import kchaiko.vandrouki.beans.Discount
-import kchaiko.vandrouki.enumes.DateFormats
 import kotlinx.android.synthetic.main.item_discount.view.*
-import java.text.SimpleDateFormat
-import java.util.*
 
 /**
  * Adapter for showing discount items
@@ -21,11 +19,7 @@ import java.util.*
 class DiscountAdapter(private val dataset: List<Discount>, private val itemClick: (Discount) -> Unit)
     : RecyclerView.Adapter<DiscountAdapter.ViewHolder>() {
 
-    private val dateFormat: SimpleDateFormat
-
-    init {
-        dateFormat = SimpleDateFormat(DateFormats.SHOW_FORMAT.format, Locale.getDefault())
-    }
+    //private val dateFormat: SimpleDateFormat = SimpleDateFormat(DateFormats.SHOW_FORMAT.format, Locale.getDefault())
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val discountBean = dataset[position]
@@ -33,8 +27,8 @@ class DiscountAdapter(private val dataset: List<Discount>, private val itemClick
             itemClick(discountBean)
         }
         holder.tvTitle.text = discountBean.title
-        holder.tvDate.text = dateFormat.format(discountBean.date)
-        holder.ivType.setImageResource(discountBean.type.iconId)
+        VandroukiApp.INSTANCE.picasso.load(discountBean.image).into(holder.ivType)
+        //holder.tvDate.text = dateFormat.format(discountBean.date)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -48,8 +42,8 @@ class DiscountAdapter(private val dataset: List<Discount>, private val itemClick
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val tvTitle: TextView = itemView.id_title
-        val tvDate: TextView = itemView.id_date
         val ivType: ImageView = itemView.id_type
+        //val tvDate: TextView = itemView.id_date
 
     }
 

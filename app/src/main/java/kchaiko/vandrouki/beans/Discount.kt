@@ -10,13 +10,15 @@ import java.util.*
  *
  * Created by kchaiko on 08.10.2017.
  */
-data class Discount(val title: String, val date: Date, val categoryList: List<String>, val type: Type) : Parcelable {
+data class Discount(val title: String, val date: Date, val categoryList: List<String>, val type: Type,
+                    val image: String) : Parcelable {
 
     constructor(source: Parcel) : this(
             source.readString(),
             source.readSerializable() as Date,
             source.createStringArrayList(),
-            Type.values()[source.readInt()]
+            Type.values()[source.readInt()],
+            source.readString()
     )
 
     override fun describeContents() = 0
@@ -26,6 +28,7 @@ data class Discount(val title: String, val date: Date, val categoryList: List<St
         writeSerializable(date)
         writeStringList(categoryList)
         writeInt(type.ordinal)
+        writeString(image)
     }
 
     companion object {

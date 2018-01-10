@@ -3,7 +3,6 @@ package kchaiko.vandrouki.activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.adapters.DiscountAdapter
@@ -13,11 +12,17 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
 
+    private lateinit var viewModel: MainViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        am_recycler.layoutManager = LinearLayoutManager(this)
-        val viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        initViewModel()
+        viewModel.loadDiscounts()
+    }
+
+    private fun initViewModel() {
+        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         viewModel.discountListLiveData.observe(this, Observer {
             when (it?.status) {
                 RequestStatus.SUCCESS -> {
@@ -31,7 +36,6 @@ class MainActivity : BaseActivity() {
                 RequestStatus.LOADING -> showLoadingIndicator(true)
             }
         })
-        viewModel.loadDiscounts()
     }
 
     private fun showLoadingIndicator(show: Boolean) {

@@ -33,10 +33,10 @@ object HtmlParser {
         var date: Date
         var categoryList: List<String>
         for (elem in discountElements) {
-            title = elem.getElementsByAttributeValue("rel", "bookmark").text()
+            title = elem.getElementsByAttributeValue("rel", "bookmark").text().trim()
             date = dateFormat.parse(elem.getElementsByClass("published").text())
             categoryList = parseCategoryList(elem)
-            discountBeanList.add(Discount(title, date, categoryList, getType(categoryList)))
+            discountBeanList.add(Discount(title, date, categoryList, getType(categoryList), getImageUrl(elem)))
         }
         return discountBeanList
     }
@@ -48,5 +48,7 @@ object HtmlParser {
     private fun getType(categoryList: List<String>): Type {
         return if (categoryList.any { it.startsWith("category-letim") }) Type.FLY else Type.OTHER
     }
+
+    private fun getImageUrl(elem: Element) = elem.getElementsByClass("post-thumb")[0].getElementsByTag("img")[0].attr("src")
 
 }
