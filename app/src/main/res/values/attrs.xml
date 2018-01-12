@@ -3,6 +3,10 @@
     <declare-styleable name="VandroukiCustomAttrs">
         <attr name="colorSecondary" format="color" />
 
+        <attr name="colorDivider" format="color" />
+
+        <attr name="colorBackground" format="color" />
+
         <attr name="colorToolbarText" format="color" />
         <attr name="colorSecondaryText" format="color" />
         <attr name="colorCardNameBg" format="color" />

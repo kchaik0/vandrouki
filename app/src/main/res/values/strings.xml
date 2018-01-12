@@ -2,4 +2,6 @@
     <string name="app_name">Vandrouki</string>
 
     <string name="toolbar.text">ToolbarText</string>
+
+    <string name="discount.card.action">Читать далее</string>
 </resources>

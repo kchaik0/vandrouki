@@ -11,13 +11,14 @@ import java.util.*
  * Created by kchaiko on 08.10.2017.
  */
 data class Discount(val title: String, val date: Date, val categoryList: List<String>, val type: Type,
-                    val image: String) : Parcelable {
+                    val image: String, val desc: String) : Parcelable {
 
     constructor(source: Parcel) : this(
             source.readString(),
             source.readSerializable() as Date,
             source.createStringArrayList(),
             Type.values()[source.readInt()],
+            source.readString(),
             source.readString()
     )
 
@@ -29,9 +30,11 @@ data class Discount(val title: String, val date: Date, val categoryList: List<St
         writeStringList(categoryList)
         writeInt(type.ordinal)
         writeString(image)
+        writeString(desc)
     }
 
     companion object {
+        @Suppress("unused")
         @JvmField
         val CREATOR: Parcelable.Creator<Discount> = object : Parcelable.Creator<Discount> {
             override fun createFromParcel(source: Parcel): Discount = Discount(source)

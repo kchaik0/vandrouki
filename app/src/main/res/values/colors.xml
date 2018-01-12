@@ -6,6 +6,10 @@
     <color name="color_secondary">#737373</color>
     <color name="color_light">#FFFFFF</color>
 
+    <color name="color_divider">#EEEEEE</color>
+
+    <color name="color_background">#F2F2F2</color>
+
     <color name="color_toolbar_text">@color/color_light</color>
     <color name="color_secondary_text">@color/color_secondary</color>
 

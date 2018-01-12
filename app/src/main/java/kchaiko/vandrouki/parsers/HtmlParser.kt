@@ -36,7 +36,8 @@ object HtmlParser {
             title = elem.getElementsByAttributeValue("rel", "bookmark").text().trim()
             date = dateFormat.parse(elem.getElementsByClass("published").text())
             categoryList = parseCategoryList(elem)
-            discountBeanList.add(Discount(title, date, categoryList, getType(categoryList), getImageUrl(elem)))
+            discountBeanList.add(Discount(title, date, categoryList, getType(categoryList),
+                    getImageUrl(elem), getDiscountDesc(elem)))
         }
         return discountBeanList
     }
@@ -50,5 +51,7 @@ object HtmlParser {
     }
 
     private fun getImageUrl(elem: Element) = elem.getElementsByClass("post-thumb")[0].getElementsByTag("img")[0].attr("src")
+
+    private fun getDiscountDesc(elem: Element) = elem.getElementsByClass("entry-content")[0].text()
 
 }

@@ -8,6 +8,10 @@
         <item name="colorAccent">@color/color_accent</item>
         <item name="colorSecondary">@color/color_secondary</item>
 
+        <item name="colorDivider">@color/color_divider</item>
+
+        <item name="colorBackground">@color/color_background</item>
+
         <item name="colorToolbarText">@color/color_toolbar_text</item>
         <item name="colorSecondaryText">@color/color_secondary_text</item>
 
@@ -30,6 +34,10 @@
 
     <style name="TextViewStyle.Secondary.Normal">
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextViewStyle.Secondary.Large">
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="TextViewStyle.ToolbarText">
