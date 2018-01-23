@@ -1,4 +1,4 @@
-package kchaiko.vandrouki.ui.view
+package kchaiko.vandrouki.ui.view.divider
 
 import android.content.Context
 import android.support.annotation.AttrRes

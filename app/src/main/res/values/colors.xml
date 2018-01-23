@@ -10,7 +10,7 @@
 
     <color name="color_background">#F2F2F2</color>
 
-    <color name="color_toolbar_text">@color/color_light</color>
+    <color name="color_light_text">@color/color_light</color>
     <color name="color_secondary_text">@color/color_secondary</color>
 
     <color name="color_card_name_bg">#66000000</color>

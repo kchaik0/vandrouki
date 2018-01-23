@@ -12,40 +12,10 @@
 
         <item name="colorBackground">@color/color_background</item>
 
-        <item name="colorToolbarText">@color/color_toolbar_text</item>
+        <item name="colorLightText">@color/color_light_text</item>
         <item name="colorSecondaryText">@color/color_secondary_text</item>
 
         <item name="colorCardNameBg">@color/color_card_name_bg</item>
-    </style>
-
-    <style name="TextViewStyle" />
-
-    <style name="TextViewStyle.Light">
-        <item name="android:textColor">?attr/colorToolbarText</item>
-    </style>
-
-    <style name="TextViewStyle.Light.Large">
-        <item name="android:textSize">18sp</item>
-    </style>
-
-    <style name="TextViewStyle.Secondary">
-        <item name="android:textColor">?attr/colorSecondaryText</item>
-    </style>
-
-    <style name="TextViewStyle.Secondary.Normal">
-        <item name="android:textSize">14sp</item>
-    </style>
-
-    <style name="TextViewStyle.Secondary.Large">
-        <item name="android:textSize">18sp</item>
-    </style>
-
-    <style name="TextViewStyle.ToolbarText">
-        <item name="android:textAppearance">@style/TextViewStyle.Light.Large</item>
-        <item name="android:ellipsize">end</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:singleLine">true</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

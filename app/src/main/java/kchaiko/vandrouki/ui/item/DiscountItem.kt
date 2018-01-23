@@ -9,8 +9,10 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.adapters.DiscountAdapter
-import kchaiko.vandrouki.extensions.divider
 import kchaiko.vandrouki.extensions.getColorFromAttribute
+import kchaiko.vandrouki.ui.view.divider
+import kchaiko.vandrouki.ui.view.largeLightTextView
+import kchaiko.vandrouki.ui.view.normalSecondaryTextView
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.themedCardView
 import kotlin.properties.Delegates
@@ -42,8 +44,7 @@ class DiscountItem : AnkoComponent<ViewGroup> {
                             bgImage = this
                             scaleType = ImageView.ScaleType.CENTER_CROP
                         }.lparams(width = matchParent, height = matchParent)
-                        themedTextView(theme = R.style.TextViewStyle_Light_Large,
-                                text = "asdasdqweqwe qewbhjqhwej qbwjebqwebhj qbwhjebqhwehj bqhwebhjqjbhwe bhqwjbehqjb bhjqwebhjqwbe hbqhwjebhjq bhjqbwehjbqjwe") {
+                        largeLightTextView {
                             titleText = this
                             ellipsize = TextUtils.TruncateAt.END
                             maxLines = 1
@@ -52,8 +53,7 @@ class DiscountItem : AnkoComponent<ViewGroup> {
                             backgroundColor = context.getColorFromAttribute(R.attr.colorCardNameBg)
                         }.lparams(width = matchParent, height = wrapContent, gravity = Gravity.BOTTOM)
                     }
-                    themedTextView(theme = R.style.TextViewStyle_Secondary_Normal,
-                            text = "asdqweqweqweqweqweqwe qwdasd qweqwe asdqdqweqwe qweqweqwe") {
+                    normalSecondaryTextView {
                         descText = this
                         ellipsize = TextUtils.TruncateAt.END
                         maxLines = 3
@@ -62,11 +62,8 @@ class DiscountItem : AnkoComponent<ViewGroup> {
                         bottomMargin = dip(16)
                         horizontalMargin = dip(16)
                     }
-                    divider { }
-                    view {
-                        backgroundColor = context.getColorFromAttribute(R.attr.colorDivider)
-                    }.lparams(width = matchParent, height = dip(1))
-                    themedTextView(theme = R.style.TextViewStyle_Secondary_Normal) {
+                    divider {}
+                    normalSecondaryTextView {
                         setText(R.string.discount_card_action)
                         allCaps = true
                         padding = dip(8)

@@ -8,7 +8,6 @@
 
     <TextView
         android:id="@+id/ad_title"
-        style="@style/TextViewStyle.Secondary.Normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Большая распродажа airBaltic: полеты из Вильнюса и Риги от 15€ (на год вперед) qwjehjkqwhejkqwhejkhq hjqkwehkjqwhe qwjkekjqwnek" />

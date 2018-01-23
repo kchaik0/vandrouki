@@ -7,7 +7,7 @@
 
         <attr name="colorBackground" format="color" />
 
-        <attr name="colorToolbarText" format="color" />
+        <attr name="colorLightText" format="color" />
         <attr name="colorSecondaryText" format="color" />
         <attr name="colorCardNameBg" format="color" />
     </declare-styleable>
