@@ -2,6 +2,8 @@ package kchaiko.vandrouki.activity
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -19,15 +21,17 @@ import kotlin.properties.Delegates
 
 class MainActivity : BaseActivity() {
 
+    companion object {
+        fun getIntent(context: Context) = Intent(context, MainActivity::class.java)
+    }
+
     private var rvList: RecyclerView by Delegates.notNull()
     private var pbLoading: ProgressBar by Delegates.notNull()
-    private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initViews()
         initViewModel()
-        viewModel.loadDiscounts()
     }
 
     private fun initViews() {
@@ -46,7 +50,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initViewModel() {
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        val viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         viewModel.discountListLiveData.observe(this, Observer {
             when (it?.status) {
                 RequestStatus.SUCCESS -> {

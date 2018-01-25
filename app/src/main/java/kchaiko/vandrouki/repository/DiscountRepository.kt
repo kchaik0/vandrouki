@@ -1,9 +1,11 @@
 package kchaiko.vandrouki.repository
 
-import io.reactivex.Single
+import android.arch.lifecycle.MutableLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import kchaiko.vandrouki.beans.Discount
+import kchaiko.vandrouki.beans.Resource
 import kchaiko.vandrouki.network.RetrofitManager
 import kchaiko.vandrouki.network.service.LoadUrlService
 import kchaiko.vandrouki.parsers.HtmlParser
@@ -16,11 +18,19 @@ import kchaiko.vandrouki.parsers.HtmlParser
 object DiscountRepository {
 
     private val loadUrlService = RetrofitManager.retrofit.create(LoadUrlService::class.java)
+    val discountListLiveData = MutableLiveData<Resource<List<Discount>>>()
 
-    fun getDiscountList(): Single<List<Discount>> {
-        return loadUrlService.html.map<List<Discount>>({ HtmlParser.parse(it.string()) })
+    fun loadDiscountList() {
+        discountListLiveData.value = Resource.loading()
+        loadUrlService.html.map({ HtmlParser.parse(it.string()) })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .subscribeBy(
+                        onSuccess = {
+                            discountListLiveData.value = Resource.success(it)
+                        },
+                        onError = {
+                            discountListLiveData.value = Resource.error(it)
+                        })
     }
-
 }

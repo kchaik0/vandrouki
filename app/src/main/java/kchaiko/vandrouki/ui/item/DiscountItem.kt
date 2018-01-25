@@ -33,8 +33,8 @@ class DiscountItem : AnkoComponent<ViewGroup> {
                     horizontalMargin = dip(8)
                     verticalMargin = dip(4)
                 }
-                cardElevation = px2dip(dip(4))
-                radius = px2dip(dip(4))
+                cardElevation = dip(4).toFloat()
+                radius = dip(4).toFloat()
                 linearLayout {
                     lparams(width = matchParent, height = wrapContent)
                     orientation = LinearLayout.VERTICAL

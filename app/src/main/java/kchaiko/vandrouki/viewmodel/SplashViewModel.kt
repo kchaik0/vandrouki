@@ -8,8 +8,10 @@ import kchaiko.vandrouki.repository.DiscountRepository
  *
  * Created by kchaiko on 28.07.2017.
  */
-class MainViewModel : ViewModel() {
+class SplashViewModel : ViewModel() {
 
-    val discountListLiveData = DiscountRepository.discountListLiveData
+    fun loadDiscounts() {
+        DiscountRepository.loadDiscountList()
+    }
 
 }

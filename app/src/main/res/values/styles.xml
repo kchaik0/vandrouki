@@ -18,4 +18,13 @@
         <item name="colorCardNameBg">@color/color_card_name_bg</item>
     </style>
 
+    <style name="ActivityTheme" parent="AppTheme" />
+
+    <style name="ActivityTheme.SplashScreen">
+        <item name="android:windowBackground">@drawable/splash_bg</item>
+    </style>
+
+    <style name="ActivityTheme.MainScreen">
+    </style>
+
 </resources>
