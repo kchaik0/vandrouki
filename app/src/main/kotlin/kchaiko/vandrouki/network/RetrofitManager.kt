@@ -15,7 +15,6 @@ object RetrofitManager {
     val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-
             .build()
 
 }

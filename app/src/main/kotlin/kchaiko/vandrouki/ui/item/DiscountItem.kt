@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.squareup.picasso.Picasso
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.adapters.DiscountAdapter
 import kchaiko.vandrouki.extensions.getColorFromAttribute
@@ -22,7 +23,7 @@ import kotlin.properties.Delegates
  *
  * Created by Chayko_KA on 12.01.2018.
  */
-class DiscountItem : AnkoComponent<ViewGroup> {
+class DiscountItem(private val picasso: Picasso) : AnkoComponent<ViewGroup> {
     override fun createView(ui: AnkoContext<ViewGroup>): View {
         var titleText: TextView by Delegates.notNull()
         var bgImage: ImageView by Delegates.notNull()
@@ -73,7 +74,7 @@ class DiscountItem : AnkoComponent<ViewGroup> {
                 }
             }
         }
-        itemView.tag = DiscountAdapter.ViewHolder(itemView, titleText, bgImage, descText)
+        itemView.tag = DiscountAdapter.ViewHolder(itemView, titleText, bgImage, descText, picasso)
         return itemView
     }
 }

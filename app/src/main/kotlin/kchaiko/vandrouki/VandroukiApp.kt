@@ -1,7 +1,9 @@
 package kchaiko.vandrouki
 
 import android.app.Application
-import com.squareup.picasso.Picasso
+import kchaiko.vandrouki.di.AppComponent
+import kchaiko.vandrouki.di.DaggerAppComponent
+import kchaiko.vandrouki.di.modules.PicassoModule
 
 /**
  * Application
@@ -11,15 +13,11 @@ import com.squareup.picasso.Picasso
 class VandroukiApp : Application() {
 
     companion object {
-        lateinit var INSTANCE: VandroukiApp
-            private set
+        lateinit var appComponent: AppComponent
     }
-
-    lateinit var picasso: Picasso
 
     override fun onCreate() {
         super.onCreate()
-        INSTANCE = this
-        picasso = Picasso.with(this)
+        appComponent = DaggerAppComponent.builder().picassoModule(PicassoModule(this)).build()
     }
 }

@@ -7,6 +7,7 @@ ext {
     android_support = '27.1.1'
     anko_version = '0.10.4'
     arch_version = "1.1.1"
+    dagger_version = "2.11"
 }
 
 android {
@@ -69,4 +70,11 @@ dependencies {
     implementation "org.jetbrains.anko:anko-appcompat-v7:$anko_version"
     implementation "org.jetbrains.anko:anko-cardview-v7:$anko_version"
     implementation "org.jetbrains.anko:anko-recyclerview-v7:$anko_version"
+
+    //Dagger library
+    implementation "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
 }

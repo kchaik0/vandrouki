@@ -5,8 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.squareup.picasso.Picasso
 import kchaiko.vandrouki.R
-import kchaiko.vandrouki.VandroukiApp
 import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.ui.item.DiscountItem
 import org.jetbrains.anko.AnkoContext
@@ -16,7 +16,7 @@ import org.jetbrains.anko.AnkoContext
  *
  * Created by kchaiko on 05.07.2017.
  */
-class DiscountAdapter(private val dataset: List<Discount>, private val itemClick: (Discount) -> Unit)
+class DiscountAdapter(private val dataset: List<Discount>, private val picasso: Picasso, private val itemClick: (Discount) -> Unit)
     : RecyclerView.Adapter<DiscountAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -25,7 +25,7 @@ class DiscountAdapter(private val dataset: List<Discount>, private val itemClick
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return DiscountItem().createView(AnkoContext.create(parent.context, parent)).tag as ViewHolder
+        return DiscountItem(picasso).createView(AnkoContext.create(parent.context, parent)).tag as ViewHolder
     }
 
     override fun getItemCount(): Int {
@@ -33,13 +33,14 @@ class DiscountAdapter(private val dataset: List<Discount>, private val itemClick
     }
 
     class ViewHolder(itemView: View, private val titleText: TextView, private val bgImage: ImageView,
-                     val descText: TextView) : RecyclerView.ViewHolder(itemView) {
+                     private val descText: TextView, private val picasso: Picasso) : RecyclerView.ViewHolder(itemView) {
+
         fun bindViews(discountBean: Discount, itemClick: (Discount) -> Unit) {
             itemView.setOnClickListener {
                 itemClick(discountBean)
             }
             titleText.text = discountBean.title
-            VandroukiApp.INSTANCE.picasso.load(discountBean.image)
+            picasso.load(discountBean.image)
                     .placeholder(R.drawable.bg_card_holder_image)
                     .error(R.drawable.bg_card_error_image)
                     .into(bgImage)
