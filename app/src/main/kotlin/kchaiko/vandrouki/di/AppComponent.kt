@@ -1,7 +1,9 @@
 package kchaiko.vandrouki.di
 
 import dagger.Component
+import kchaiko.vandrouki.activity.BaseActivity
 import kchaiko.vandrouki.activity.MainActivity
+import kchaiko.vandrouki.adapters.DiscountAdapter
 import kchaiko.vandrouki.di.modules.PicassoModule
 import javax.inject.Singleton
 
@@ -9,6 +11,6 @@ import javax.inject.Singleton
 @Singleton
 interface AppComponent {
 
-    fun inject(mainActivity: MainActivity)
+    fun inject(viewHolder: DiscountAdapter.ViewHolder)
 
 }

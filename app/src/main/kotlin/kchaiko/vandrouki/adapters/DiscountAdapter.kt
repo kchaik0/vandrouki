@@ -1,22 +1,22 @@
 package kchaiko.vandrouki.adapters
 
 import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import com.squareup.picasso.Picasso
 import kchaiko.vandrouki.R
+import kchaiko.vandrouki.VandroukiApp
 import kchaiko.vandrouki.beans.Discount
-import kchaiko.vandrouki.ui.item.DiscountItem
-import org.jetbrains.anko.AnkoContext
+import kotlinx.android.synthetic.main.item_discount.view.*
+import javax.inject.Inject
 
 /**
  * Adapter for showing discount items
  *
  * Created by kchaiko on 05.07.2017.
  */
-class DiscountAdapter(private val dataset: List<Discount>, private val picasso: Picasso, private val itemClick: (Discount) -> Unit)
+class DiscountAdapter(private val dataset: List<Discount>, private val itemClick: (Discount) -> Unit)
     : RecyclerView.Adapter<DiscountAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -25,15 +25,25 @@ class DiscountAdapter(private val dataset: List<Discount>, private val picasso: 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return DiscountItem(picasso).createView(AnkoContext.create(parent.context, parent)).tag as ViewHolder
+        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_discount, parent, false))
     }
 
     override fun getItemCount(): Int {
         return dataset.size
     }
 
-    class ViewHolder(itemView: View, private val titleText: TextView, private val bgImage: ImageView,
-                     private val descText: TextView, private val picasso: Picasso) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        private val titleText = itemView.id_title
+        private val bgImage = itemView.id_type
+        private val descText = itemView.id_desc
+
+        @Inject
+        lateinit var picasso: Picasso
+
+        init {
+            VandroukiApp.appComponent.inject(this)
+        }
 
         fun bindViews(discountBean: Discount, itemClick: (Discount) -> Unit) {
             itemView.setOnClickListener {
