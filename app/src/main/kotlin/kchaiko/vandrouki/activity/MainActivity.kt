@@ -6,14 +6,11 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import com.squareup.picasso.Picasso
 import kchaiko.vandrouki.R
-import kchaiko.vandrouki.VandroukiApp
 import kchaiko.vandrouki.adapters.DiscountAdapter
 import kchaiko.vandrouki.enumes.request.RequestStatus
 import kchaiko.vandrouki.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
-import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
 

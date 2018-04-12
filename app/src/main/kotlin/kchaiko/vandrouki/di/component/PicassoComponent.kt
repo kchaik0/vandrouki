@@ -1,4 +1,4 @@
-package kchaiko.vandrouki.di
+package kchaiko.vandrouki.di.component
 
 import dagger.Component
 import kchaiko.vandrouki.activity.BaseActivity

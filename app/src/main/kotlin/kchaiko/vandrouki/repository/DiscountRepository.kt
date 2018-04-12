@@ -9,20 +9,21 @@ import kchaiko.vandrouki.beans.Resource
 import kchaiko.vandrouki.network.RetrofitManager
 import kchaiko.vandrouki.network.service.LoadUrlService
 import kchaiko.vandrouki.parsers.HtmlParser
+import javax.inject.Inject
 
 /**
  * Manager for load url request
  *
  * Created by kchaiko on 06.07.2017.
  */
-object DiscountRepository {
+class DiscountRepository(private val htmlParser: HtmlParser) {
 
     private val loadUrlService = RetrofitManager.retrofit.create(LoadUrlService::class.java)
     val discountListLiveData = MutableLiveData<Resource<List<Discount>>>()
 
     fun loadDiscountList() {
         discountListLiveData.value = Resource.loading()
-        loadUrlService.html.map({ HtmlParser.parse(it.string()) })
+        loadUrlService.html.map({ htmlParser.parse(it.string()) })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(

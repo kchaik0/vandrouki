@@ -16,7 +16,7 @@ import kotlin.collections.ArrayList
  *
  * Created by kchaiko on 05.07.2017.
  */
-object HtmlParser {
+class HtmlParser {
 
     fun parse(html: String): List<Discount> {
         var document: Document? = null
