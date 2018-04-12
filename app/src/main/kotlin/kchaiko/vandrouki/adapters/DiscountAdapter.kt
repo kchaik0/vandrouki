@@ -42,7 +42,7 @@ class DiscountAdapter(private val dataset: List<Discount>, private val itemClick
         lateinit var picasso: Picasso
 
         init {
-            VandroukiApp.appComponent.inject(this)
+            VandroukiApp.picassoComponent.inject(this)
         }
 
         fun bindViews(discountBean: Discount, itemClick: (Discount) -> Unit) {

@@ -9,7 +9,7 @@ import javax.inject.Singleton
 
 @Component(modules = [PicassoModule::class])
 @Singleton
-interface AppComponent {
+interface PicassoComponent {
 
     fun inject(viewHolder: DiscountAdapter.ViewHolder)
 

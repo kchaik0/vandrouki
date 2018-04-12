@@ -1,8 +1,8 @@
 package kchaiko.vandrouki
 
 import android.app.Application
-import kchaiko.vandrouki.di.AppComponent
-import kchaiko.vandrouki.di.DaggerAppComponent
+import kchaiko.vandrouki.di.DaggerPicassoComponent
+import kchaiko.vandrouki.di.PicassoComponent
 import kchaiko.vandrouki.di.modules.PicassoModule
 
 /**
@@ -13,11 +13,11 @@ import kchaiko.vandrouki.di.modules.PicassoModule
 class VandroukiApp : Application() {
 
     companion object {
-        lateinit var appComponent: AppComponent
+        lateinit var picassoComponent: PicassoComponent
     }
 
     override fun onCreate() {
         super.onCreate()
-        appComponent = DaggerAppComponent.builder().picassoModule(PicassoModule(this)).build()
+        picassoComponent = DaggerPicassoComponent.builder().picassoModule(PicassoModule(this)).build()
     }
 }
