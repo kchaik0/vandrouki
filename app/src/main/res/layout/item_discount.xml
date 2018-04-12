@@ -1,64 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    card_view:cardCornerRadius="4dp"
-    card_view:cardElevation="4dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data>
+
+        <variable
+            name="discount"
+            type="kchaiko.vandrouki.beans.Discount" />
+    </data>
+
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_margin="8dp"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardElevation="4dp">
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/id_type"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                tools:ignore="ContentDescription" />
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    app:imageUrl="@{discount.image}"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    style="@style/TextViewStyle.Light.Large"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:background="?attr/colorCardNameBg"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:text="@{discount.title}"
+                    tools:text="asdasdqweqwe qewbhjqhwej qbwjebqwebhj qbwhjebqhwehj bqhwebhjqjbhwe bhqwjbehqjb bhjqwebhjqwbe hbqhwjebhjq bhjqbwehjbqjwe" />
+
+            </FrameLayout>
 
             <TextView
-                android:id="@+id/id_title"
-                style="@style/TextViewStyle.Light.Large"
-                android:layout_width="match_parent"
+                style="@style/TextViewStyle.Secondary.Normal"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:background="?attr/colorCardNameBg"
+                android:layout_margin="16dp"
                 android:ellipsize="end"
-                android:maxLines="1"
+                android:maxLines="3"
+                android:text="@{discount.desc}"
+                tools:text="asdqweqweqweqweqweqwe qwdasd qweqwe asdqdqweqwe qweqweqwe" />
+
+            <include layout="@layout/item_divider" />
+
+            <TextView
+                style="@style/TextViewStyle.Secondary.Normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 android:padding="8dp"
-                tools:text="asdasdqweqwe qewbhjqhwej qbwjebqwebhj qbwhjebqhwehj bqhwebhjqjbhwe bhqwjbehqjb bhjqwebhjqwbe hbqhwjebhjq bhjqbwehjbqjwe" />
+                android:text="@string/discount.card.action"
+                android:textAllCaps="true" />
 
-        </FrameLayout>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/id_desc"
-            style="@style/TextViewStyle.Secondary.Normal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:ellipsize="end"
-            android:maxLines="3"
-            tools:text="asdqweqweqweqweqweqwe qwdasd qweqwe asdqdqweqwe qweqweqwe" />
+    </android.support.v7.widget.CardView>
 
-        <include layout="@layout/item_divider" />
-
-        <TextView
-            style="@style/TextViewStyle.Secondary.Normal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:padding="8dp"
-            android:text="@string/discount.card.action"
-            android:textAllCaps="true" />
-
-    </LinearLayout>
-
-</android.support.v7.widget.CardView>
+</layout>
