@@ -1,19 +1,16 @@
 package kchaiko.vandrouki.adapters
 
+import android.databinding.BindingAdapter
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.squareup.picasso.Picasso
 import kchaiko.vandrouki.R
-import kchaiko.vandrouki.VandroukiApp
 import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.databinding.ItemDiscountBinding
-import kotlinx.android.synthetic.main.item_discount.view.*
-import javax.inject.Inject
-import android.databinding.BindingAdapter
-import android.widget.ImageView
 
 
 /**
@@ -34,8 +31,12 @@ class DiscountAdapter(private val dataset: List<Discount>, private val itemClick
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val discountBean = dataset[position]
-        holder.bindViews(discountBean, itemClick)
-        holder.binding?.discount = discountBean
+        with(holder) {
+            itemView.setOnClickListener { itemClick(discountBean) }
+            binding?.apply {
+                discount = discountBean
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -50,11 +51,6 @@ class DiscountAdapter(private val dataset: List<Discount>, private val itemClick
 
         val binding = DataBindingUtil.bind<ItemDiscountBinding>(itemView)
 
-        fun bindViews(discountBean: Discount, itemClick: (Discount) -> Unit) {
-            itemView.setOnClickListener {
-                itemClick(discountBean)
-            }
-        }
     }
 
 }

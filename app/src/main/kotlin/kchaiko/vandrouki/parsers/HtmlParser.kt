@@ -9,6 +9,7 @@ import org.jsoup.nodes.Element
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 import kotlin.collections.ArrayList
 
 /**
@@ -16,7 +17,7 @@ import kotlin.collections.ArrayList
  *
  * Created by kchaiko on 05.07.2017.
  */
-class HtmlParser {
+class HtmlParser @Inject constructor() {
 
     fun parse(html: String): List<Discount> {
         var document: Document? = null

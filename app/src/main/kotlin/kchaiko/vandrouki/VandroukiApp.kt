@@ -2,8 +2,6 @@ package kchaiko.vandrouki
 
 import android.app.Application
 import kchaiko.vandrouki.di.component.*
-import kchaiko.vandrouki.di.modules.HtmlParserModule
-import kchaiko.vandrouki.di.modules.RepositoryModule
 
 /**
  * Application
@@ -22,9 +20,6 @@ class VandroukiApp : Application() {
     }
 
     private fun initDaggerComponents() {
-        repositoryComponent = DaggerRepositoryComponent.builder()
-                .repositoryModule(RepositoryModule())
-                .htmlParserModule(HtmlParserModule())
-                .build()
+        repositoryComponent = DaggerRepositoryComponent.create()
     }
 }

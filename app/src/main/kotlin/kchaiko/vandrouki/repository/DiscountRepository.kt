@@ -10,13 +10,15 @@ import kchaiko.vandrouki.network.RetrofitManager
 import kchaiko.vandrouki.network.service.LoadUrlService
 import kchaiko.vandrouki.parsers.HtmlParser
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Manager for load url request
  *
  * Created by kchaiko on 06.07.2017.
  */
-class DiscountRepository(private val htmlParser: HtmlParser) {
+@Singleton
+class DiscountRepository @Inject constructor(private val htmlParser: HtmlParser) {
 
     private val loadUrlService = RetrofitManager.retrofit.create(LoadUrlService::class.java)
     val discountListLiveData = MutableLiveData<Resource<List<Discount>>>()
