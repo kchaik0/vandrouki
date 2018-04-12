@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import dagger.android.AndroidInjection
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.adapters.DiscountAdapter
 import kchaiko.vandrouki.beans.Discount
@@ -13,6 +14,7 @@ import kchaiko.vandrouki.beans.Resource
 import kchaiko.vandrouki.enumes.request.RequestStatus
 import kchaiko.vandrouki.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
 
@@ -20,15 +22,19 @@ class MainActivity : BaseActivity() {
         fun getIntent(context: Context) = Intent(context, MainActivity::class.java)
     }
 
+    /*@Inject
+    lateinit var mainViewModel: MainViewModel*/
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initViewModel()
     }
 
     private fun initViewModel() {
-        val viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        viewModel.discountListLiveData.observe(this, Observer { provideResult(it) })
+        //val viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        //mainViewModel.discountListLiveData.observe(this, Observer { provideResult(it) })
     }
 
     private fun showLoadingIndicator(show: Boolean) {
