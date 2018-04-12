@@ -15,10 +15,7 @@ import javax.inject.Inject
  *
  * Created by kchaiko on 06.07.2017.
  */
-class VandroukiApp : Application(), HasActivityInjector {
-
-    @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
+class VandroukiApp : Application() {
 
     companion object {
         lateinit var picassoComponent: PicassoComponent
@@ -29,8 +26,6 @@ class VandroukiApp : Application(), HasActivityInjector {
         super.onCreate()
         initDaggerComponents()
     }
-
-    override fun activityInjector() = dispatchingAndroidInjector
 
     private fun initDaggerComponents() {
         picassoComponent = DaggerPicassoComponent.builder().picassoModule(PicassoModule(this)).build()
