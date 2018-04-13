@@ -4,6 +4,8 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import kchaiko.vandrouki.activity.MainActivity
 import kchaiko.vandrouki.activity.SplashActivity
+import kchaiko.vandrouki.di.module.activity.MainActivityModule
+import kchaiko.vandrouki.di.module.activity.SplashActivityModule
 
 @Module
 abstract class ActivityBuilder {

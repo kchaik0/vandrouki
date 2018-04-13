@@ -1,4 +1,4 @@
-package kchaiko.vandrouki.di.module
+package kchaiko.vandrouki.di.module.activity
 
 import dagger.Module
 import dagger.Provides

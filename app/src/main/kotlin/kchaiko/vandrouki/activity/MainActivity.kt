@@ -3,15 +3,15 @@ package kchaiko.vandrouki.activity
 import android.arch.lifecycle.Observer
 import android.content.Context
 import android.content.Intent
+import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.view.View
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.adapters.DiscountAdapter
 import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.beans.Resource
+import kchaiko.vandrouki.databinding.ActivityMainBinding
 import kchaiko.vandrouki.enumes.request.RequestStatus
 import kchaiko.vandrouki.viewmodel.MainViewModel
-import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
@@ -23,9 +23,11 @@ class MainActivity : BaseActivity() {
     @Inject
     lateinit var mainViewModel: MainViewModel
 
+    private lateinit var activityMainBinding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         initViewModel()
     }
 
@@ -33,23 +35,21 @@ class MainActivity : BaseActivity() {
         mainViewModel.discountListLiveData.observe(this, Observer { provideResult(it) })
     }
 
-    private fun showLoadingIndicator(show: Boolean) {
-        am_recycler.visibility = if (show) View.GONE else View.VISIBLE
-        am_progress.visibility = if (show) View.VISIBLE else View.GONE
-    }
-
     private fun provideResult(result: Resource<List<Discount>>?) {
         when (result?.status) {
             RequestStatus.SUCCESS -> {
-                am_recycler.adapter = result.data?.let { data -> DiscountAdapter(data, { startActivity(DiscountActivity.getIntent(this, it)) }) }
-                showLoadingIndicator(false)
+                activityMainBinding.adapter = result.data?.let { data -> DiscountAdapter(data, { startActivity(DiscountActivity.getIntent(this, it)) }) }
+                activityMainBinding.resource = result
             }
             RequestStatus.ERROR -> {
-                showLoadingIndicator(false)
-                result.exception?.let { exception -> proceedError(exception) }
+                activityMainBinding.resource = result
+                result.exception?.run {
+                    proceedError(this)
+                }
             }
-            RequestStatus.LOADING -> showLoadingIndicator(true)
+            RequestStatus.LOADING -> {
+                activityMainBinding.resource = result
+            }
         }
     }
-
 }

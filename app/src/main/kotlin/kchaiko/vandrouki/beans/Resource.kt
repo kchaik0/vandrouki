@@ -26,4 +26,6 @@ data class Resource<T>(val status: RequestStatus, val data: T? = null, val excep
             }
         }
     }
+
+    fun isLoading() = status == RequestStatus.LOADING
 }

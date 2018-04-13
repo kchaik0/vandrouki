@@ -3,9 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
+        <import type="android.view.View" />
+
         <variable
             name="resource"
             type="kchaiko.vandrouki.beans.Resource" />
+
+        <variable
+            name="adapter"
+            type="kchaiko.vandrouki.adapters.DiscountAdapter" />
+
     </data>
 
     <FrameLayout
@@ -14,18 +22,19 @@
         android:background="?attr/colorBackground">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/am_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:adapter="@{adapter}"
             android:paddingBottom="4dp"
             android:paddingTop="4dp"
+            android:visibility="@{resource.isLoading() ? View.GONE : View.VISIBLE}"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
         <ProgressBar
-            android:id="@+id/am_progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:visibility="@{resource.isLoading() ? View.VISIBLE : View.GONE}" />
 
     </FrameLayout>
 
