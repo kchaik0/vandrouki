@@ -1,8 +1,8 @@
 package kchaiko.vandrouki.activity
 
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import kchaiko.vandrouki.viewmodel.SplashViewModel
+import javax.inject.Inject
 
 /**
  * First splash activity in app
@@ -11,9 +11,12 @@ import kchaiko.vandrouki.viewmodel.SplashViewModel
  */
 class SplashActivity : BaseActivity() {
 
+    @Inject
+    lateinit var splashViewModel: SplashViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ViewModelProviders.of(this).get(SplashViewModel::class.java).loadDiscounts()
+        splashViewModel.loadDiscounts()
         startActivity(MainActivity.getIntent(this))
         finish()
     }

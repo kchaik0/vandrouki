@@ -1,12 +1,10 @@
 package kchaiko.vandrouki.activity
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import dagger.android.AndroidInjection
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.adapters.DiscountAdapter
 import kchaiko.vandrouki.beans.Discount
@@ -22,19 +20,17 @@ class MainActivity : BaseActivity() {
         fun getIntent(context: Context) = Intent(context, MainActivity::class.java)
     }
 
-    /*@Inject
-    lateinit var mainViewModel: MainViewModel*/
+    @Inject
+    lateinit var mainViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initViewModel()
     }
 
     private fun initViewModel() {
-        //val viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        //mainViewModel.discountListLiveData.observe(this, Observer { provideResult(it) })
+        mainViewModel.discountListLiveData.observe(this, Observer { provideResult(it) })
     }
 
     private fun showLoadingIndicator(show: Boolean) {
