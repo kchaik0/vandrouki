@@ -18,8 +18,7 @@ import kchaiko.vandrouki.databinding.ItemDiscountBinding
  *
  * Created by kchaiko on 05.07.2017.
  */
-class DiscountAdapter(private val dataset: List<Discount>, private val itemClick: (Discount) -> Unit)
-    : RecyclerView.Adapter<DiscountAdapter.ViewHolder>() {
+class DiscountAdapter(private val dataset: List<Discount>, private val itemClick: (Discount) -> Unit) : RecyclerView.Adapter<DiscountAdapter.ViewHolder>() {
 
     companion object {
         @JvmStatic
@@ -32,8 +31,10 @@ class DiscountAdapter(private val dataset: List<Discount>, private val itemClick
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val discountBean = dataset[position]
         with(holder) {
-            itemView.setOnClickListener { itemClick(discountBean) }
             binding?.apply {
+                root.setOnClickListener {
+                    itemClick(discountBean)
+                }
                 discount = discountBean
             }
         }
