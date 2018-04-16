@@ -12,17 +12,17 @@ import kchaiko.vandrouki.repository.DiscountRepository
  *
  * Created by kchaiko on 28.07.2017.
  */
-class MainViewModel(private val discountRepository: DiscountRepository) {
+class MainViewModel(private val discountRepository: DiscountRepository) : BaseViewModel() {
 
     lateinit var itemClick: (Discount) -> Unit
 
     fun subscribe() {
-        discountRepository.discountListSubject.subscribeBy {
+        compositeDisposable.add(discountRepository.discountListSubject.subscribeBy {
             isLoading.set(it.status == RequestStatus.LOADING)
             if (it.status == RequestStatus.SUCCESS) {
                 it.data?.let { adapter.set(DiscountAdapter(it, itemClick)) }
             }
-        }
+        })
     }
 
     var isLoading: ObservableField<Boolean> = ObservableField()

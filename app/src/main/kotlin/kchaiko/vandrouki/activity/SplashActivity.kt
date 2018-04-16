@@ -20,4 +20,6 @@ class SplashActivity : BaseActivity() {
         startActivity(MainActivity.getIntent(this))
         finish()
     }
+
+    override fun getViewModel() = splashViewModel
 }

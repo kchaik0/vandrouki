@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.beans.Discount
+import kchaiko.vandrouki.viewmodel.BaseViewModel
 import kotlinx.android.synthetic.main.activity_discount.*
 
 /**
@@ -30,6 +31,10 @@ class DiscountActivity : BaseActivity() {
         setContentView(R.layout.activity_discount)
         val discountBean = intent.extras.getParcelable<Discount>(DISCOUNT_BEAN_EXTRA)
         ad_title.text = discountBean.title
+    }
+
+    override fun getViewModel(): BaseViewModel {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 }

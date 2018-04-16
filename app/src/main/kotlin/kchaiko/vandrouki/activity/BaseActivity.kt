@@ -4,8 +4,8 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import dagger.android.AndroidInjection
-import dagger.android.DaggerActivity
 import kchaiko.vandrouki.network.exception.BaseException
+import kchaiko.vandrouki.viewmodel.BaseViewModel
 
 /**
  * Base activity for all programm activity
@@ -15,9 +15,16 @@ import kchaiko.vandrouki.network.exception.BaseException
 
 abstract class BaseActivity : AppCompatActivity() {
 
+    abstract fun getViewModel(): BaseViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        getViewModel().clearViewModel()
     }
 
     fun proceedError(exception: BaseException) {

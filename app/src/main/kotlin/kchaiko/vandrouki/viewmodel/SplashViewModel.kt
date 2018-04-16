@@ -7,7 +7,7 @@ import kchaiko.vandrouki.repository.DiscountRepository
  *
  * Created by kchaiko on 28.07.2017.
  */
-class SplashViewModel(private val discountRepository: DiscountRepository) {
+class SplashViewModel(private val discountRepository: DiscountRepository) : BaseViewModel() {
 
     fun loadDiscounts() {
         discountRepository.loadDiscountList()

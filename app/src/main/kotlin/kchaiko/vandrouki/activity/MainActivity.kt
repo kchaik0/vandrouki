@@ -28,5 +28,5 @@ class MainActivity : BaseActivity() {
         mainViewModel.subscribe()
     }
 
-
+    override fun getViewModel() = mainViewModel
 }
