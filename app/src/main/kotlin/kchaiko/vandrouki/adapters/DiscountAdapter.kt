@@ -18,7 +18,7 @@ import kchaiko.vandrouki.databinding.ItemDiscountBinding
  *
  * Created by kchaiko on 05.07.2017.
  */
-class DiscountAdapter(private val dataset: List<Discount>, private val itemClick: (Discount) -> Unit) : RecyclerView.Adapter<DiscountAdapter.ViewHolder>() {
+class DiscountAdapter(private var dataset: MutableList<Discount> = mutableListOf(), private val itemClick: (Discount) -> Unit) : RecyclerView.Adapter<DiscountAdapter.ViewHolder>() {
 
     companion object {
         @JvmStatic
@@ -46,6 +46,11 @@ class DiscountAdapter(private val dataset: List<Discount>, private val itemClick
 
     override fun getItemCount(): Int {
         return dataset.size
+    }
+
+    fun addItems(items: List<Discount>) {
+        dataset.addAll(items)
+        notifyDataSetChanged()
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
