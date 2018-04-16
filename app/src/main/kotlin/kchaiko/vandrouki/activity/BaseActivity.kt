@@ -27,7 +27,7 @@ abstract class BaseActivity : AppCompatActivity() {
         getViewModel().clearViewModel()
     }
 
-    fun proceedError(exception: BaseException) {
+    protected fun proceedError(exception: BaseException) {
         AlertDialog.Builder(this)
                 .setMessage(exception.message)
                 .setCancelable(false)

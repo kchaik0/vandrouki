@@ -21,8 +21,11 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        mainViewModel.itemClick = {
+        mainViewModel.itemClick {
             startActivity(DiscountActivity.getIntent(this, it))
+        }
+        mainViewModel.errorDelegate {
+            proceedError(it)
         }
         binding.viewModel = mainViewModel
         mainViewModel.subscribe()
