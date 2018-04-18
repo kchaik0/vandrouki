@@ -10,10 +10,10 @@ import kchaiko.vandrouki.di.module.activity.SplashActivityModule
 @Module
 abstract class ActivityBuilder {
 
-    @ContributesAndroidInjector(modules = [MainActivityModule::class])
-    abstract fun bindMainActivity(): MainActivity
-
     @ContributesAndroidInjector(modules = [SplashActivityModule::class])
     abstract fun bindSplashActivity(): SplashActivity
+
+    @ContributesAndroidInjector(modules = [MainActivityModule::class])
+    abstract fun bindMainActivity(): MainActivity
 
 }

@@ -40,13 +40,10 @@ class DiscountAdapter(private var dataset: MutableList<Discount> = mutableListOf
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_discount, parent, false))
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+            ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_discount, parent, false))
 
-    override fun getItemCount(): Int {
-        return dataset.size
-    }
+    override fun getItemCount() = dataset.size
 
     fun addItems(items: List<Discount>) {
         dataset.addAll(items)
