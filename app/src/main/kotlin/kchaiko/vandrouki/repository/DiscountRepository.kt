@@ -1,7 +1,6 @@
 package kchaiko.vandrouki.repository
 
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import kchaiko.vandrouki.beans.Discount
@@ -26,11 +25,11 @@ class DiscountRepository @Inject constructor(private val apiService: LoadUrlServ
         apiService.html.map({ htmlParser.parse(it.string()) })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeBy(
-                        onSuccess = {
+                .subscribe(
+                        {
                             discountListSubject.onNext(discountListSubject.value.setStatusSuccess(it))
                         },
-                        onError = {
+                        {
                             discountListSubject.onNext(discountListSubject.value.setStatusError(it))
                         })
     }

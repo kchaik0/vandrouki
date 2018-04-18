@@ -18,21 +18,20 @@ class MainActivity : BaseActivity() {
 
     @Inject
     lateinit var mainViewModel: MainViewModel
-    private lateinit var discountAdapter: DiscountAdapter
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        with(mainViewModel) {
-            dataDelegate { discountAdapter.addItems(it) }
-            errorDelegate { proceedError(it) }
-        }
-        DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
                 .apply { viewModel = mainViewModel }
                 .apply {
-                    discountAdapter = DiscountAdapter { startActivity(DiscountActivity.getIntent(this@MainActivity, it)) }
-                    adapter = discountAdapter
+                    adapter = DiscountAdapter { startActivity(DiscountActivity.getIntent(this@MainActivity, it)) }
                 }
-        mainViewModel.subscribe()
+        with(mainViewModel) {
+            dataDelegate { binding.adapter?.addItems(it) }
+            errorDelegate { proceedError(it) }
+            subscribe()
+        }
     }
 
     override fun getViewModel() = mainViewModel

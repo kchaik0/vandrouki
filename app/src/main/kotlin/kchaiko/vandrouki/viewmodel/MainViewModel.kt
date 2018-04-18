@@ -1,7 +1,6 @@
 package kchaiko.vandrouki.viewmodel
 
 import android.databinding.ObservableField
-import io.reactivex.rxkotlin.subscribeBy
 import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.beans.Resource
 import kchaiko.vandrouki.enumes.request.RequestStatus.*
@@ -21,7 +20,7 @@ class MainViewModel(private val discountRepository: DiscountRepository) : BaseVi
     var isLoading: ObservableField<Boolean> = ObservableField()
 
     fun subscribe() {
-        compositeDisposable.add(discountRepository.discountListSubject.subscribeBy { provideResult(it) })
+        compositeDisposable.add(discountRepository.discountListSubject.subscribe { provideResult(it) })
     }
 
     fun dataDelegate(function: (List<Discount>) -> Unit) {
@@ -35,14 +34,12 @@ class MainViewModel(private val discountRepository: DiscountRepository) : BaseVi
     private fun provideResult(it: Resource<List<Discount>>) {
         when (it.status) {
             SUCCESS -> {
-                dataDelegate(it.data ?: listOf())
+                it.data?.apply { dataDelegate(this) }
                 isLoading.set(false)
             }
             ERROR -> {
                 isLoading.set(false)
-                it.exception?.apply {
-                    errorDelegate(this)
-                }
+                it.exception?.apply { errorDelegate(this) }
             }
             LOADING -> isLoading.set(true)
         }
