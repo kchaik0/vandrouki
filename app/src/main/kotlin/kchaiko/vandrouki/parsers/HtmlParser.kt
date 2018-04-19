@@ -43,9 +43,7 @@ class HtmlParser @Inject constructor() {
         return discountBeanList
     }
 
-    private fun parseCategoryList(elem: Element): List<String> {
-        return elem.attr("class").split(" ").filter { it.startsWith("category") }
-    }
+    private fun parseCategoryList(elem: Element): List<String> = elem.attr("class").split(" ").filter { it.startsWith("category") }
 
     private fun getType(categoryList: List<String>): Type {
         return if (categoryList.any { it.startsWith("category-letim") }) Type.FLY else Type.OTHER

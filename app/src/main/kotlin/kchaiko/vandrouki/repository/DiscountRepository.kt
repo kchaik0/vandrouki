@@ -26,11 +26,7 @@ class DiscountRepository @Inject constructor(private val apiService: LoadUrlServ
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        {
-                            discountListSubject.onNext(discountListSubject.value.setStatusSuccess(it))
-                        },
-                        {
-                            discountListSubject.onNext(discountListSubject.value.setStatusError(it))
-                        })
+                        { discountListSubject.onNext(discountListSubject.value.setStatusSuccess(it)) },
+                        { discountListSubject.onNext(discountListSubject.value.setStatusError(it)) })
     }
 }

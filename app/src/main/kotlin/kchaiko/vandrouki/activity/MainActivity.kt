@@ -23,15 +23,13 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-                .apply { viewModel = mainViewModel }
                 .apply {
+                    viewModel = mainViewModel
                     adapter = DiscountAdapter { startActivity(DiscountActivity.getIntent(this@MainActivity, it)) }
                 }
-        with(mainViewModel) {
-            dataDelegate { binding.adapter?.addItems(it) }
-            errorDelegate { proceedError(it) }
-            subscribe()
-        }
+        mainViewModel.dataDelegate { binding.adapter?.addItems(it) }
+                .errorDelegate { proceedError(it) }
+                .subscribe()
     }
 
     override fun getViewModel() = mainViewModel

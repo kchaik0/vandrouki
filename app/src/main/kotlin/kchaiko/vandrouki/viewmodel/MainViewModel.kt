@@ -23,13 +23,9 @@ class MainViewModel(private val discountRepository: DiscountRepository) : BaseVi
         compositeDisposable.add(discountRepository.discountListSubject.subscribe { provideResult(it) })
     }
 
-    fun dataDelegate(function: (List<Discount>) -> Unit) {
-        this.dataDelegate = function
-    }
+    fun dataDelegate(function: (List<Discount>) -> Unit) = apply { dataDelegate = function }
 
-    fun errorDelegate(function: (BaseException) -> Unit) {
-        this.errorDelegate = function
-    }
+    fun errorDelegate(function: (BaseException) -> Unit) = apply { errorDelegate = function }
 
     private fun provideResult(it: Resource<List<Discount>>) {
         when (it.status) {
