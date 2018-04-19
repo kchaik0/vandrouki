@@ -5,6 +5,7 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import kchaiko.vandrouki.R
+import kchaiko.vandrouki.VandroukiApp
 import kchaiko.vandrouki.adapters.DiscountAdapter
 import kchaiko.vandrouki.databinding.ActivityMainBinding
 import kchaiko.vandrouki.viewmodel.MainViewModel
@@ -25,7 +26,10 @@ class MainActivity : BaseActivity() {
         binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
                 .apply {
                     viewModel = mainViewModel
-                    adapter = DiscountAdapter { startActivity(DiscountActivity.getIntent(this@MainActivity, it)) }
+                    adapter = DiscountAdapter {
+                        VandroukiApp.INSTANCE.buildDiscountScope(it)
+                        startActivity(DiscountActivity.getIntent(this@MainActivity))
+                    }
                 }
         mainViewModel.dataDelegate { binding.adapter?.addItems(it) }
                 .errorDelegate { proceedError(it) }

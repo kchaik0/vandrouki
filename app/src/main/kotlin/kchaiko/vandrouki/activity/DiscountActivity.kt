@@ -2,11 +2,13 @@ package kchaiko.vandrouki.activity
 
 import android.content.Context
 import android.content.Intent
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import kchaiko.vandrouki.R
-import kchaiko.vandrouki.beans.Discount
-import kchaiko.vandrouki.viewmodel.BaseViewModel
-import kotlinx.android.synthetic.main.activity_discount.*
+import kchaiko.vandrouki.VandroukiApp
+import kchaiko.vandrouki.databinding.ActivityDiscountBinding
+import kchaiko.vandrouki.viewmodel.DiscountViewModel
+import javax.inject.Inject
 
 /**
  * Activity for show discount details
@@ -15,26 +17,26 @@ import kotlinx.android.synthetic.main.activity_discount.*
  */
 class DiscountActivity : BaseActivity() {
 
+    @Inject
+    lateinit var discountViewModel: DiscountViewModel
+
     companion object {
 
-        private val DISCOUNT_BEAN_EXTRA = "discount_bean"
-
-        fun getIntent(context: Context, discount: Discount): Intent {
-            val intent = Intent(context, DiscountActivity::class.java)
-            intent.putExtra(DISCOUNT_BEAN_EXTRA, discount)
-            return intent
-        }
+        fun getIntent(context: Context) = Intent(context, DiscountActivity::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_discount)
-        val discountBean = intent.extras.getParcelable<Discount>(DISCOUNT_BEAN_EXTRA)
-        ad_title.text = discountBean.title
+        DataBindingUtil.setContentView<ActivityDiscountBinding>(this, R.layout.activity_discount)
+                .apply {
+                    viewModel = discountViewModel
+                }
     }
 
-    override fun getViewModel(): BaseViewModel {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onDestroy() {
+        super.onDestroy()
+        VandroukiApp.INSTANCE.clearDiscountScope()
     }
 
+    override fun getViewModel() = discountViewModel
 }
