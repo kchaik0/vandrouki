@@ -5,7 +5,7 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import kchaiko.vandrouki.R
-import kchaiko.vandrouki.VandroukiApp
+import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.databinding.ActivityDiscountBinding
 import kchaiko.vandrouki.viewmodel.DiscountViewModel
 import javax.inject.Inject
@@ -22,20 +22,19 @@ class DiscountActivity : BaseActivity() {
 
     companion object {
 
-        fun getIntent(context: Context) = Intent(context, DiscountActivity::class.java)
+        private const val DISCOUNT_EXTRA = "discount"
+
+        fun getIntent(context: Context, discount: Discount) = Intent(context, DiscountActivity::class.java)
+                .apply { putExtra(DISCOUNT_EXTRA, discount) }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        discountViewModel.discount = intent.getParcelableExtra(DISCOUNT_EXTRA)
         DataBindingUtil.setContentView<ActivityDiscountBinding>(this, R.layout.activity_discount)
                 .apply {
                     viewModel = discountViewModel
                 }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        VandroukiApp.INSTANCE.clearDiscountScope()
     }
 
     override fun getViewModel() = discountViewModel
