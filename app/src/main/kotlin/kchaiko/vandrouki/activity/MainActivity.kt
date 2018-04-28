@@ -7,6 +7,7 @@ import android.os.Bundle
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.adapters.DiscountAdapter
 import kchaiko.vandrouki.databinding.ActivityMainBinding
+import kchaiko.vandrouki.annotation.ViewModel
 import kchaiko.vandrouki.viewmodel.MainViewModel
 import javax.inject.Inject
 
@@ -17,7 +18,9 @@ class MainActivity : BaseActivity() {
     }
 
     @Inject
+    @ViewModel
     lateinit var mainViewModel: MainViewModel
+
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +36,4 @@ class MainActivity : BaseActivity() {
                 .errorDelegate { proceedError(it) }
                 .subscribe()
     }
-
-    override fun getViewModel() = mainViewModel
 }

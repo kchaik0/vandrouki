@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import dagger.android.AndroidInjection
+import kchaiko.vandrouki.annotation.ViewModel
 import kchaiko.vandrouki.network.exception.BaseException
 import kchaiko.vandrouki.viewmodel.BaseViewModel
 
@@ -15,8 +16,6 @@ import kchaiko.vandrouki.viewmodel.BaseViewModel
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    abstract fun getViewModel(): BaseViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
@@ -24,7 +23,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        getViewModel().clearViewModel()
+        clearViewModels()
     }
 
     protected fun proceedError(exception: BaseException) {
@@ -33,6 +32,12 @@ abstract class BaseActivity : AppCompatActivity() {
                 .setCancelable(false)
                 .setPositiveButton(android.R.string.ok, { dialogInterface, _ -> dialogInterface.dismiss() })
                 .create().show()
+    }
+
+    private fun clearViewModels() {
+        javaClass.declaredFields.filter { it.getAnnotation(ViewModel::class.java) != null }
+                .map { it.get(this) as BaseViewModel }
+                .forEach { it.clearViewModel() }
     }
 
 }

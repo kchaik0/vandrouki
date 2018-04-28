@@ -7,6 +7,7 @@ import android.os.Bundle
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.databinding.ActivityDiscountBinding
+import kchaiko.vandrouki.annotation.ViewModel
 import kchaiko.vandrouki.viewmodel.DiscountViewModel
 import javax.inject.Inject
 
@@ -18,6 +19,7 @@ import javax.inject.Inject
 class DiscountActivity : BaseActivity() {
 
     @Inject
+    @ViewModel
     lateinit var discountViewModel: DiscountViewModel
 
     companion object {
@@ -36,6 +38,4 @@ class DiscountActivity : BaseActivity() {
                     viewModel = discountViewModel
                 }
     }
-
-    override fun getViewModel() = discountViewModel
 }

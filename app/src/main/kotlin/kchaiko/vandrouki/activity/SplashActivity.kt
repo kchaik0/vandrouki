@@ -1,6 +1,7 @@
 package kchaiko.vandrouki.activity
 
 import android.os.Bundle
+import kchaiko.vandrouki.annotation.ViewModel
 import kchaiko.vandrouki.viewmodel.SplashViewModel
 import javax.inject.Inject
 
@@ -12,6 +13,7 @@ import javax.inject.Inject
 class SplashActivity : BaseActivity() {
 
     @Inject
+    @ViewModel
     lateinit var splashViewModel: SplashViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +22,4 @@ class SplashActivity : BaseActivity() {
         startActivity(MainActivity.getIntent(this))
         finish()
     }
-
-    override fun getViewModel() = splashViewModel
 }
