@@ -4,9 +4,13 @@ import io.reactivex.disposables.CompositeDisposable
 
 abstract class BaseViewModel {
 
-    protected val compositeDisposable = CompositeDisposable()
+    protected lateinit var compositeDisposable: CompositeDisposable
 
-    fun clearViewModel() {
+    fun attach() {
+        compositeDisposable = CompositeDisposable()
+    }
+
+    fun detach() {
         compositeDisposable.clear()
     }
 

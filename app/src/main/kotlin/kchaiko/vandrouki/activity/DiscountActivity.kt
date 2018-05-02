@@ -7,20 +7,14 @@ import android.os.Bundle
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.databinding.ActivityDiscountBinding
-import kchaiko.vandrouki.annotation.ViewModel
 import kchaiko.vandrouki.viewmodel.DiscountViewModel
-import javax.inject.Inject
 
 /**
  * Activity for show discount details
  *
  * Created by kchaiko on 06.07.2017.
  */
-class DiscountActivity : BaseActivity() {
-
-    @Inject
-    @ViewModel
-    lateinit var discountViewModel: DiscountViewModel
+class DiscountActivity : BaseActivity<DiscountViewModel>() {
 
     companion object {
 
@@ -32,10 +26,10 @@ class DiscountActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        discountViewModel.discount = intent.getParcelableExtra(DISCOUNT_EXTRA)
+        viewModel.discount = intent.getParcelableExtra(DISCOUNT_EXTRA)
         DataBindingUtil.setContentView<ActivityDiscountBinding>(this, R.layout.activity_discount)
                 .apply {
-                    viewModel = discountViewModel
+                    viewModel = super.viewModel
                 }
     }
 }

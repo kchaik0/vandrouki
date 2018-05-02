@@ -7,19 +7,13 @@ import android.os.Bundle
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.adapters.DiscountAdapter
 import kchaiko.vandrouki.databinding.ActivityMainBinding
-import kchaiko.vandrouki.annotation.ViewModel
 import kchaiko.vandrouki.viewmodel.MainViewModel
-import javax.inject.Inject
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity<MainViewModel>() {
 
     companion object {
         fun getIntent(context: Context) = Intent(context, MainActivity::class.java)
     }
-
-    @Inject
-    @ViewModel
-    lateinit var mainViewModel: MainViewModel
 
     private lateinit var binding: ActivityMainBinding
 
@@ -27,12 +21,12 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
                 .apply {
-                    viewModel = mainViewModel
+                    viewModel = super.viewModel
                     adapter = DiscountAdapter {
                         startActivity(DiscountActivity.getIntent(this@MainActivity, it))
                     }
                 }
-        mainViewModel.dataDelegate { binding.adapter?.addItems(it) }
+        viewModel.dataDelegate { binding.adapter?.addItems(it) }
                 .errorDelegate { proceedError(it) }
                 .subscribe()
     }
