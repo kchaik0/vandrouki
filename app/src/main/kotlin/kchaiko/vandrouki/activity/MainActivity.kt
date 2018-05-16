@@ -9,7 +9,7 @@ import kchaiko.vandrouki.adapters.DiscountAdapter
 import kchaiko.vandrouki.databinding.ActivityMainBinding
 import kchaiko.vandrouki.viewmodel.MainViewModel
 
-class MainActivity : BaseActivity<MainViewModel>() {
+class MainActivity : BaseActivity() {
 
     companion object {
         fun getIntent(context: Context) = Intent(context, MainActivity::class.java)
@@ -19,15 +19,16 @@ class MainActivity : BaseActivity<MainViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val viewModel2 = MainViewModel.newInstance()
         binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
                 .apply {
-                    viewModel = super.viewModel
+                    viewModel = viewModel2
                     adapter = DiscountAdapter {
                         startActivity(DiscountActivity.getIntent(this@MainActivity, it))
                     }
                 }
-        viewModel.dataDelegate { binding.adapter?.addItems(it) }
+        viewModel2.dataDelegate { binding.adapter?.addItems(it) }
                 .errorDelegate { proceedError(it) }
-                .subscribe()
+                .loadData()
     }
 }

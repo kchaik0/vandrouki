@@ -1,34 +1,26 @@
 package kchaiko.vandrouki.beans
 
 import kchaiko.vandrouki.enumes.request.RequestStatus
-import kchaiko.vandrouki.network.exception.BaseException
+import kchaiko.vandrouki.network.exception.VandException
+import java.net.UnknownHostException
 
 /**
  * Bean for wrap request data
  *
  * Created by kchaiko on 11.10.2017.
  */
-data class Resource<T>(var status: RequestStatus, var data: T? = null, var exception: BaseException? = null) {
+data class Resource<T>(var status: RequestStatus, var data: T? = null, var exception: VandException? = null) {
 
     companion object {
-        fun <T> loading() = Resource<T>(RequestStatus.LOADING)
-    }
+        fun <T> success(data: T) = Resource(RequestStatus.SUCCESS, data)
+        fun <T> error(throwable: Throwable) = Resource<T>(RequestStatus.ERROR, exception = getExceptionFromThrowable(throwable))
 
-    fun setStatusSuccess(data: T) = apply {
-        status = RequestStatus.SUCCESS
-        this.data = data
-    }
-
-    fun setStatusError(throwable: Throwable) = apply {
-        status = RequestStatus.ERROR
-        exception = getExceptionFromThrowable(throwable)
-    }
-
-    private fun getExceptionFromThrowable(throwable: Throwable) = when (throwable) {
-        is BaseException -> throwable
-        else -> {
-            throwable.printStackTrace()
-            null
+        private fun getExceptionFromThrowable(throwable: Throwable) = when (throwable) {
+            is UnknownHostException -> VandException(throwable.message)
+            else -> {
+                throwable.printStackTrace()
+                null
+            }
         }
     }
 }

@@ -9,4 +9,8 @@ import kchaiko.vandrouki.beans.Discount
  */
 class DiscountViewModel : BaseViewModel() {
     lateinit var discount: Discount
+
+    companion object {
+        fun newInstance() = DiscountViewModel()
+    }
 }

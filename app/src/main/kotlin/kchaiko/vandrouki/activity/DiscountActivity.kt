@@ -14,7 +14,7 @@ import kchaiko.vandrouki.viewmodel.DiscountViewModel
  *
  * Created by kchaiko on 06.07.2017.
  */
-class DiscountActivity : BaseActivity<DiscountViewModel>() {
+class DiscountActivity : BaseActivity() {
 
     companion object {
 
@@ -26,10 +26,11 @@ class DiscountActivity : BaseActivity<DiscountViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.discount = intent.getParcelableExtra(DISCOUNT_EXTRA)
+        val viewModel2 = DiscountViewModel.newInstance()
+        viewModel2.discount = intent.getParcelableExtra(DISCOUNT_EXTRA)
         DataBindingUtil.setContentView<ActivityDiscountBinding>(this, R.layout.activity_discount)
                 .apply {
-                    viewModel = super.viewModel
+                    viewModel = viewModel2
                 }
     }
 }

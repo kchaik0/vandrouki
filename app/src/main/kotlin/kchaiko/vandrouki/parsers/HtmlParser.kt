@@ -3,13 +3,14 @@ package kchaiko.vandrouki.parsers
 import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.enumes.DateFormats
 import kchaiko.vandrouki.enumes.discount.Type
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.async
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
-import javax.inject.Inject
 import kotlin.collections.ArrayList
 
 /**
@@ -17,9 +18,13 @@ import kotlin.collections.ArrayList
  *
  * Created by kchaiko on 05.07.2017.
  */
-class HtmlParser @Inject constructor() {
+class HtmlParser {
 
-    fun parse(html: String): List<Discount> {
+    companion object {
+        fun getInstance() = HtmlParser()
+    }
+
+    fun parse(html: String) = async(CommonPool) {
         var document: Document? = null
         try {
             document = Jsoup.parse(html)
@@ -28,7 +33,7 @@ class HtmlParser @Inject constructor() {
         }
         val discountElements = document!!.getElementById("primary")
                 .getElementsByAttributeValueContaining("id", "post-")
-        val discountBeanList = ArrayList<Discount>()
+        val discountBeanList = arrayListOf<Discount>()
         val dateFormat = SimpleDateFormat(DateFormats.HTML_FORMAT.format, Locale.getDefault())
         var title: String
         var date: Date
@@ -40,7 +45,7 @@ class HtmlParser @Inject constructor() {
             discountBeanList.add(Discount(title, date, categoryList, getType(categoryList),
                     getImageUrl(elem), getDiscountDesc(elem)))
         }
-        return discountBeanList
+        discountBeanList
     }
 
     private fun parseCategoryList(elem: Element): List<String> = elem.attr("class").split(" ").filter { it.startsWith("category") }

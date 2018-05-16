@@ -1,32 +1,24 @@
 package kchaiko.vandrouki.repository
 
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import io.reactivex.subjects.BehaviorSubject
 import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.beans.Resource
-import kchaiko.vandrouki.network.service.LoadUrlService
+import kchaiko.vandrouki.network.RetrofitManager
 import kchaiko.vandrouki.parsers.HtmlParser
-import javax.inject.Inject
-import javax.inject.Singleton
 
 /**
  * Manager for subscribe url request
  *
  * Created by kchaiko on 06.07.2017.
  */
-@Singleton
-class DiscountRepository @Inject constructor(private val apiService: LoadUrlService, private val htmlParser: HtmlParser) {
+object DiscountRepository {
 
-    lateinit var discountListSubject: BehaviorSubject<Resource<List<Discount>>>
-
-    fun loadDiscountList() {
-        discountListSubject = BehaviorSubject.createDefault(Resource.loading())
-        apiService.html.map({ htmlParser.parse(it.string()) })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        { discountListSubject.onNext(discountListSubject.value.setStatusSuccess(it)) },
-                        { discountListSubject.onNext(discountListSubject.value.setStatusError(it)) })
+    suspend fun loadDiscountList(): Resource<List<Discount>> {
+        return try {
+            val response = RetrofitManager.getApiService().html.await()
+            val discountList = HtmlParser.getInstance().parse(response.string()).await()
+            Resource.success(discountList)
+        } catch (e: Exception) {
+            Resource.error(e)
+        }
     }
 }

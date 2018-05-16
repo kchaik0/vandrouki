@@ -51,21 +51,30 @@ dependencies {
     //Jsoup library
     implementation 'org.jsoup:jsoup:1.10.3'
 
-    //Kotlin stdlib
+    //Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.22.5'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.22.5"
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-experimental-adapter:1.0.0'
 
     //RxJava2, Retrofit2 library
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    //implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    //implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
 
     //Picasso library
     implementation 'com.squareup.picasso:picasso:2.5.2'
 
     //Dagger library
-    implementation "com.google.dagger:dagger:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    implementation "com.google.dagger:dagger-android:$dagger_version"
-    implementation "com.google.dagger:dagger-android-support:$dagger_version"
-    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+    //implementation "com.google.dagger:dagger:$dagger_version"
+    //kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    //implementation "com.google.dagger:dagger-android:$dagger_version"
+    //implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    //kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+}
+
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
 }
