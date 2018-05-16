@@ -14,8 +14,7 @@ object DiscountRepository {
 
     suspend fun loadDiscountList(): Resource<List<Discount>> {
         return try {
-            val response = RetrofitManager.getApiService().html.await()
-            val discountList = HtmlParser.getInstance().parse(response.string()).await()
+            val discountList = RetrofitManager.getApiService().html.await()
             Resource.success(discountList)
         } catch (e: Exception) {
             Resource.error(e)

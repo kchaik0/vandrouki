@@ -3,15 +3,12 @@ package kchaiko.vandrouki.parsers
 import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.enumes.DateFormats
 import kchaiko.vandrouki.enumes.discount.Type
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.async
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 /**
  * Parser for parse html in data list
@@ -21,10 +18,10 @@ import kotlin.collections.ArrayList
 class HtmlParser {
 
     companion object {
-        fun getInstance() = HtmlParser()
+        fun newInstance() = HtmlParser()
     }
 
-    fun parse(html: String) = async(CommonPool) {
+    fun parse(html: String?): List<Discount> {
         var document: Document? = null
         try {
             document = Jsoup.parse(html)
@@ -45,7 +42,7 @@ class HtmlParser {
             discountBeanList.add(Discount(title, date, categoryList, getType(categoryList),
                     getImageUrl(elem), getDiscountDesc(elem)))
         }
-        discountBeanList
+        return discountBeanList
     }
 
     private fun parseCategoryList(elem: Element): List<String> = elem.attr("class").split(" ").filter { it.startsWith("category") }

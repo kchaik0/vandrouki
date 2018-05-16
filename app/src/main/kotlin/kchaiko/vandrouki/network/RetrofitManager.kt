@@ -9,6 +9,7 @@ object RetrofitManager {
     fun getApiService(): LoadUrlService = Retrofit.Builder()
             .baseUrl("https://vandrouki.by")
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .addConverterFactory(HtmlConverterFactory())
             .build()
             .create(LoadUrlService::class.java)
 
