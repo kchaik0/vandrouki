@@ -1,7 +1,7 @@
-package kchaiko.vandrouki.network
+package kchaiko.vandrouki.network.converter
 
 import kchaiko.vandrouki.beans.Discount
-import kchaiko.vandrouki.parsers.HtmlParser
+import kchaiko.vandrouki.network.parsers.HtmlParser
 import okhttp3.ResponseBody
 import retrofit2.Converter
 import retrofit2.Retrofit

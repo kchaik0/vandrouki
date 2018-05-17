@@ -1,4 +1,4 @@
-package kchaiko.vandrouki.parsers
+package kchaiko.vandrouki.network.parsers
 
 import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.enumes.DateFormats

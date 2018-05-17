@@ -1,6 +1,7 @@
 package kchaiko.vandrouki.network
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
+import kchaiko.vandrouki.network.converter.HtmlConverterFactory
 import kchaiko.vandrouki.network.service.LoadUrlService
 import retrofit2.Retrofit
 

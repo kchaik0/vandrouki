@@ -24,13 +24,15 @@ class DiscountActivity : BaseActivity() {
                 .apply { putExtra(DISCOUNT_EXTRA, discount) }
     }
 
+    private lateinit var viewModel: DiscountViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val viewModel2 = DiscountViewModel.newInstance()
-        viewModel2.discount = intent.getParcelableExtra(DISCOUNT_EXTRA)
+        viewModel = DiscountViewModel.newInstance()
+        viewModel.discount = intent.getParcelableExtra(DISCOUNT_EXTRA)
         DataBindingUtil.setContentView<ActivityDiscountBinding>(this, R.layout.activity_discount)
                 .apply {
-                    viewModel = viewModel2
+                    viewModel = this@DiscountActivity.viewModel
                 }
     }
 }
