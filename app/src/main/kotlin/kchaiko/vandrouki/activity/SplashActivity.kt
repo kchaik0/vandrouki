@@ -12,7 +12,8 @@ class SplashActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        startActivity(MainActivity.getIntent(this))
+        SplashViewModel.newInstance().loadData()
+        startActivity(MainActivity.getIntent(this@SplashActivity))
         finish()
     }
 }

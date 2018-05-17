@@ -1,5 +1,7 @@
 package kchaiko.vandrouki.viewmodel
 
+import kchaiko.vandrouki.repository.DiscountRepository
+
 /**
  * View model class
  *
@@ -9,6 +11,10 @@ class SplashViewModel : BaseViewModel() {
 
     companion object {
         fun newInstance() = SplashViewModel()
+    }
+
+    fun loadData() {
+        DiscountRepository.loadDiscountList()
     }
 
 }

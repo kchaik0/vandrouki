@@ -25,9 +25,9 @@ class MainViewModel : BaseViewModel() {
         fun newInstance() = MainViewModel()
     }
 
-    fun loadData() = launch(UI) {
+    fun provideData() = launch(UI) {
         provideLoading(true)
-        val resource = DiscountRepository.loadDiscountList()
+        val resource = DiscountRepository.getDataResource()
         provideResult(resource)
     }
 

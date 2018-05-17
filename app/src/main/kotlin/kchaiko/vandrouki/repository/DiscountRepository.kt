@@ -3,7 +3,7 @@ package kchaiko.vandrouki.repository
 import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.beans.Resource
 import kchaiko.vandrouki.network.RetrofitManager
-import kchaiko.vandrouki.parsers.HtmlParser
+import kotlinx.coroutines.experimental.Deferred
 
 /**
  * Manager for subscribe url request
@@ -12,10 +12,15 @@ import kchaiko.vandrouki.parsers.HtmlParser
  */
 object DiscountRepository {
 
-    suspend fun loadDiscountList(): Resource<List<Discount>> {
+    private lateinit var task: Deferred<List<Discount>>
+
+    fun loadDiscountList() {
+        task = RetrofitManager.getApiService().html
+    }
+
+    suspend fun getDataResource(): Resource<List<Discount>> {
         return try {
-            val discountList = RetrofitManager.getApiService().html.await()
-            Resource.success(discountList)
+            Resource.success(task.await())
         } catch (e: Exception) {
             Resource.error(e)
         }
