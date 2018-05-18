@@ -14,20 +14,16 @@ import kotlinx.coroutines.experimental.launch
  *
  * Created by kchaiko on 28.07.2017.
  */
-class MainViewModel : BaseViewModel() {
+class MainViewModel(private val discountRepository: DiscountRepository) : BaseViewModel() {
 
     private lateinit var dataDelegate: (List<Discount>) -> Unit
     private lateinit var errorDelegate: (VandException) -> Unit
 
     var isLoading: ObservableField<Boolean> = ObservableField()
 
-    companion object {
-        fun newInstance() = MainViewModel()
-    }
-
     fun provideData() = launch(UI) {
         provideLoading(true)
-        val resource = DiscountRepository.getDataResource()
+        val resource = discountRepository.getDataResource()
         provideResult(resource)
     }
 

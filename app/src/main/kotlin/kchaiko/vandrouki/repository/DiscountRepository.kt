@@ -10,7 +10,7 @@ import kotlinx.coroutines.experimental.Deferred
  *
  * Created by kchaiko on 06.07.2017.
  */
-object DiscountRepository {
+class DiscountRepository : Repository {
 
     private lateinit var task: Deferred<List<Discount>>
 

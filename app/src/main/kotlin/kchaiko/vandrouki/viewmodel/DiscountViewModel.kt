@@ -7,10 +7,4 @@ import kchaiko.vandrouki.beans.Discount
  *
  * Created by kchaiko on 28.07.2017.
  */
-class DiscountViewModel : BaseViewModel() {
-    lateinit var discount: Discount
-
-    companion object {
-        fun newInstance() = DiscountViewModel()
-    }
-}
+class DiscountViewModel(val discount: Discount) : BaseViewModel()

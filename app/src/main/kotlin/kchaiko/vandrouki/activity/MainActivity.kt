@@ -7,7 +7,9 @@ import android.os.Bundle
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.adapters.DiscountAdapter
 import kchaiko.vandrouki.databinding.ActivityMainBinding
+import kchaiko.vandrouki.di.setDiscount
 import kchaiko.vandrouki.viewmodel.MainViewModel
+import org.koin.android.ext.android.inject
 
 class MainActivity : BaseActivity() {
 
@@ -15,17 +17,17 @@ class MainActivity : BaseActivity() {
         fun getIntent(context: Context) = Intent(context, MainActivity::class.java)
     }
 
-    private lateinit var viewModel: MainViewModel
+    private val viewModel: MainViewModel by inject()
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = MainViewModel.newInstance()
         binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
                 .apply {
                     viewModel = this@MainActivity.viewModel
                     adapter = DiscountAdapter {
-                        startActivity(DiscountActivity.getIntent(this@MainActivity, it))
+                        setDiscount(it)
+                        startActivity(DiscountActivity.getIntent(this@MainActivity))
                     }
                 }
         viewModel.dataDelegate { binding.adapter?.addItems(it) }

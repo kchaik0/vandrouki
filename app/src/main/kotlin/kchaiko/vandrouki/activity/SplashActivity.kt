@@ -2,6 +2,7 @@ package kchaiko.vandrouki.activity
 
 import android.os.Bundle
 import kchaiko.vandrouki.viewmodel.SplashViewModel
+import org.koin.android.ext.android.inject
 
 /**
  * First splash activity in app
@@ -10,9 +11,11 @@ import kchaiko.vandrouki.viewmodel.SplashViewModel
  */
 class SplashActivity : BaseActivity() {
 
+    private val viewModel: SplashViewModel by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        SplashViewModel.newInstance().loadData()
+        viewModel.loadData()
         startActivity(MainActivity.getIntent(this@SplashActivity))
         finish()
     }
