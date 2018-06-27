@@ -22,10 +22,10 @@ abstract class BaseActivity : AppCompatActivity() {
         AlertDialog.Builder(this)
                 .setMessage(exception.message)
                 .setCancelable(false)
-                .setPositiveButton(android.R.string.ok, { dialogInterface, _ ->
+                .setPositiveButton(android.R.string.ok) { dialogInterface, _ ->
                     dialogInterface.dismiss()
                     finish()
-                })
+                }
                 .create().show()
     }
 
