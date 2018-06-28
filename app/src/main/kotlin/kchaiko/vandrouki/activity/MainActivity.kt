@@ -33,5 +33,7 @@ class MainActivity : BaseActivity() {
         viewModel.dataDelegate { binding.adapter?.addItems(it) }
                 .errorDelegate { proceedError(it) }
                 .provideData()
+
+
     }
 }
