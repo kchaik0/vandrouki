@@ -35,12 +35,13 @@ class HtmlParser {
         var title: String
         var date: Date
         var categoryList: List<String>
+        var author: String
         for (elem in discountElements) {
             title = elem.getElementsByAttributeValue("rel", "bookmark").text().trim()
             date = dateFormat.parse(elem.getElementsByClass("published").text())
             categoryList = parseCategoryList(elem)
-            discountBeanList.add(Discount(title, date, categoryList, getType(categoryList),
-                    getImageUrl(elem), getDiscountDesc(elem)))
+            author = elem.getElementsByClass("author")[0].getElementsByTag("a").text()
+            discountBeanList.add(Discount(author, date, categoryList, getType(categoryList), getImageUrl(elem), title, getDiscountDesc(elem)))
         }
         return discountBeanList
     }
@@ -53,6 +54,6 @@ class HtmlParser {
 
     private fun getImageUrl(elem: Element) = elem.getElementsByClass("post-thumb")[0].getElementsByTag("img")[0].attr("src")
 
-    private fun getDiscountDesc(elem: Element) = elem.getElementsByClass("entry-content")[0].text()
+    private fun getDiscountDesc(elem: Element) = elem.getElementsByClass("entry-content")[0].getElementsByTag("p")[0].text()
 
 }

@@ -1,30 +1,35 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/color_primary</item>
-        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">?attr/colorDefault</item>
+        <item name="colorPrimaryDark">?attr/colorDefault</item>
         <item name="colorAccent">@color/color_accent</item>
         <item name="colorSecondary">@color/color_secondary</item>
 
         <item name="colorDivider">@color/color_divider</item>
 
-        <item name="colorBackground">@color/color_background</item>
+        <item name="colorDefault">@color/color_default</item>
 
         <item name="colorLightText">@color/color_light_text</item>
         <item name="colorSecondaryText">@color/color_secondary_text</item>
 
         <item name="colorCardNameBg">@color/color_card_name_bg</item>
+
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
     </style>
+
+    <style name="AppTheme" parent="BaseAppTheme" />
 
     <style name="ActivityTheme" parent="AppTheme" />
 
-    <style name="ActivityTheme.SplashScreen">
+    <style name="BaseSplashScreen" parent="ActivityTheme">
         <item name="android:windowBackground">@drawable/splash_bg</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
     </style>
 
-    <style name="ActivityTheme.MainScreen" />
+    <style name="SplashScreen" parent="BaseSplashScreen" />
 
     <style name="TextViewStyle" />
 

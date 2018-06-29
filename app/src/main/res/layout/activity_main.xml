@@ -19,15 +19,14 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/colorBackground">
+        android:background="?attr/colorDefault">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/am_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adapter="@{adapter}"
-            android:paddingBottom="4dp"
-            android:paddingTop="4dp"
+            android:clipToPadding="true"
             android:visibility="@{viewModel.isLoading ? View.GONE : View.VISIBLE}"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 

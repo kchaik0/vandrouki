@@ -1,7 +1,9 @@
 package kchaiko.vandrouki.activity
 
 import android.app.AlertDialog
+import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.WindowManager
 import kchaiko.vandrouki.di.releaseContext
 import kchaiko.vandrouki.network.exception.VandException
 
