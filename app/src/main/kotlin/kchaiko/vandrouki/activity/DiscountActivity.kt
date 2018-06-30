@@ -28,5 +28,6 @@ class DiscountActivity : BaseActivity() {
                 .apply {
                     viewModel = this@DiscountActivity.viewModel
                 }
+        viewModel.provideDetailedDiscount()
     }
 }

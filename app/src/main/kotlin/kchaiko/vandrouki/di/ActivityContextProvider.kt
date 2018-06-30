@@ -28,7 +28,7 @@ fun Context.mainActivityContext() {
 
 fun Context.discountActivityContext() {
     context(CONTEXT_DISCOUNT) {
-        factory { DiscountViewModel(getProperty(KEY_DISCOUNT)) }
+        factory { DiscountViewModel(getProperty(KEY_DISCOUNT), get()) }
     }
 }
 

@@ -10,70 +10,76 @@
             type="kchaiko.vandrouki.viewmodel.DiscountViewModel" />
     </data>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:scaleType="centerCrop"
-            android:src="@drawable/test"
-            app:imageUrl="@{viewModel.discount.image}"
-            tools:ignore="ContentDescription" />
+        android:background="?attr/colorDefault">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="?attr/colorDefault"
-            android:orientation="vertical"
-            android:paddingEnd="16dp"
-            android:paddingStart="16dp"
-            android:paddingTop="16dp">
+            android:orientation="vertical">
 
-            <TextView
-                style="@style/TextViewStyle.Secondary.Small"
-                android:layout_width="wrap_content"
+            <ImageView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:text="@{viewModel.discount.getDateFormatted()}"
-                tools:text="asdqweqweqwe" />
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:src="@drawable/test"
+                app:imageUrl="@{viewModel.discount.image}"
+                tools:ignore="ContentDescription" />
 
-            <TextView
-                style="@style/TextViewStyle.Secondary.Small"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="1dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="@{viewModel.discount.author}"
-                tools:text="asdqweqweqwe" />
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp">
 
-            <TextView
-                style="@style/TextViewStyle.Dark.ExtraLarge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="1dp"
-                android:layout_marginTop="14dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="@{viewModel.discount.title}"
-                tools:text="asdqweqweqwe" />
+                <TextView
+                    style="@style/TextViewStyle.Secondary.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:text="@{viewModel.discount.getDateFormatted()}"
+                    tools:text="asdqweqweqwe" />
 
-            <TextView
-                style="@style/TextViewStyle.Secondary.Normal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="1dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="sans-serif"
-                android:text="@{viewModel.discount.desc}"
-                tools:text="asdqweqweqwe" />
+                <TextView
+                    style="@style/TextViewStyle.Secondary.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@{viewModel.discount.author}"
+                    tools:text="asdqweqweqwe" />
+
+                <TextView
+                    style="@style/TextViewStyle.Dark.ExtraLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="14dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@{viewModel.discount.title}"
+                    tools:text="asdqweqweqwe" />
+
+                <TextView
+                    style="@style/TextViewStyle.Secondary.Normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif"
+                    android:text="@{viewModel.detailedDiscount.fullDesc}"
+                    tools:text="asdqweqweqwe" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+    </ScrollView>
 
 </layout>
