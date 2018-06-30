@@ -2,7 +2,10 @@ package kchaiko.vandrouki.beans
 
 import android.os.Parcel
 import android.os.Parcelable
+import kchaiko.vandrouki.enumes.DateFormats
 import kchaiko.vandrouki.enumes.discount.Type
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -34,6 +37,8 @@ data class Discount(val author: String, val date: Date, val categoryList: List<S
         writeString(title)
         writeString(desc)
     }
+
+    fun getDateFormatted(): String = SimpleDateFormat(DateFormats.SHOW_FORMAT.format, Locale.getDefault()).format(date)
 
     companion object {
         @Suppress("unused")

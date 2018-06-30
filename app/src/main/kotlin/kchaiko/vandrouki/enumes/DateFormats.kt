@@ -8,6 +8,6 @@ package kchaiko.vandrouki.enumes
 enum class DateFormats(val format: String) {
 
     HTML_FORMAT("dd/MM/yyyy"),
-    SHOW_FORMAT("dd.MM.yyyy")
+    SHOW_FORMAT("dd MMMM yyyy")
 
 }

@@ -20,14 +20,6 @@ import kchaiko.vandrouki.databinding.ItemDiscountBinding
  */
 class DiscountAdapter(private var dataset: MutableList<Discount> = mutableListOf(), private val itemClick: (Discount) -> Unit) : RecyclerView.Adapter<DiscountAdapter.ViewHolder>() {
 
-    companion object {
-        @JvmStatic
-        @BindingAdapter("bind:imageUrl")
-        fun loadImage(imageView: ImageView, v: String) {
-            Picasso.with(imageView.context).load(v).into(imageView)
-        }
-    }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val discountBean = dataset[position]
         with(holder) {
