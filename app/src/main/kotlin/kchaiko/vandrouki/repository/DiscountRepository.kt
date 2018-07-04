@@ -1,9 +1,9 @@
 package kchaiko.vandrouki.repository
 
 import kchaiko.vandrouki.beans.DetailedDiscount
-import kchaiko.vandrouki.beans.Discount
+import kchaiko.vandrouki.beans.DiscountList
 import kchaiko.vandrouki.beans.Resource
-import kchaiko.vandrouki.network.RetrofitManager
+import kchaiko.vandrouki.network.service.LoadUrlService
 import kotlinx.coroutines.experimental.Deferred
 
 /**
@@ -13,13 +13,13 @@ import kotlinx.coroutines.experimental.Deferred
  */
 class DiscountRepository : Repository {
 
-    private lateinit var discountListTask: Deferred<List<Discount>>
+    private lateinit var discountListTask: Deferred<DiscountList>
 
     fun loadDiscountList() {
-        discountListTask = RetrofitManager.getDiscountListApiService().htmlDiscountList
+        discountListTask = LoadUrlService.create().htmlDiscountList
     }
 
-    suspend fun getDataResource(): Resource<List<Discount>> {
+    suspend fun getDataResource(): Resource<DiscountList> {
         return try {
             Resource.success(discountListTask.await())
         } catch (e: Exception) {
@@ -28,7 +28,7 @@ class DiscountRepository : Repository {
     }
 
     suspend fun loadDetailedDiscount(detailedUrl: String): Resource<DetailedDiscount> {
-        val deferred = RetrofitManager.getDiscountDetailedApiService(detailedUrl).htmlDetailedDiscount
+        val deferred = LoadUrlService.create().htmlDetailedDiscount(detailedUrl)
         return try {
             Resource.success(deferred.await())
         } catch (e: Exception) {

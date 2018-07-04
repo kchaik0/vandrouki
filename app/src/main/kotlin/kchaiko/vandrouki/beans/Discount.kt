@@ -4,7 +4,6 @@ import android.os.Parcel
 import android.os.Parcelable
 import kchaiko.vandrouki.enumes.DateFormats
 import kchaiko.vandrouki.enumes.discount.Type
-import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -14,7 +13,7 @@ import java.util.*
  * Created by kchaiko on 08.10.2017.
  */
 data class Discount(val author: String, val date: Date, val categoryList: List<String>, val type: Type,
-                    val image: String, val title: String, val desc: String, val detailUrl: String) : Parcelable {
+                    val image: String, val title: String, val desc: String, val detailUrlPart: String) : Parcelable {
 
     constructor(source: Parcel) : this(
             source.readString(),
@@ -37,7 +36,7 @@ data class Discount(val author: String, val date: Date, val categoryList: List<S
         writeString(image)
         writeString(title)
         writeString(desc)
-        writeString(detailUrl)
+        writeString(detailUrlPart)
     }
 
     fun getDateFormatted(): String = SimpleDateFormat(DateFormats.SHOW_FORMAT.format, Locale.getDefault()).format(date)
@@ -51,3 +50,5 @@ data class Discount(val author: String, val date: Date, val categoryList: List<S
         }
     }
 }
+
+class DiscountList : ArrayList<Discount>()

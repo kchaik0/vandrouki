@@ -2,6 +2,7 @@ package kchaiko.vandrouki.viewmodel
 
 import android.databinding.ObservableField
 import kchaiko.vandrouki.beans.Discount
+import kchaiko.vandrouki.beans.DiscountList
 import kchaiko.vandrouki.beans.Resource
 import kchaiko.vandrouki.enumes.request.RequestStatus.*
 import kchaiko.vandrouki.network.exception.VandException
@@ -35,7 +36,7 @@ class MainViewModel(private val discountRepository: DiscountRepository) : BaseVi
         isLoading.set(loading)
     }
 
-    private fun provideResult(it: Resource<List<Discount>>) {
+    private fun provideResult(it: Resource<DiscountList>) {
         when (it.status) {
             SUCCESS -> {
                 it.data?.apply { dataDelegate(this) }

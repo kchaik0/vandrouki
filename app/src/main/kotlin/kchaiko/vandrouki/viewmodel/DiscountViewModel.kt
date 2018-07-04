@@ -19,7 +19,7 @@ class DiscountViewModel(val discount: Discount, private val discountRepository: 
     fun provideDetailedDiscount() = launch(UI) {
         //show progress
         println("Load started")
-        val dataResource = discountRepository.loadDetailedDiscount(discount.detailUrl)
+        val dataResource = discountRepository.loadDetailedDiscount(discount.detailUrlPart)
         //provide data
         dataResource.data?.apply { detailedDiscount.set(this) }
     }

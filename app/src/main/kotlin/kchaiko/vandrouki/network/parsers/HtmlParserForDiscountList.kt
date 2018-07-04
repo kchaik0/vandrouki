@@ -1,8 +1,10 @@
 package kchaiko.vandrouki.network.parsers
 
 import kchaiko.vandrouki.beans.Discount
+import kchaiko.vandrouki.beans.DiscountList
 import kchaiko.vandrouki.enumes.DateFormats
 import kchaiko.vandrouki.enumes.discount.Type
+import kchaiko.vandrouki.network.service.SITE_URL
 import org.jsoup.nodes.Element
 import java.text.SimpleDateFormat
 import java.util.*
@@ -12,14 +14,14 @@ import java.util.*
  *
  * Created by kchaiko on 05.07.2017.
  */
-class HtmlParserForDiscountList : BaseHtmlParser<List<Discount>>() {
+class HtmlParserForDiscountList : BaseHtmlParser<DiscountList>() {
 
     companion object {
         fun newInstance() = HtmlParserForDiscountList()
     }
 
-    override fun parse(html: String): List<Discount> {
-        val discountBeanList = arrayListOf<Discount>()
+    override fun parse(html: String): DiscountList {
+        val discountBeanList = DiscountList()
         val document = createDocument(html) ?: return discountBeanList
         val discountElements = document.getElementById("primary")
                 .getElementsByAttributeValueContaining("id", "post-")
@@ -35,21 +37,26 @@ class HtmlParserForDiscountList : BaseHtmlParser<List<Discount>>() {
             categoryList = parseCategoryList(elem)
             author = elem.getElementsByClass("author")[0].getElementsByTag("a").text()
             detailUrl = getDetailUrl(elem)
-            discountBeanList.add(Discount(author, date, categoryList, getType(categoryList), getImageUrl(elem), title, getDiscountDesc(elem), detailUrl))
+            discountBeanList.add(Discount(author, date, categoryList, getType(categoryList),
+                    getImageUrl(elem), title, getDiscountDesc(elem), detailUrl))
         }
         return discountBeanList
     }
 
-    private fun parseCategoryList(elem: Element): List<String> = elem.attr("class").split(" ").filter { it.startsWith("category") }
+    private fun parseCategoryList(elem: Element): List<String> = elem.attr("class")
+            .split(" ").filter { it.startsWith("category") }
 
     private fun getType(categoryList: List<String>): Type {
         return if (categoryList.any { it.startsWith("category-letim") }) Type.FLY else Type.OTHER
     }
 
-    private fun getImageUrl(elem: Element) = elem.getElementsByClass("post-thumb")[0].getElementsByTag("img")[0].attr("src")
+    private fun getImageUrl(elem: Element) = elem.getElementsByClass("post-thumb")[0]
+            .getElementsByTag("img")[0].attr("src")
 
-    private fun getDetailUrl(elem: Element) = elem.getElementsByClass("post-thumb")[0].getElementsByTag("a")[0].attr("href")
+    private fun getDetailUrl(elem: Element) = elem.getElementsByClass("post-thumb")[0]
+            .getElementsByTag("a")[0].attr("href").replace(SITE_URL, "")
 
-    private fun getDiscountDesc(elem: Element) = elem.getElementsByClass("entry-content")[0].getElementsByTag("p")[0].text()
+    private fun getDiscountDesc(elem: Element) = elem.getElementsByClass("entry-content")[0]
+            .getElementsByTag("p")[0].text()
 
 }
