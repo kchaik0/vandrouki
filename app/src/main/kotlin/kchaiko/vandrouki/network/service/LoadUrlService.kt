@@ -2,6 +2,7 @@ package kchaiko.vandrouki.network.service
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
 import kchaiko.vandrouki.beans.DetailedDiscount
+import kchaiko.vandrouki.beans.DiscountList
 import kchaiko.vandrouki.network.converter.HtmlConverterFactory
 import kotlinx.coroutines.experimental.Deferred
 import retrofit2.Retrofit
