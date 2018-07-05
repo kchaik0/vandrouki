@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.databinding.ActivityDiscountBinding
 import kchaiko.vandrouki.viewmodel.DiscountViewModel
@@ -26,8 +27,10 @@ class DiscountActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         DataBindingUtil.setContentView<ActivityDiscountBinding>(this, R.layout.activity_discount)
                 .apply {
+                    fullDescTV.movementMethod = LinkMovementMethod()
                     viewModel = this@DiscountActivity.viewModel
                 }
-        viewModel.provideDetailedDiscount()
+        viewModel.errorDelegate { proceedError(it) }
+                .provideDetailedDiscount()
     }
 }

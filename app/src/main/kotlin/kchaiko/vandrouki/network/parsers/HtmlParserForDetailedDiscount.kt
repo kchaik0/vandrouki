@@ -7,7 +7,7 @@ import kchaiko.vandrouki.beans.DetailedDiscount
  *
  * Created by kchaiko on 05.07.2017.
  */
-class HtmlParserForDetailedDiscount: BaseHtmlParser<DetailedDiscount?>() {
+class HtmlParserForDetailedDiscount : BaseHtmlParser<DetailedDiscount?>() {
 
     companion object {
         fun newInstance() = HtmlParserForDetailedDiscount()
@@ -15,6 +15,6 @@ class HtmlParserForDetailedDiscount: BaseHtmlParser<DetailedDiscount?>() {
 
     override fun parse(html: String): DetailedDiscount? {
         val document = createDocument(html) ?: return null
-        return DetailedDiscount(document.getElementsByClass("entry-content").text())
+        return DetailedDiscount(document.getElementsByClass("entry-content").html())
     }
 }

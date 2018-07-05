@@ -5,6 +5,12 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <import type="android.text.Html" />
+
         <variable
             name="viewModel"
             type="kchaiko.vandrouki.viewmodel.DiscountViewModel" />
@@ -13,7 +19,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/colorDefault">
+        android:background="?attr/colorDefault"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,8 +29,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_height="320dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/test"
                 app:imageUrl="@{viewModel.discount.image}"
@@ -32,7 +38,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:orientation="vertical"
                 android:paddingEnd="16dp"
                 android:paddingStart="16dp"
@@ -66,15 +71,30 @@
                     android:text="@{viewModel.discount.title}"
                     tools:text="asdqweqweqwe" />
 
-                <TextView
-                    style="@style/TextViewStyle.Secondary.Normal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="sans-serif"
-                    android:text="@{viewModel.detailedDiscount.fullDesc}"
-                    tools:text="asdqweqweqwe" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ProgressBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingTop="40dp"
+                        android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}" />
+
+                    <TextView
+                        android:id="@+id/fullDescTV"
+                        style="@style/TextViewStyle.Secondary.Normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="1dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="sans-serif"
+                        android:text='@{TextUtils.isEmpty(viewModel.detailedDiscount.fullDesc) ? "" : Html.fromHtml(viewModel.detailedDiscount.fullDesc)}'
+                        android:visibility="@{viewModel.isLoading ? View.GONE : View.VISIBLE}"
+                        tools:text="asdqweqweqweasdqweqweqweasdqweqweqweasdqweqw qweqwe qweqweq qweqwe" />
+
+                </FrameLayout>
 
             </LinearLayout>
 

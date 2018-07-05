@@ -51,7 +51,7 @@ class HtmlParserForDiscountList : BaseHtmlParser<DiscountList>() {
     }
 
     private fun getImageUrl(elem: Element) = elem.getElementsByClass("post-thumb")[0]
-            .getElementsByTag("img")[0].attr("src")
+            .getElementsByTag("img")[0].attr("srcset").split(',').last().trim().split(' ').first()
 
     private fun getDetailUrl(elem: Element) = elem.getElementsByClass("post-thumb")[0]
             .getElementsByTag("a")[0].attr("href").replace(SITE_URL, "")
