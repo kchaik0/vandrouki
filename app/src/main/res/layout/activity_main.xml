@@ -7,8 +7,8 @@
         <import type="android.view.View" />
 
         <variable
-            name="viewModel"
-            type="kchaiko.vandrouki.viewmodel.MainViewModel" />
+            name="isLoading"
+            type="java.lang.Boolean" />
 
         <variable
             name="adapter"
@@ -27,14 +27,14 @@
             android:layout_height="match_parent"
             android:adapter="@{adapter}"
             android:clipToPadding="true"
-            android:visibility="@{viewModel.isLoading ? View.GONE : View.VISIBLE}"
+            android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}" />
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}" />
 
     </FrameLayout>
 

@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.databinding.ActivityDiscountBinding
-import kchaiko.vandrouki.viewmodel.DiscountViewModel
+import kchaiko.vandrouki.viewmodel.provide.DiscountViewModel
 import org.koin.android.ext.android.inject
 
 /**
@@ -21,16 +21,24 @@ class DiscountActivity : BaseActivity() {
         fun getIntent(context: Context) = Intent(context, DiscountActivity::class.java)
     }
 
-    val viewModel: DiscountViewModel by inject()
+    private val viewModel: DiscountViewModel by inject()
+    private lateinit var binding: ActivityDiscountBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        DataBindingUtil.setContentView<ActivityDiscountBinding>(this, R.layout.activity_discount)
-                .apply {
-                    fullDescTV.movementMethod = LinkMovementMethod()
-                    viewModel = this@DiscountActivity.viewModel
-                }
-        viewModel.errorDelegate { proceedError(it) }
-                .provideDetailedDiscount()
+        binding = initBinding()
+        with(viewModel) {
+            loadingDelegate { binding.isLoading = it }
+            dataDelegate { binding.detailedDiscount = it }
+            errorDelegate { proceedError(it) }
+            provideData()
+        }
     }
+
+    private fun initBinding() = DataBindingUtil.setContentView<ActivityDiscountBinding>(this, R.layout.activity_discount)
+            .apply {
+                fullDescTV.movementMethod = LinkMovementMethod()
+                isLoading = false
+                discount = viewModel.discount
+            }
 }

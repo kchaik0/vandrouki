@@ -12,8 +12,16 @@
         <import type="android.text.Html" />
 
         <variable
-            name="viewModel"
-            type="kchaiko.vandrouki.viewmodel.DiscountViewModel" />
+            name="isLoading"
+            type="java.lang.Boolean" />
+
+        <variable
+            name="discount"
+            type="kchaiko.vandrouki.beans.Discount" />
+
+        <variable
+            name="detailedDiscount"
+            type="kchaiko.vandrouki.beans.DetailedDiscount" />
     </data>
 
     <ScrollView
@@ -32,7 +40,7 @@
                 android:layout_height="320dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/test"
-                app:imageUrl="@{viewModel.discount.image}"
+                app:imageUrl="@{discount.image}"
                 tools:ignore="ContentDescription" />
 
             <LinearLayout
@@ -48,7 +56,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:text="@{viewModel.discount.getDateFormatted()}"
+                    android:text="@{discount.getDateFormatted()}"
                     tools:text="asdqweqweqwe" />
 
                 <TextView
@@ -58,7 +66,7 @@
                     android:layout_marginStart="1dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="sans-serif-medium"
-                    android:text="@{viewModel.discount.author}"
+                    android:text="@{discount.author}"
                     tools:text="asdqweqweqwe" />
 
                 <TextView
@@ -68,7 +76,7 @@
                     android:layout_marginStart="1dp"
                     android:layout_marginTop="14dp"
                     android:fontFamily="sans-serif-medium"
-                    android:text="@{viewModel.discount.title}"
+                    android:text="@{discount.title}"
                     tools:text="asdqweqweqwe" />
 
                 <FrameLayout
@@ -80,7 +88,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:paddingTop="40dp"
-                        android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}" />
+                        android:visibility="@{isLoading ? View.VISIBLE : View.GONE}" />
 
                     <TextView
                         android:id="@+id/fullDescTV"
@@ -90,8 +98,8 @@
                         android:layout_marginStart="1dp"
                         android:layout_marginTop="10dp"
                         android:fontFamily="sans-serif"
-                        android:text='@{TextUtils.isEmpty(viewModel.detailedDiscount.fullDesc) ? "" : Html.fromHtml(viewModel.detailedDiscount.fullDesc)}'
-                        android:visibility="@{viewModel.isLoading ? View.GONE : View.VISIBLE}"
+                        android:text='@{TextUtils.isEmpty(detailedDiscount.fullDesc) ? "" : Html.fromHtml(detailedDiscount.fullDesc)}'
+                        android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
                         tools:text="asdqweqweqweasdqweqweqweasdqweqweqweasdqweqw qweqwe qweqweq qweqwe" />
 
                 </FrameLayout>

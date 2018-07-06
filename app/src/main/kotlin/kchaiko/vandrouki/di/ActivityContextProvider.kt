@@ -4,9 +4,9 @@ import kchaiko.vandrouki.activity.BaseActivity
 import kchaiko.vandrouki.activity.DiscountActivity
 import kchaiko.vandrouki.activity.MainActivity
 import kchaiko.vandrouki.activity.SplashActivity
-import kchaiko.vandrouki.viewmodel.DiscountViewModel
-import kchaiko.vandrouki.viewmodel.MainViewModel
-import kchaiko.vandrouki.viewmodel.SplashViewModel
+import kchaiko.vandrouki.viewmodel.provide.DiscountViewModel
+import kchaiko.vandrouki.viewmodel.provide.MainViewModel
+import kchaiko.vandrouki.viewmodel.load.SplashViewModel
 import org.koin.android.ext.android.releaseContext
 import org.koin.dsl.context.Context
 
@@ -16,7 +16,7 @@ private const val CONTEXT_DISCOUNT = "discountContext"
 
 fun Context.splashActivityContext() {
     context(CONTEXT_SPLASH) {
-        bean { SplashViewModel(get()) }
+        factory { SplashViewModel(get()) }
     }
 }
 

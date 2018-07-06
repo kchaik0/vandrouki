@@ -1,7 +1,7 @@
 package kchaiko.vandrouki.activity
 
 import android.os.Bundle
-import kchaiko.vandrouki.viewmodel.SplashViewModel
+import kchaiko.vandrouki.viewmodel.load.SplashViewModel
 import org.koin.android.ext.android.inject
 
 /**
