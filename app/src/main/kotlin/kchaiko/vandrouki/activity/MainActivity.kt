@@ -39,12 +39,10 @@ class MainActivity : BaseActivity() {
                 adapter = DiscountAdapter()
             }
 
-    private fun getShowingItems(discountList: List<Discount>): List<BaseRecyclerItem> {
-        return discountList.map {
-            DiscountItem(it) {
-                setDiscount(it)
-                startActivity(DiscountActivity.getIntent(this@MainActivity))
-            } as BaseRecyclerItem
-        }.plus(NavigationItem())
-    }
+    private fun getShowingItems(discountList: List<Discount>) = discountList.map {
+        DiscountItem(it) {
+            setDiscount(it)
+            startActivity(DiscountActivity.getIntent(this@MainActivity))
+        } as BaseRecyclerItem
+    }.plus(NavigationItem())
 }
