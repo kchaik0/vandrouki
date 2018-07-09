@@ -18,4 +18,10 @@ class MainViewModel(private val discountRepository: DiscountRepository) : DataVi
         provideResult(resource)
     }
 
+    fun loadDataByPage(page: Int) = launch(UI) {
+        provideLoading(true)
+        val resource = discountRepository.loadDiscountsByPage(page)
+        provideResult(resource)
+    }
+
 }

@@ -16,12 +16,21 @@ class DiscountRepository : Repository {
     private lateinit var discountListTask: Deferred<DiscountList>
 
     fun loadDiscountList() {
-        discountListTask = LoadUrlService.create().htmlDiscountList
+        discountListTask = LoadUrlService.create().htmlDiscountList()
     }
 
     suspend fun getDataResource(): Resource<DiscountList> {
         return try {
             Resource.success(discountListTask.await())
+        } catch (e: Exception) {
+            Resource.error(e)
+        }
+    }
+
+    suspend fun loadDiscountsByPage(page: Int): Resource<DiscountList> {
+        val deferred = LoadUrlService.create().htmlDiscountList(page)
+        return try {
+            Resource.success(deferred.await())
         } catch (e: Exception) {
             Resource.error(e)
         }
