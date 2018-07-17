@@ -9,6 +9,7 @@ import kchaiko.vandrouki.R
 import kchaiko.vandrouki.databinding.ActivityDiscountBinding
 import kchaiko.vandrouki.viewmodel.provide.DiscountViewModel
 import org.koin.android.ext.android.inject
+import java.util.*
 
 /**
  * Activity for show discount details
@@ -40,5 +41,8 @@ class DiscountActivity : BaseActivity() {
                 fullDescTV.movementMethod = LinkMovementMethod()
                 isLoading = false
                 discount = viewModel.discount
+                isFavourite = isFavourite()
             }
+
+    private fun isFavourite() = Random().nextBoolean()
 }
