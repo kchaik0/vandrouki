@@ -26,6 +26,10 @@
         <variable
             name="detailedDiscount"
             type="kchaiko.vandrouki.beans.DetailedDiscount" />
+
+        <variable
+            name="clickListener"
+            type="kchaiko.vandrouki.activity.DiscountActivity.ClickListener" />
     </data>
 
     <ScrollView
@@ -74,8 +78,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:button="@drawable/favourite_selector"
-                        android:enabled="@{isFavourite}"
-                        tools:enabled="false" />
+                        android:checked="@{isFavourite}"
+                        android:onClick="@{clickListener::onClick}"
+                        tools:checked="false" />
 
                 </LinearLayout>
 

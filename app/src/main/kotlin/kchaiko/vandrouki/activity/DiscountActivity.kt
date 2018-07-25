@@ -5,11 +5,13 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
+import android.view.View
+import android.widget.CheckBox
+import android.widget.Toast
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.databinding.ActivityDiscountBinding
 import kchaiko.vandrouki.viewmodel.provide.DiscountViewModel
 import org.koin.android.ext.android.inject
-import java.util.*
 
 /**
  * Activity for show discount details
@@ -36,13 +38,18 @@ class DiscountActivity : BaseActivity() {
         }
     }
 
+    inner class ClickListener {
+        fun onClick(view: View) {
+            viewModel.saveData((view as CheckBox).isChecked)
+        }
+    }
+
     private fun initBinding() = DataBindingUtil.setContentView<ActivityDiscountBinding>(this, R.layout.activity_discount)
             .apply {
+                clickListener = ClickListener()
                 fullDescTV.movementMethod = LinkMovementMethod()
                 isLoading = false
                 discount = viewModel.discount
-                isFavourite = isFavourite()
+                isFavourite = viewModel.getFavourite()
             }
-
-    private fun isFavourite() = Random().nextBoolean()
 }

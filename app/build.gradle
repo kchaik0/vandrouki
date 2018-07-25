@@ -63,11 +63,18 @@ dependencies {
     implementation "org.koin:koin-android:$koin_version"
 
     //Retrofit2 library
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
 
     //Picasso library
     implementation 'com.squareup.picasso:picasso:2.5.2'
+
+    //ObjectBox library
+    debugImplementation "io.objectbox:objectbox-android-objectbrowser:$objectbox_version"
+    releaseImplementation "io.objectbox:objectbox-android:$objectbox_version"
+    implementation "io.objectbox:objectbox-kotlin:$objectbox_version"
 }
+
+apply plugin: 'io.objectbox'
 
 kotlin {
     experimental {
