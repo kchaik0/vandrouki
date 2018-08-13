@@ -4,10 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.widget.Toast
 import kchaiko.vandrouki.R
-import kchaiko.vandrouki.adapters.DiscountAdapter
+import kchaiko.vandrouki.adapters.RecyclerAdapter
 import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.databinding.ActivityMainBinding
 import kchaiko.vandrouki.di.setDiscount
@@ -43,11 +41,11 @@ class MainActivity : BaseActivity() {
     private fun initBinding() = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
             .apply {
                 isLoading = false
-                adapter = DiscountAdapter()
+                adapter = RecyclerAdapter()
             }
 
-    private fun getShowingItems(discountList: List<Discount>) = discountList.map {
-        DiscountItem(it) {
+    private fun getShowingItems(discountList: List<Discount>) = discountList.map { discount ->
+        DiscountItem(discount) {
             setDiscount(it)
             startActivity(DiscountActivity.getIntent(this@MainActivity))
         } as BaseRecyclerItem

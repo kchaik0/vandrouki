@@ -4,14 +4,14 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 ext {
-    android_support = '28.0.0-alpha3'
+    android_support = '28.0.0-beta01'
     dagger_version = "2.11"
     koin_version = "0.9.3"
 }
 
 android {
     compileSdkVersion 28
-    buildToolsVersion '28.0.1'
+    buildToolsVersion '28.0.2'
     compileOptions {
     }
     defaultConfig {

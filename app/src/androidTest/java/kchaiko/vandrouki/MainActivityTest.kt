@@ -16,7 +16,6 @@ import org.junit.runner.RunWith
 class MainActivityTest {
 
     @Rule
-    @JvmField
     val activityRule = ActivityTestRule<MainActivity>(MainActivity::class.java)
 
     @Test

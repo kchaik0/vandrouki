@@ -1,17 +1,16 @@
 package kchaiko.vandrouki.items
 
-import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import kchaiko.vandrouki.R
-import kchaiko.vandrouki.databinding.ItemNavigationBinding
+import kchaiko.vandrouki.adapters.BaseViewHolder
 
 class NavigationItem(private val page: Int, private val clickFunction: (Int) -> Unit) : BaseRecyclerItem {
 
     override fun getType() = R.layout.item_navigation
 
     override fun bind(holder: RecyclerView.ViewHolder) {
-        (holder as NavigationViewHolder).binding?.apply {
+        (holder as BaseViewHolder.NavigationViewHolder).binding?.apply {
             this.page = this@NavigationItem.page
             handler = ClickHandler(clickFunction)
         }
@@ -23,10 +22,4 @@ class NavigationItem(private val page: Int, private val clickFunction: (Int) -> 
             clickFunction(newPage)
         }
     }
-}
-
-class NavigationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-    val binding = DataBindingUtil.bind<ItemNavigationBinding>(itemView)
-
 }
