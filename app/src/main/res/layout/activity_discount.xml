@@ -29,7 +29,7 @@
 
         <variable
             name="clickListener"
-            type="kchaiko.vandrouki.activity.DiscountActivity.ClickListener" />
+            type="kchaiko.vandrouki.activity.ClickListener" />
     </data>
 
     <ScrollView

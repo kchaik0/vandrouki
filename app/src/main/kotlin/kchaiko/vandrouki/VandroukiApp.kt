@@ -1,13 +1,10 @@
 package kchaiko.vandrouki
 
 import android.app.Application
-import io.objectbox.android.AndroidObjectBrowser
-import kchaiko.vandrouki.beans.MyObjectBox
-import kchaiko.vandrouki.db.toManager
-import kchaiko.vandrouki.di.discountActivityContext
-import kchaiko.vandrouki.di.mainActivityContext
-import kchaiko.vandrouki.di.splashActivityContext
+import kchaiko.vandrouki.db.initObjectBox
+import kchaiko.vandrouki.di.activityContext
 import kchaiko.vandrouki.repository.DiscountRepository
+import kchaiko.vandrouki.repository.initRetrofit
 import org.koin.android.ext.android.startKoin
 import org.koin.dsl.module.applicationContext
 
@@ -24,17 +21,10 @@ class VandroukiApp : Application() {
     }
 
     private val appModule = applicationContext {
-        splashActivityContext()
-        mainActivityContext()
-        discountActivityContext()
-        bean { DiscountRepository() }
-        bean {
-            MyObjectBox.builder().androidContext(this@VandroukiApp).build().apply {
-                if (BuildConfig.DEBUG) {
-                    AndroidObjectBrowser(this).start(this@VandroukiApp)
-                }
-            }.toManager()
-        }
+        activityContext()
+        bean { DiscountRepository(get()) }
+        bean { initObjectBox() }
+        bean { initRetrofit() }
     }
 
 }

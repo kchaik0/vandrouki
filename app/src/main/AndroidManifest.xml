@@ -4,8 +4,6 @@
     package="kchaiko.vandrouki">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <!--TODO Remove with release-->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:name=".VandroukiApp"

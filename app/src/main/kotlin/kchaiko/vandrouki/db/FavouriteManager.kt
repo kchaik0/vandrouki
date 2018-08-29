@@ -1,7 +1,10 @@
 package kchaiko.vandrouki.db
 
+import android.content.Context
 import io.objectbox.BoxStore
+import io.objectbox.android.AndroidObjectBrowser
 import io.objectbox.kotlin.boxFor
+import kchaiko.vandrouki.BuildConfig
 import kchaiko.vandrouki.beans.*
 
 class FavouriteManager(boxStore: BoxStore) {
@@ -30,4 +33,10 @@ class FavouriteManager(boxStore: BoxStore) {
 
 }
 
-fun BoxStore.toManager() = FavouriteManager(this)
+fun Context.initObjectBox() = MyObjectBox.builder().androidContext(this).build().apply {
+    if (BuildConfig.DEBUG) {
+        AndroidObjectBrowser(this).start(this@initObjectBox)
+    }
+}.toFavouriteManager()
+
+private fun BoxStore.toFavouriteManager() = FavouriteManager(this)

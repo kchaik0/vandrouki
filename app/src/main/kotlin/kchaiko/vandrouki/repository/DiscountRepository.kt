@@ -1,22 +1,30 @@
 package kchaiko.vandrouki.repository
 
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
 import kchaiko.vandrouki.beans.DetailedDiscount
+import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.beans.DiscountList
 import kchaiko.vandrouki.beans.Resource
+import kchaiko.vandrouki.network.converter.HtmlConverterFactory
 import kchaiko.vandrouki.network.service.LoadUrlService
+import kchaiko.vandrouki.network.service.SITE_URL
 import kotlinx.coroutines.experimental.Deferred
+import retrofit2.Retrofit
 
 /**
  * Manager for subscribe url request
  *
  * Created by kchaiko on 06.07.2017.
  */
-class DiscountRepository : Repository {
+class DiscountRepository(retrofit: Retrofit) : Repository {
+
+    private val loadUrlService = retrofit.create(LoadUrlService::class.java)
+    lateinit var currentDiscount: Discount
 
     private lateinit var discountListTask: Deferred<DiscountList>
 
     fun loadDiscountList() {
-        discountListTask = LoadUrlService.create().htmlDiscountList()
+        discountListTask = loadUrlService.htmlDiscountList()
     }
 
     suspend fun getDataResource(): Resource<DiscountList> {
@@ -28,7 +36,7 @@ class DiscountRepository : Repository {
     }
 
     suspend fun loadDiscountsByPage(page: Int): Resource<DiscountList> {
-        val deferred = LoadUrlService.create().htmlDiscountList(page)
+        val deferred = loadUrlService.htmlDiscountList(page)
         return try {
             Resource.success(deferred.await())
         } catch (e: Exception) {
@@ -37,7 +45,7 @@ class DiscountRepository : Repository {
     }
 
     suspend fun loadDetailedDiscount(detailedUrl: String): Resource<DetailedDiscount> {
-        val deferred = LoadUrlService.create().htmlDetailedDiscount(detailedUrl)
+        val deferred = loadUrlService.htmlDetailedDiscount(detailedUrl)
         return try {
             Resource.success(deferred.await())
         } catch (e: Exception) {
@@ -45,3 +53,9 @@ class DiscountRepository : Repository {
         }
     }
 }
+
+fun initRetrofit() = Retrofit.Builder()
+        .baseUrl(SITE_URL)
+        .addCallAdapterFactory(CoroutineCallAdapterFactory())
+        .addConverterFactory(HtmlConverterFactory())
+        .build()

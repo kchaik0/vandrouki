@@ -1,5 +1,6 @@
 package kchaiko.vandrouki.viewmodel.provide
 
+import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.beans.DiscountList
 import kchaiko.vandrouki.repository.DiscountRepository
 import kotlinx.coroutines.experimental.android.UI
@@ -22,6 +23,10 @@ class MainViewModel(private val discountRepository: DiscountRepository) : DataVi
         provideLoading(true)
         val resource = discountRepository.loadDiscountsByPage(page)
         provideResult(resource)
+    }
+
+    fun setCurrentDiscount(discount: Discount) {
+        discountRepository.currentDiscount = discount
     }
 
 }
