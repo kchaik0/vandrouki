@@ -3,8 +3,7 @@ package kchaiko.vandrouki.viewmodel.provide
 import kchaiko.vandrouki.beans.DetailedDiscount
 import kchaiko.vandrouki.db.FavouriteManager
 import kchaiko.vandrouki.repository.DiscountRepository
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.launch
 
 /**
  * View model class
@@ -16,10 +15,12 @@ class DiscountViewModel(private val discountRepository: DiscountRepository,
 
     val discount = discountRepository.currentDiscount
 
-    override fun provideData() = launch(UI) {
-        provideLoading(true)
-        val dataResource = discountRepository.loadDetailedDiscount(discount.detailUrlPart)
-        dataResource.apply { provideResult(this) }
+    override fun provideData() {
+        uiScope.launch {
+            provideLoading(true)
+            val dataResource = discountRepository.loadDetailedDiscount(discount.detailUrlPart)
+            dataResource.apply { provideResult(this) }
+        }
     }
 
     fun getFavourite() = favouriteManager.getFavourite(discount.detailUrlPart)?.isFavourite ?: false

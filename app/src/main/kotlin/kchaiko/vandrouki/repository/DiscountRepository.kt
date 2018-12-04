@@ -1,6 +1,6 @@
 package kchaiko.vandrouki.repository
 
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kchaiko.vandrouki.beans.DetailedDiscount
 import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.beans.DiscountList
@@ -8,7 +8,7 @@ import kchaiko.vandrouki.beans.Resource
 import kchaiko.vandrouki.network.converter.HtmlConverterFactory
 import kchaiko.vandrouki.network.service.LoadUrlService
 import kchaiko.vandrouki.network.service.SITE_URL
-import kotlinx.coroutines.experimental.Deferred
+import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 
 /**
@@ -54,7 +54,7 @@ class DiscountRepository(retrofit: Retrofit) : Repository {
     }
 }
 
-fun initRetrofit() = Retrofit.Builder()
+fun initRetrofit(): Retrofit = Retrofit.Builder()
         .baseUrl(SITE_URL)
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .addConverterFactory(HtmlConverterFactory())

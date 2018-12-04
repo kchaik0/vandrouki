@@ -2,7 +2,7 @@ package kchaiko.vandrouki.network.service
 
 import kchaiko.vandrouki.beans.DetailedDiscount
 import kchaiko.vandrouki.beans.DiscountList
-import kotlinx.coroutines.experimental.Deferred
+import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Path
 

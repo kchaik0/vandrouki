@@ -13,7 +13,7 @@ import kchaiko.vandrouki.R
 import kchaiko.vandrouki.beans.DetailedDiscount
 import kchaiko.vandrouki.viewmodel.provide.DiscountViewModel
 import kotlinx.android.synthetic.main.activity_discount.*
-import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
  * Activity for show discount details
@@ -26,7 +26,7 @@ class DiscountActivity : BaseActivity() {
         fun getIntent(context: Context) = Intent(context, DiscountActivity::class.java)
     }
 
-    private val viewModel: DiscountViewModel by inject()
+    private val viewModel: DiscountViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

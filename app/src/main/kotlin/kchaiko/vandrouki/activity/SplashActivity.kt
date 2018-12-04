@@ -2,7 +2,7 @@ package kchaiko.vandrouki.activity
 
 import android.os.Bundle
 import kchaiko.vandrouki.viewmodel.load.SplashViewModel
-import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
  * First splash activity in app
@@ -11,7 +11,7 @@ import org.koin.android.ext.android.inject
  */
 class SplashActivity : BaseActivity() {
 
-    private val viewModel: SplashViewModel by inject()
+    private val viewModel: SplashViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

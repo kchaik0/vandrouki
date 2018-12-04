@@ -13,7 +13,7 @@ import kchaiko.vandrouki.items.NavigationItem
 import kchaiko.vandrouki.network.service.DEFAULT_PAGE
 import kchaiko.vandrouki.viewmodel.provide.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
-import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity() {
 
@@ -21,7 +21,7 @@ class MainActivity : BaseActivity() {
         fun getIntent(context: Context) = Intent(context, MainActivity::class.java)
     }
 
-    private val viewModel: MainViewModel by inject()
+    private val viewModel: MainViewModel by viewModel()
     private var page = DEFAULT_PAGE
     private lateinit var adapter: RecyclerAdapter
 
