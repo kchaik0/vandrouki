@@ -1,42 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorDefault"
+    android:fitsSystemWindows="true">
 
-    <data>
-
-        <import type="android.view.View" />
-
-        <variable
-            name="isLoading"
-            type="java.lang.Boolean" />
-
-        <variable
-            name="adapter"
-            type="kchaiko.vandrouki.adapters.RecyclerAdapter" />
-
-    </data>
-
-    <FrameLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/am_discount_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/colorDefault"
-        android:fitsSystemWindows="true">
+        android:clipToPadding="true"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_discounts"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:adapter="@{adapter}"
-            android:clipToPadding="true"
-            android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+    <ProgressBar
+        android:id="@+id/am_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
 
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}" />
-
-    </FrameLayout>
-
-</layout>
+</FrameLayout>

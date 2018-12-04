@@ -1,140 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorDefault"
+    android:fillViewport="true">
 
-    <data>
-
-        <import type="android.view.View" />
-
-        <import type="android.text.TextUtils" />
-
-        <import type="android.text.Html" />
-
-        <variable
-            name="isLoading"
-            type="java.lang.Boolean" />
-
-        <variable
-            name="isFavourite"
-            type="java.lang.Boolean" />
-
-        <variable
-            name="discount"
-            type="kchaiko.vandrouki.beans.Discount" />
-
-        <variable
-            name="detailedDiscount"
-            type="kchaiko.vandrouki.beans.DetailedDiscount" />
-
-        <variable
-            name="clickListener"
-            type="kchaiko.vandrouki.activity.ClickListener" />
-    </data>
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="?attr/colorDefault"
-        android:fillViewport="true">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ad_image"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:scaleType="centerCrop"
+            tools:ignore="ContentDescription" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="320dp"
-                android:scaleType="centerCrop"
-                app:imageUrl="@{discount.image}"
-                tools:ignore="ContentDescription" />
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingEnd="16dp"
-                android:paddingStart="16dp"
-                android:paddingTop="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    tools:ignore="UseCompoundDrawables">
-
-                    <TextView
-                        style="@style/TextViewStyle.Secondary.Small"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif"
-                        android:text="@{discount.getDateFormatted()}"
-                        tools:text="asdqweqweqwe" />
-
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:button="@drawable/favourite_selector"
-                        android:checked="@{isFavourite}"
-                        android:onClick="@{clickListener::onClick}"
-                        tools:checked="false" />
-
-                </LinearLayout>
+                android:orientation="horizontal"
+                tools:ignore="UseCompoundDrawables">
 
                 <TextView
+                    android:id="@+id/ad_date"
                     style="@style/TextViewStyle.Secondary.Small"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginTop="8dp"
-                    android:drawablePadding="3dp"
-                    android:drawableStart="@drawable/ic_user"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="@{discount.author}"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif"
                     tools:text="asdqweqweqwe" />
 
-                <TextView
-                    style="@style/TextViewStyle.Dark.ExtraLarge"
+                <CheckBox
+                    android:id="@+id/ad_favourite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginTop="14dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="@{discount.title}"
-                    tools:text="asdqweqweqwe" />
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ProgressBar
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:paddingTop="40dp"
-                        android:visibility="@{isLoading ? View.VISIBLE : View.GONE}" />
-
-                    <TextView
-                        android:id="@+id/fullDescTV"
-                        style="@style/TextViewStyle.Secondary.Normal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="1dp"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="sans-serif"
-                        android:text='@{TextUtils.isEmpty(detailedDiscount.fullDesc) ? "" : Html.fromHtml(detailedDiscount.fullDesc)}'
-                        android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
-                        tools:text="asdqweqweqweasdqweqweqweasdqweqweqweasdqweqw qweqwe qweqweq qweqwe" />
-
-                </FrameLayout>
+                    android:button="@drawable/favourite_selector"
+                    tools:checked="false" />
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/ad_author"
+                style="@style/TextViewStyle.Secondary.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="8dp"
+                android:drawableStart="@drawable/ic_user"
+                android:drawablePadding="3dp"
+                android:fontFamily="sans-serif-medium"
+                tools:text="asdqweqweqwe" />
+
+            <TextView
+                android:id="@+id/ad_title"
+                style="@style/TextViewStyle.Dark.ExtraLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="14dp"
+                android:fontFamily="sans-serif-medium"
+                tools:text="asdqweqweqwe" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ProgressBar
+                    android:id="@+id/ad_loading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingTop="40dp" />
+
+                <TextView
+                    android:id="@+id/ad_full_desc"
+                    style="@style/TextViewStyle.Secondary.Normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif"
+                    tools:text="asdqweqweqweasdqweqweqweasdqweqweqweasdqweqw qweqwe qweqweq qweqwe" />
+
+            </FrameLayout>
+
         </LinearLayout>
 
-    </ScrollView>
+    </LinearLayout>
 
-</layout>
+</ScrollView>
