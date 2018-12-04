@@ -8,9 +8,9 @@ import kchaiko.vandrouki.viewmodel.BaseViewModel
  *
  * Created by kchaiko on 28.07.2017.
  */
-class SplashViewModel(private val discountRepository: DiscountRepository) : BaseViewModel(), LoadDataViewModel {
+class SplashViewModel(private val discountRepository: DiscountRepository) : BaseViewModel() {
 
-    override fun loadData() {
+    fun loadData() {
         discountRepository.loadDiscountList()
     }
 

@@ -1,6 +1,7 @@
 package kchaiko.vandrouki
 
 import android.app.Application
+import com.facebook.stetho.Stetho
 import kchaiko.vandrouki.db.initObjectBox
 import kchaiko.vandrouki.repository.DiscountRepository
 import kchaiko.vandrouki.repository.initRetrofit
@@ -20,6 +21,7 @@ class VandroukiApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        Stetho.initializeWithDefaults(this)
         startKoin(this, listOf(appModule))
     }
 

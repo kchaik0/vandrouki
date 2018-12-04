@@ -1,5 +1,6 @@
 package kchaiko.vandrouki.repository
 
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kchaiko.vandrouki.beans.DetailedDiscount
 import kchaiko.vandrouki.beans.Discount
@@ -9,6 +10,7 @@ import kchaiko.vandrouki.network.converter.HtmlConverterFactory
 import kchaiko.vandrouki.network.service.LoadUrlService
 import kchaiko.vandrouki.network.service.SITE_URL
 import kotlinx.coroutines.Deferred
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 
 /**
@@ -58,4 +60,5 @@ fun initRetrofit(): Retrofit = Retrofit.Builder()
         .baseUrl(SITE_URL)
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .addConverterFactory(HtmlConverterFactory())
+        .client(OkHttpClient.Builder().addNetworkInterceptor(StethoInterceptor()).build())
         .build()
