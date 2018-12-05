@@ -1,11 +1,11 @@
-package kchaiko.vandrouki.adapters
+package kchaiko.vandrouki.ui.recycler
 
 import android.support.annotation.LayoutRes
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kchaiko.vandrouki.items.BaseRecyclerItem
+import kchaiko.vandrouki.ui.recycler.item.BaseItem
 
 
 /**
@@ -13,10 +13,11 @@ import kchaiko.vandrouki.items.BaseRecyclerItem
  *
  * Created by kchaiko on 05.07.2017.
  */
-class RecyclerAdapter(private var dataset: MutableList<BaseRecyclerItem> = mutableListOf())
+class RecyclerAdapter(private var dataset: MutableList<BaseItem> = mutableListOf(), private val itemClick: (BaseItem.() -> Unit)? = null)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        holder.itemView.setOnClickListener { itemClick?.invoke(dataset[position]) }
         dataset[position].bind(holder)
     }
 
@@ -29,7 +30,7 @@ class RecyclerAdapter(private var dataset: MutableList<BaseRecyclerItem> = mutab
         return ViewHolder(view)
     }
 
-    fun addItems(items: List<BaseRecyclerItem>) {
+    fun addItems(items: List<BaseItem>) {
         dataset.clear()
         dataset.addAll(items)
         notifyDataSetChanged()

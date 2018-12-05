@@ -1,4 +1,4 @@
-package kchaiko.vandrouki.items
+package kchaiko.vandrouki.ui.recycler.item
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -6,7 +6,7 @@ import kchaiko.vandrouki.R
 import kchaiko.vandrouki.network.service.DEFAULT_PAGE
 import kotlinx.android.synthetic.main.item_navigation.view.*
 
-class NavigationItem(private val page: Int, private val clickFunction: (Int) -> Unit) : BaseRecyclerItem {
+class NavigationItem(private val page: Int, private val clickFunction: (Int) -> Unit) : BaseItem {
 
     override fun getType() = R.layout.item_navigation
 

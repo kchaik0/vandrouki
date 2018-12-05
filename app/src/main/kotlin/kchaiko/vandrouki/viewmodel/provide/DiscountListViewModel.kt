@@ -10,9 +10,9 @@ import kotlinx.coroutines.launch
  *
  * Created by kchaiko on 28.07.2017.
  */
-class MainViewModel(private val discountRepository: DiscountRepository) : DataViewModel<DiscountList>() {
+class DiscountListViewModel(private val discountRepository: DiscountRepository) : DataViewModel<DiscountList>() {
 
-    override fun provideData() {
+    fun provideData() {
         uiScope.launch {
             provideLoading(true)
             val resource = discountRepository.getDataResource()
@@ -26,11 +26,6 @@ class MainViewModel(private val discountRepository: DiscountRepository) : DataVi
             val resource = discountRepository.loadDiscountsByPage(page)
             provideResult(resource)
         }
-    }
-
-
-    fun setCurrentDiscount(discount: Discount) {
-        discountRepository.currentDiscount = discount
     }
 
 }

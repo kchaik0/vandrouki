@@ -25,6 +25,9 @@ android {
     sourceSets {
         main.java.srcDirs += "src/main/kotlin"
     }
+    androidExtensions {
+        experimental = true
+    }
 }
 
 dependencies {
@@ -68,6 +71,9 @@ dependencies {
     //Stetho
     implementation "com.facebook.stetho:stetho:$stetho"
     implementation "com.facebook.stetho:stetho-okhttp3:$stetho"
+
+    //Cicerone
+    implementation "ru.terrakok.cicerone:cicerone:$cicerone"
 }
 
 apply plugin: 'io.objectbox'

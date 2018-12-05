@@ -5,7 +5,7 @@ import kchaiko.vandrouki.enumes.request.RequestStatus
 import kchaiko.vandrouki.network.exception.VandException
 import kchaiko.vandrouki.viewmodel.BaseViewModel
 
-abstract class DataViewModel<T> : BaseViewModel(), ProvideDataViewModel {
+abstract class DataViewModel<T> : BaseViewModel() {
 
     private lateinit var dataDelegate: (T) -> Unit
     private lateinit var loadingDelegate: (Boolean) -> Unit

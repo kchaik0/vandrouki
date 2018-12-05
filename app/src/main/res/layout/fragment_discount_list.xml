@@ -7,16 +7,17 @@
     android:fitsSystemWindows="true">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/am_discount_list"
+        android:id="@+id/fdl_discount_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="true"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
     <ProgressBar
-        android:id="@+id/am_loading"
+        android:id="@+id/fdl_loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
 </FrameLayout>

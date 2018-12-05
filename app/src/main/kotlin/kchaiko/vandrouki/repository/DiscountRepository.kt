@@ -3,7 +3,6 @@ package kchaiko.vandrouki.repository
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kchaiko.vandrouki.beans.DetailedDiscount
-import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.beans.DiscountList
 import kchaiko.vandrouki.beans.Resource
 import kchaiko.vandrouki.network.converter.HtmlConverterFactory
@@ -21,7 +20,6 @@ import retrofit2.Retrofit
 class DiscountRepository(retrofit: Retrofit) : Repository {
 
     private val loadUrlService = retrofit.create(LoadUrlService::class.java)
-    lateinit var currentDiscount: Discount
 
     private lateinit var discountListTask: Deferred<DiscountList>
 
