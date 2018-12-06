@@ -37,7 +37,6 @@
                     style="@style/TextViewStyle.Secondary.Small"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif"
                     tools:text="asdqweqweqwe" />
