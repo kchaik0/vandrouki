@@ -6,15 +6,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.view.ViewGroup
-import android.widget.FrameLayout
-import kchaiko.vandrouki.R
-import kchaiko.vandrouki.extensions.MATCH_PARENT
 import kchaiko.vandrouki.navigation.Screens
 import kchaiko.vandrouki.navigation.VandAppNavigator
 import kchaiko.vandrouki.navigation.VandAppRouter
 import kchaiko.vandrouki.network.exception.VandException
-import org.jetbrains.anko.*
+import kchaiko.vandrouki.ui.component.activity.HomeActivityUI
+import org.jetbrains.anko.setContentView
 import org.koin.android.ext.android.inject
 import ru.terrakok.cicerone.NavigatorHolder
 
@@ -25,7 +22,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private val navigatorHolder by inject<NavigatorHolder>()
-    private val containerId: Int = View.generateViewId()
+    val containerId: Int = View.generateViewId()
     private val navigator by lazy { VandAppNavigator(this, containerId) }
     val router by inject<VandAppRouter>()
 
@@ -54,16 +51,6 @@ class HomeActivity : AppCompatActivity() {
                     finish()
                 }
                 .create().show()
-    }
-
-    private class HomeActivityUI : AnkoComponent<HomeActivity> {
-        override fun createView(ui: AnkoContext<HomeActivity>): View = with(ui) {
-            frameLayout {
-                layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT)
-                fitsSystemWindows = true
-                id = ui.owner.containerId
-            }
-        }
     }
 
 }

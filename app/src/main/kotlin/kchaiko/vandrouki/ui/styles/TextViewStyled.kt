@@ -12,6 +12,11 @@ fun ViewManager.smallSecondaryTextView(init: TextView.() -> Unit) = secondaryTex
     textSize = TEXT_SIZE_SMALL
 }
 
+fun ViewManager.normalSecondaryTextView(init: TextView.() -> Unit) = secondaryTextView {
+    init.invoke(this)
+    textSize = TEXT_SIZE_NORMAL
+}
+
 private fun ViewManager.secondaryTextView(init: TextView.() -> Unit) = baseTextView {
     init.invoke(this)
     textColor = context.getThemeAttrColor(R.attr.colorSecondaryText)
@@ -27,7 +32,10 @@ private fun ViewManager.darkTextView(init: TextView.() -> Unit) = baseTextView {
     textColor = context.getThemeAttrColor(R.attr.colorDarkText)
 }
 
-private fun ViewManager.baseTextView(init: TextView.() -> Unit) = textView(init)
+private fun ViewManager.baseTextView(init: TextView.() -> Unit) = textView {
+    init.invoke(this)
+}
 
 private const val TEXT_SIZE_SMALL = 11.0f
+private const val TEXT_SIZE_NORMAL = 14.0f
 private const val TEXT_SIZE_EXTRA_LARGE = 20.0f
