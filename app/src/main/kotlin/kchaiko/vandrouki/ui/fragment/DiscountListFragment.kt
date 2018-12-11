@@ -11,10 +11,10 @@ import kchaiko.vandrouki.extensions.createView
 import kchaiko.vandrouki.navigation.Screens
 import kchaiko.vandrouki.network.service.DEFAULT_PAGE
 import kchaiko.vandrouki.ui.component.fragment.DiscountListUI
-import kchaiko.vandrouki.ui.recycler.RecyclerAdapter
 import kchaiko.vandrouki.ui.recycler.item.BaseItem
 import kchaiko.vandrouki.ui.recycler.item.DiscountItem
 import kchaiko.vandrouki.ui.recycler.item.NavigationItem
+import kchaiko.vandrouki.ui.recycler.adapter.DiscountRecyclerAdapter
 import kchaiko.vandrouki.viewmodel.provide.DiscountListViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -27,7 +27,7 @@ class DiscountListFragment : BaseFragment() {
 
     private val viewModel: DiscountListViewModel by viewModel()
     private var page = DEFAULT_PAGE
-    private lateinit var adapter: RecyclerAdapter
+    private lateinit var adapter: DiscountRecyclerAdapter
 
     lateinit var rvDiscountList: RecyclerView
     lateinit var pbLoading: ProgressBar
@@ -48,8 +48,8 @@ class DiscountListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (!::adapter.isInitialized) {
-            adapter = RecyclerAdapter {
-                router.navigateTo(Screens.Discount((this as DiscountItem).discountBean))
+            adapter = DiscountRecyclerAdapter {
+                router.navigateTo(Screens.Discount((this as DiscountItem).discount))
             }
             viewModel.provideData()
         }

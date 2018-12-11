@@ -24,61 +24,9 @@
 
     <style name="AppTheme" parent="BaseAppTheme" />
 
-    <style name="ActivityTheme" parent="AppTheme" />
-
-    <style name="BaseSplashScreen" parent="ActivityTheme">
+    <style name="SplashScreen" parent="AppTheme">
         <item name="android:windowBackground">@drawable/splash_bg</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
     </style>
-
-    <style name="SplashScreen" parent="BaseSplashScreen" />
-
-    <!--region Text styles-->
-    <style name="TextViewStyle" />
-
-    <!--region Light text-->
-    <style name="TextViewStyle.Light">
-        <item name="android:textColor">?attr/colorLightText</item>
-    </style>
-
-    <style name="TextViewStyle.Light.Large">
-        <item name="android:textSize">18sp</item>
-    </style>
-    <!--endregion-->
-
-    <!--region Secondary text-->
-    <style name="TextViewStyle.Secondary">
-        <item name="android:textColor">?attr/colorSecondaryText</item>
-    </style>
-
-    <style name="TextViewStyle.Secondary.Normal">
-        <item name="android:textSize">14sp</item>
-    </style>
-
-    <style name="TextViewStyle.Secondary.Small">
-        <item name="android:textSize">11sp</item>
-    </style>
-    <!--endregion-->
-
-    <!--region Dark text-->
-    <style name="TextViewStyle.Dark">
-        <item name="android:textColor">?attr/colorDarkText</item>
-    </style>
-
-    <style name="TextViewStyle.Dark.ExtraLarge">
-        <item name="android:textSize">20sp</item>
-    </style>
-    <!--endregion-->
-
-    <!--region Other text-->
-    <style name="TextViewStyle.ToolbarText">
-        <item name="android:textAppearance">@style/TextViewStyle.Light.Large</item>
-        <item name="android:ellipsize">end</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:singleLine">true</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-    <!--endregion-->
-    <!--endregion-->
 
 </resources>
