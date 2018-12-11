@@ -7,12 +7,12 @@ import android.text.method.LinkMovementMethod
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
-import com.squareup.picasso.Picasso
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.extensions.MATCH_PARENT
 import kchaiko.vandrouki.extensions.WRAP_CONTENT
 import kchaiko.vandrouki.extensions.getThemeAttrColor
+import kchaiko.vandrouki.extensions.glideLoad
 import kchaiko.vandrouki.ui.fragment.DiscountFragment
 import kchaiko.vandrouki.ui.styles.extraLargeDarkTextView
 import kchaiko.vandrouki.ui.styles.normalSecondaryTextView
@@ -35,7 +35,7 @@ class DiscountUI(private val discount: Discount, private val favouriteChecked: B
                 imageView {
                     id = View.generateViewId().also { ivImageId = it }
                     scaleType = ImageView.ScaleType.CENTER_CROP
-                    Picasso.with(ui.ctx).load(discount.image).into(this)
+                    glideLoad(discount.image)
                 }.lparams(width = MATCH_PARENT, height = dip(320))
                 constraintLayout {
                     var tvDateId = 0

@@ -7,12 +7,8 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import com.squareup.picasso.Picasso
 import kchaiko.vandrouki.R
-import kchaiko.vandrouki.extensions.MATCH_PARENT
-import kchaiko.vandrouki.extensions.WRAP_CONTENT
-import kchaiko.vandrouki.extensions.divider
-import kchaiko.vandrouki.extensions.getThemeAttrColor
+import kchaiko.vandrouki.extensions.*
 import kchaiko.vandrouki.ui.recycler.item.BaseItem
 import kchaiko.vandrouki.ui.recycler.item.DiscountItem
 import kchaiko.vandrouki.ui.styles.largeLightTextView
@@ -33,7 +29,7 @@ class DiscountItemViewHolder(context: Context, component: DiscountItemUI) : Base
     override fun bindData(data: BaseItem) {
         if (data is DiscountItem) {
             with(data.discount) {
-                Picasso.with(itemView.context).load(image).into(ivImage)
+                ivImage.glideLoad(image)
                 tvTitle.text = title
                 tvDesc.text = desc
             }

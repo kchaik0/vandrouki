@@ -3,6 +3,8 @@ package kchaiko.vandrouki.extensions
 import android.content.Context
 import android.support.annotation.AttrRes
 import android.support.annotation.ColorInt
+import android.widget.ImageView
+import com.bumptech.glide.Glide
 
 @ColorInt
 fun Context.getThemeAttrColor(@AttrRes colorAttr: Int): Int {
@@ -12,4 +14,8 @@ fun Context.getThemeAttrColor(@AttrRes colorAttr: Int): Int {
     } finally {
         array.recycle()
     }
+}
+
+fun ImageView.glideLoad(imageUrl: String) {
+    Glide.with(context).load(imageUrl).into(this)
 }
