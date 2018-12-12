@@ -22,7 +22,7 @@ import org.jetbrains.anko.constraint.layout.ConstraintSetBuilder.Side.*
 import org.jetbrains.anko.constraint.layout.applyConstraintSet
 import org.jetbrains.anko.constraint.layout.constraintLayout
 
-class DiscountUI(private val discount: Discount, private val favouriteChecked: Boolean, private val checkedChangeFun: (Boolean) -> Unit) : AnkoComponent<DiscountFragment> {
+class DiscountUI(private val discount: Discount, private val checkedChangeFun: (Boolean) -> Unit) : AnkoComponent<DiscountFragment> {
 
     override fun createView(ui: AnkoContext<DiscountFragment>): View = with(ui) {
         scrollView {
@@ -53,8 +53,8 @@ class DiscountUI(private val discount: Discount, private val favouriteChecked: B
                     }.lparams(width = WRAP_CONTENT, height = WRAP_CONTENT)
                     checkBox {
                         id = View.generateViewId().also { cbFavouriteId = it }
+                        ui.owner.cbFavourite = this
                         buttonDrawableResource = R.drawable.favourite_selector
-                        isChecked = favouriteChecked
                         setOnCheckedChangeListener { _, isChecked ->
                             checkedChangeFun.invoke(isChecked)
                         }

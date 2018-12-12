@@ -1,15 +1,18 @@
 package kchaiko.vandrouki
 
 import android.app.Application
+import android.arch.persistence.room.Room
 import com.facebook.stetho.Stetho
-import kchaiko.vandrouki.db.initObjectBox
+import kchaiko.vandrouki.db.VandDatabase
 import kchaiko.vandrouki.navigation.VandAppRouter
 import kchaiko.vandrouki.repository.DiscountRepository
+import kchaiko.vandrouki.repository.FavouriteRepository
 import kchaiko.vandrouki.repository.initRetrofit
 import kchaiko.vandrouki.viewmodel.load.SplashViewModel
 import kchaiko.vandrouki.viewmodel.provide.DiscountListViewModel
 import kchaiko.vandrouki.viewmodel.provide.DiscountViewModel
 import org.koin.android.ext.android.startKoin
+import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.ext.koin.viewModel
 import org.koin.dsl.context.ModuleDefinition
 import org.koin.dsl.module.module
@@ -26,6 +29,9 @@ class VandroukiApp : Application() {
         super.onCreate()
         Stetho.initializeWithDefaults(this)
         startKoin(this, listOf(appModule))
+        if (BuildConfig.DEBUG) {
+            Stetho.initializeWithDefaults(this)
+        }
     }
 
     private val appModule = module {
@@ -44,10 +50,11 @@ class VandroukiApp : Application() {
 
     private fun ModuleDefinition.repositories() {
         single { DiscountRepository(get()) }
+        single { FavouriteRepository(get()) }
     }
 
     private fun ModuleDefinition.database() {
-        single { initObjectBox() }
+        single { Room.databaseBuilder(androidContext(), VandDatabase::class.java, "vand_db").build() }
     }
 
     private fun ModuleDefinition.retrofit() {

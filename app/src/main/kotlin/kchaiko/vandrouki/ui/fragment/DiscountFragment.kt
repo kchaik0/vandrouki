@@ -6,11 +6,14 @@ import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.ProgressBar
 import android.widget.TextView
 import kchaiko.vandrouki.beans.DetailedDiscount
 import kchaiko.vandrouki.beans.Discount
+import kchaiko.vandrouki.db.entity.FavouriteDiscount
 import kchaiko.vandrouki.extensions.createView
+import kchaiko.vandrouki.extensions.observe
 import kchaiko.vandrouki.ui.component.fragment.DiscountUI
 import kchaiko.vandrouki.viewmodel.provide.DiscountViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -28,9 +31,11 @@ class DiscountFragment : BaseFragment() {
 
     private val viewModel: DiscountViewModel by viewModel()
     private lateinit var discount: Discount
+    private lateinit var favouriteDiscount: FavouriteDiscount
 
     lateinit var tvFullText: TextView
     lateinit var pbLoading: ProgressBar
+    lateinit var cbFavourite: CheckBox
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,12 +48,21 @@ class DiscountFragment : BaseFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
-            DiscountUI(discount, viewModel.getFavourite(discount.detailUrlPart)) {
-                viewModel.saveData(discount, it)
+            DiscountUI(discount) {
+                if (::favouriteDiscount.isInitialized) {
+                    favouriteDiscount.isFavourite = it
+                    viewModel.updateData(favouriteDiscount)
+                } else {
+                    viewModel.saveData(discount, it)
+                }
             }.createView(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.getFavourite(discount.detailUrlPart).observe(this) {
+            favouriteDiscount = this
+            cbFavourite.isChecked = isFavourite
+        }
         viewModel.provideData(discount.detailUrlPart)
     }
 

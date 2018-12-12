@@ -12,7 +12,9 @@ abstract class BaseViewModel : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
-        viewModelJob.cancel()
+        if (viewModelJob.isActive) {
+            viewModelJob.cancel()
+        }
     }
 
 }
