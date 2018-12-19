@@ -1,6 +1,6 @@
 package kchaiko.vandrouki.ui.recycler.adapter
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import kchaiko.vandrouki.ui.recycler.holder.BaseViewHolder
 import kchaiko.vandrouki.ui.recycler.item.BaseItem
 

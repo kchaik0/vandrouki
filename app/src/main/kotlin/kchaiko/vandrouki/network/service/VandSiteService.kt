@@ -9,7 +9,7 @@ import retrofit2.http.Path
 const val SITE_URL = "https://vandrouki.by/"
 const val DEFAULT_PAGE = 1
 
-interface LoadUrlService {
+interface VandSiteService {
 
     @GET("/page/{page}")
     fun htmlDiscountList(@Path("page") page: Int = DEFAULT_PAGE): Deferred<DiscountList>

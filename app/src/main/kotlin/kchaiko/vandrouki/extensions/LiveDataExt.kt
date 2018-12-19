@@ -1,8 +1,8 @@
 package kchaiko.vandrouki.extensions
 
-import android.arch.lifecycle.LifecycleOwner
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 
 fun <D> LiveData<D>.observe(lifecycleOwner: LifecycleOwner, observeFun: D.() -> Unit) {
     observe(lifecycleOwner, Observer {

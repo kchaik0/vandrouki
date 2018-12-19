@@ -1,7 +1,7 @@
 package kchaiko.vandrouki.navigation
 
-import android.support.annotation.IdRes
-import android.support.v4.app.FragmentActivity
-import ru.terrakok.cicerone.android.support.SupportAppNavigator
+import androidx.annotation.IdRes
+import androidx.fragment.app.FragmentActivity
+import kchaiko.vandrouki.navigation.androidx.AppNavigator
 
-class VandAppNavigator(activity: FragmentActivity, @IdRes containerId: Int) : SupportAppNavigator(activity, containerId)
+class VandAppNavigator(activity: FragmentActivity, @IdRes containerId: Int) : AppNavigator(activity, containerId)

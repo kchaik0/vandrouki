@@ -1,11 +1,11 @@
 package kchaiko.vandrouki.ui.fragment
 
 import android.os.Bundle
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import androidx.recyclerview.widget.RecyclerView
 import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.extensions.createView
 import kchaiko.vandrouki.navigation.Screens
@@ -16,8 +16,7 @@ import kchaiko.vandrouki.ui.recycler.item.DiscountItem
 import kchaiko.vandrouki.ui.recycler.item.NavigationItem
 import kchaiko.vandrouki.ui.recycler.adapter.DiscountRecyclerAdapter
 import kchaiko.vandrouki.viewmodel.provide.DiscountListViewModel
-import org.koin.android.viewmodel.ext.android.viewModel
-
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DiscountListFragment : BaseFragment() {
 

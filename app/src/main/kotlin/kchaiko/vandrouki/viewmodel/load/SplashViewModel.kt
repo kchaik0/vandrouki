@@ -1,6 +1,6 @@
 package kchaiko.vandrouki.viewmodel.load
 
-import kchaiko.vandrouki.repository.DiscountRepository
+import kchaiko.vandrouki.network.repository.DiscountRepository
 import kchaiko.vandrouki.viewmodel.BaseViewModel
 
 /**

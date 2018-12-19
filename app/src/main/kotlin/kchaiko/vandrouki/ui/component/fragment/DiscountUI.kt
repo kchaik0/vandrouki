@@ -1,12 +1,12 @@
 package kchaiko.vandrouki.ui.component.fragment
 
 import android.graphics.Typeface
-import android.support.constraint.ConstraintSet
-import android.support.constraint.ConstraintSet.PARENT_ID
 import android.text.method.LinkMovementMethod
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
+import androidx.constraintlayout.widget.ConstraintSet
+import androidx.constraintlayout.widget.ConstraintSet.PARENT_ID
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.extensions.MATCH_PARENT

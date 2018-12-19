@@ -1,17 +1,18 @@
 package kchaiko.vandrouki.navigation
 
+import androidx.fragment.app.Fragment
+import kchaiko.vandrouki.navigation.androidx.AppScreen
 import kchaiko.vandrouki.ui.fragment.DiscountFragment
 import kchaiko.vandrouki.ui.fragment.DiscountListFragment
-import ru.terrakok.cicerone.android.support.SupportAppScreen
 
 object Screens {
 
-    object DiscountList : SupportAppScreen() {
-        override fun getFragment() = DiscountListFragment.newInstance()
+    object DiscountList : AppScreen() {
+        override val fragment: Fragment? = DiscountListFragment.newInstance()
     }
 
-    data class Discount(private val discount: kchaiko.vandrouki.beans.Discount) : SupportAppScreen() {
-        override fun getFragment() = DiscountFragment.newInstance(discount)
+    data class Discount(private val discount: kchaiko.vandrouki.beans.Discount) : AppScreen() {
+        override val fragment: Fragment? = DiscountFragment.newInstance(discount)
     }
 
 }

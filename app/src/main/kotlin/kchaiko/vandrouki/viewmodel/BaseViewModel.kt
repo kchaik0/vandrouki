@@ -1,20 +1,19 @@
 package kchaiko.vandrouki.viewmodel
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancelChildren
 
 abstract class BaseViewModel : ViewModel() {
 
-    private val viewModelJob = Job()
+    private val viewModelJob = SupervisorJob()
     protected val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     override fun onCleared() {
         super.onCleared()
-        if (viewModelJob.isActive) {
-            viewModelJob.cancel()
-        }
+        uiScope.coroutineContext.cancelChildren()
     }
 
 }

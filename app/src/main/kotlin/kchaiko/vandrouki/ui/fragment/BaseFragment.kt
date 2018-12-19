@@ -1,6 +1,6 @@
 package kchaiko.vandrouki.ui.fragment
 
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import kchaiko.vandrouki.navigation.VandAppRouter
 import kchaiko.vandrouki.network.exception.VandException
 import kchaiko.vandrouki.ui.activity.HomeActivity

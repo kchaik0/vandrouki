@@ -1,16 +1,16 @@
 package kchaiko.vandrouki.ui.component.fragment
 
-import android.support.v7.widget.LinearLayoutManager
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.extensions.MATCH_PARENT
 import kchaiko.vandrouki.extensions.WRAP_CONTENT
 import kchaiko.vandrouki.extensions.getThemeAttrColor
+import kchaiko.vandrouki.extensions.recyclerViewX
 import kchaiko.vandrouki.ui.fragment.DiscountListFragment
 import org.jetbrains.anko.*
-import org.jetbrains.anko.recyclerview.v7.recyclerView
 
 class DiscountListUI : AnkoComponent<DiscountListFragment> {
 
@@ -18,7 +18,7 @@ class DiscountListUI : AnkoComponent<DiscountListFragment> {
         frameLayout {
             layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT)
             backgroundColor = ui.ctx.getThemeAttrColor(R.attr.colorDefault)
-            recyclerView {
+            recyclerViewX {
                 ui.owner.rvDiscountList = this
                 layoutManager = LinearLayoutManager(ui.ctx)
                 clipToPadding = true

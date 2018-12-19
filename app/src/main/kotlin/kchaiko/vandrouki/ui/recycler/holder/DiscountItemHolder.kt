@@ -1,12 +1,12 @@
 package kchaiko.vandrouki.ui.recycler.holder
 
 import android.content.Context
-import android.support.constraint.ConstraintLayout.LayoutParams.PARENT_ID
 import android.text.TextUtils
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintSet.PARENT_ID
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.extensions.*
 import kchaiko.vandrouki.ui.recycler.item.BaseItem

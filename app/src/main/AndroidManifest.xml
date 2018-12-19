@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="kchaiko.vandrouki">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -25,8 +26,6 @@
         </activity>
 
         <activity android:name="kchaiko.vandrouki.ui.activity.HomeActivity" />
-
-        <activity android:name="kchaiko.vandrouki.ui.activity.DiscountActivity" />
 
     </application>
 

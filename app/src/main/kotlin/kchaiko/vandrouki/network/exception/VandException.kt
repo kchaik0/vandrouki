@@ -5,4 +5,4 @@ package kchaiko.vandrouki.network.exception
  *
  * Created by kchaiko on 06.12.2017.
  */
-class VandException(message: String?) : RuntimeException(message)
+open class VandException(message: String? = null) : RuntimeException(message)

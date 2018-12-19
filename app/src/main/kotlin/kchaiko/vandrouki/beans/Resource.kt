@@ -1,6 +1,7 @@
 package kchaiko.vandrouki.beans
 
 import kchaiko.vandrouki.enumes.request.RequestStatus
+import kchaiko.vandrouki.network.exception.NetworkException
 import kchaiko.vandrouki.network.exception.VandException
 import java.net.UnknownHostException
 
@@ -16,7 +17,7 @@ data class Resource<T>(var status: RequestStatus, var data: T? = null, var excep
         fun <T> error(throwable: Throwable) = Resource<T>(RequestStatus.ERROR, exception = getExceptionFromThrowable(throwable))
 
         private fun getExceptionFromThrowable(throwable: Throwable) = when (throwable) {
-            is UnknownHostException -> VandException(throwable.message)
+            is NetworkException -> VandException("Network error")
             else -> {
                 throwable.printStackTrace()
                 null

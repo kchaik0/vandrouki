@@ -1,8 +1,7 @@
 package kchaiko.vandrouki.viewmodel.provide
 
-import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.beans.DiscountList
-import kchaiko.vandrouki.repository.DiscountRepository
+import kchaiko.vandrouki.network.repository.DiscountRepository
 import kotlinx.coroutines.launch
 
 /**

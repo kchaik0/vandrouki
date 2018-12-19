@@ -1,9 +1,9 @@
 package kchaiko.vandrouki.extensions
 
 import android.content.Context
-import android.support.annotation.AttrRes
-import android.support.annotation.ColorInt
 import android.widget.ImageView
+import androidx.annotation.AttrRes
+import androidx.annotation.ColorInt
 import com.bumptech.glide.Glide
 
 @ColorInt

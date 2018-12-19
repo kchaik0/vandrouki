@@ -1,7 +1,7 @@
 package kchaiko.vandrouki.db.dao
 
-import android.arch.lifecycle.LiveData
-import android.arch.persistence.room.*
+import androidx.lifecycle.LiveData
+import androidx.room.*
 import kchaiko.vandrouki.db.TABLE_FAVOURITE_DISCOUNT
 import kchaiko.vandrouki.db.entity.FavouriteDiscount
 

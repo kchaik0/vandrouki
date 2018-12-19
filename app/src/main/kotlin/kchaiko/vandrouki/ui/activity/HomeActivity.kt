@@ -4,8 +4,8 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
+import androidx.fragment.app.FragmentActivity
 import kchaiko.vandrouki.navigation.Screens
 import kchaiko.vandrouki.navigation.VandAppNavigator
 import kchaiko.vandrouki.navigation.VandAppRouter
@@ -15,7 +15,7 @@ import org.jetbrains.anko.setContentView
 import org.koin.android.ext.android.inject
 import ru.terrakok.cicerone.NavigatorHolder
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : FragmentActivity() {
 
     companion object {
         fun getIntent(context: Context) = Intent(context, HomeActivity::class.java)

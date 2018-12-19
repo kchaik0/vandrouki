@@ -3,8 +3,8 @@ package kchaiko.vandrouki.viewmodel.provide
 import kchaiko.vandrouki.beans.DetailedDiscount
 import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.db.entity.FavouriteDiscount
-import kchaiko.vandrouki.repository.DiscountRepository
-import kchaiko.vandrouki.repository.FavouriteRepository
+import kchaiko.vandrouki.network.repository.DiscountRepository
+import kchaiko.vandrouki.network.repository.FavouriteRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
