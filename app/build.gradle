@@ -94,4 +94,7 @@ dependencies {
     implementation "org.jetbrains.anko:anko-recyclerview-v7:$anko_version"
     implementation "org.jetbrains.anko:anko-constraint-layout:$anko_version"
     implementation "org.jetbrains.anko:anko-cardview-v7:$anko_version"
+
+    //Lottie
+    implementation "com.airbnb.android:lottie:$lottie_version"
 }

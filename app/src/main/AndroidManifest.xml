@@ -17,7 +17,7 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name="kchaiko.vandrouki.ui.activity.SplashActivity"
+            android:name=".ui.activity.SplashActivity"
             android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +25,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="kchaiko.vandrouki.ui.activity.HomeActivity" />
+        <activity android:name=".ui.activity.HomeActivity" />
+        <activity android:name=".ui.activity.TestSplashActivity" />
 
     </application>
 

@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.FragmentActivity
 import kchaiko.vandrouki.navigation.Screens
 import kchaiko.vandrouki.navigation.VandAppNavigator
 import kchaiko.vandrouki.navigation.VandAppRouter
@@ -15,7 +14,7 @@ import org.jetbrains.anko.setContentView
 import org.koin.android.ext.android.inject
 import ru.terrakok.cicerone.NavigatorHolder
 
-class HomeActivity : FragmentActivity() {
+class HomeActivity : BaseActivity() {
 
     companion object {
         fun getIntent(context: Context) = Intent(context, HomeActivity::class.java)
