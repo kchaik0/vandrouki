@@ -11,11 +11,11 @@ import kchaiko.vandrouki.extensions.createView
 import kchaiko.vandrouki.navigation.Screens
 import kchaiko.vandrouki.network.service.DEFAULT_PAGE
 import kchaiko.vandrouki.ui.component.fragment.DiscountListUI
+import kchaiko.vandrouki.ui.recycler.adapter.DiscountRecyclerAdapter
 import kchaiko.vandrouki.ui.recycler.item.BaseItem
 import kchaiko.vandrouki.ui.recycler.item.DiscountItem
 import kchaiko.vandrouki.ui.recycler.item.NavigationItem
-import kchaiko.vandrouki.ui.recycler.adapter.DiscountRecyclerAdapter
-import kchaiko.vandrouki.viewmodel.provide.DiscountListViewModel
+import kchaiko.vandrouki.viewmodel.DiscountListViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DiscountListFragment : BaseFragment() {

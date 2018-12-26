@@ -1,4 +1,4 @@
-package kchaiko.vandrouki.viewmodel.provide
+package kchaiko.vandrouki.viewmodel
 
 import kchaiko.vandrouki.beans.DetailedDiscount
 import kchaiko.vandrouki.beans.Discount
@@ -15,7 +15,7 @@ import kotlinx.coroutines.withContext
  * Created by kchaiko on 28.07.2017.
  */
 class DiscountViewModel(private val discountRepository: DiscountRepository,
-                        private val favouriteRepository: FavouriteRepository) : DataViewModel<DetailedDiscount>() {
+                        private val favouriteRepository: FavouriteRepository) : BaseViewModel<DetailedDiscount>() {
 
     fun provideData(detailUrlPart: String) {
         uiScope.launch {

@@ -15,7 +15,7 @@ import kchaiko.vandrouki.db.entity.FavouriteDiscount
 import kchaiko.vandrouki.extensions.createView
 import kchaiko.vandrouki.extensions.observe
 import kchaiko.vandrouki.ui.component.fragment.DiscountUI
-import kchaiko.vandrouki.viewmodel.provide.DiscountViewModel
+import kchaiko.vandrouki.viewmodel.DiscountViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DiscountFragment : BaseFragment() {

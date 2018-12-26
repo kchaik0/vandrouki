@@ -24,7 +24,7 @@
 
     <style name="AppTheme" parent="BaseAppTheme" />
 
-    <style name="SplashScreen" parent="AppTheme">
+    <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/splash_bg</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
     </style>

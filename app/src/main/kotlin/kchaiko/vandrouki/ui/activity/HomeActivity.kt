@@ -1,10 +1,10 @@
 package kchaiko.vandrouki.ui.activity
 
 import android.app.AlertDialog
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.FragmentActivity
+import kchaiko.vandrouki.R
 import kchaiko.vandrouki.navigation.Screens
 import kchaiko.vandrouki.navigation.VandAppNavigator
 import kchaiko.vandrouki.navigation.VandAppRouter
@@ -14,11 +14,7 @@ import org.jetbrains.anko.setContentView
 import org.koin.android.ext.android.inject
 import ru.terrakok.cicerone.NavigatorHolder
 
-class HomeActivity : BaseActivity() {
-
-    companion object {
-        fun getIntent(context: Context) = Intent(context, HomeActivity::class.java)
-    }
+class HomeActivity : FragmentActivity() {
 
     private val navigatorHolder by inject<NavigatorHolder>()
     val containerId: Int = View.generateViewId()
@@ -26,6 +22,7 @@ class HomeActivity : BaseActivity() {
     val router by inject<VandAppRouter>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         HomeActivityUI().setContentView(this)
         router.newRootScreen(Screens.DiscountList)

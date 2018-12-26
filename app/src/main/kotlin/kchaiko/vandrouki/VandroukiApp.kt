@@ -10,9 +10,8 @@ import kchaiko.vandrouki.navigation.VandAppRouter
 import kchaiko.vandrouki.network.RetrofitManager
 import kchaiko.vandrouki.network.repository.DiscountRepository
 import kchaiko.vandrouki.network.repository.FavouriteRepository
-import kchaiko.vandrouki.viewmodel.load.SplashViewModel
-import kchaiko.vandrouki.viewmodel.provide.DiscountListViewModel
-import kchaiko.vandrouki.viewmodel.provide.DiscountViewModel
+import kchaiko.vandrouki.viewmodel.DiscountListViewModel
+import kchaiko.vandrouki.viewmodel.DiscountViewModel
 import org.koin.android.ext.android.startKoin
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.ext.koin.viewModel
@@ -45,7 +44,6 @@ class VandroukiApp : Application() {
     }
 
     private fun ModuleDefinition.viewModels() {
-        viewModel { SplashViewModel(get()) }
         viewModel { DiscountListViewModel(get()) }
         viewModel { DiscountViewModel(get(), get()) }
     }

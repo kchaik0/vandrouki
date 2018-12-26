@@ -51,7 +51,6 @@ dependencies {
 
     //Android support library
     implementation "androidx.appcompat:appcompat:$appcompat"
-    implementation "androidx.legacy:legacy-support-v4:$androidx"
     implementation "androidx.cardview:cardview:$androidx"
     implementation "androidx.recyclerview:recyclerview:$androidx"
     implementation "androidx.palette:palette:$androidx"
@@ -90,11 +89,4 @@ dependencies {
 
     //Anko
     implementation "org.jetbrains.anko:anko-sdk25:$anko_version"
-    implementation "org.jetbrains.anko:anko-appcompat-v7:$anko_version"
-    implementation "org.jetbrains.anko:anko-recyclerview-v7:$anko_version"
-    implementation "org.jetbrains.anko:anko-constraint-layout:$anko_version"
-    implementation "org.jetbrains.anko:anko-cardview-v7:$anko_version"
-
-    //Lottie
-    implementation "com.airbnb.android:lottie:$lottie_version"
 }

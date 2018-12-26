@@ -9,18 +9,14 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.constraintlayout.widget.ConstraintSet.PARENT_ID
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.beans.Discount
-import kchaiko.vandrouki.extensions.MATCH_PARENT
-import kchaiko.vandrouki.extensions.WRAP_CONTENT
-import kchaiko.vandrouki.extensions.getThemeAttrColor
-import kchaiko.vandrouki.extensions.glideLoad
+import kchaiko.vandrouki.extensions.*
+import kchaiko.vandrouki.ui.anko.ConstraintSetBuilder.Side.*
+import kchaiko.vandrouki.ui.anko.applyConstraintSet
 import kchaiko.vandrouki.ui.fragment.DiscountFragment
 import kchaiko.vandrouki.ui.styles.extraLargeDarkTextView
 import kchaiko.vandrouki.ui.styles.normalSecondaryTextView
 import kchaiko.vandrouki.ui.styles.smallSecondaryTextView
 import org.jetbrains.anko.*
-import org.jetbrains.anko.constraint.layout.ConstraintSetBuilder.Side.*
-import org.jetbrains.anko.constraint.layout.applyConstraintSet
-import org.jetbrains.anko.constraint.layout.constraintLayout
 
 class DiscountUI(private val discount: Discount, private val checkedChangeFun: (Boolean) -> Unit) : AnkoComponent<DiscountFragment> {
 
@@ -29,7 +25,7 @@ class DiscountUI(private val discount: Discount, private val checkedChangeFun: (
             layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT)
             backgroundColor = ui.ctx.getThemeAttrColor(R.attr.colorDefault)
             isFillViewport = true
-            constraintLayout {
+            constraintLayoutX {
                 var ivImageId = 0
                 var clContainerId = 0
                 imageView {
@@ -37,7 +33,7 @@ class DiscountUI(private val discount: Discount, private val checkedChangeFun: (
                     scaleType = ImageView.ScaleType.CENTER_CROP
                     glideLoad(discount.image)
                 }.lparams(width = MATCH_PARENT, height = dip(320))
-                constraintLayout {
+                constraintLayoutX {
                     var tvDateId = 0
                     var cbFavouriteId = 0
                     var tvAuthorId = 0

@@ -1,4 +1,4 @@
-package kchaiko.vandrouki.viewmodel.provide
+package kchaiko.vandrouki.viewmodel
 
 import kchaiko.vandrouki.beans.DiscountList
 import kchaiko.vandrouki.network.repository.DiscountRepository
@@ -9,12 +9,12 @@ import kotlinx.coroutines.launch
  *
  * Created by kchaiko on 28.07.2017.
  */
-class DiscountListViewModel(private val discountRepository: DiscountRepository) : DataViewModel<DiscountList>() {
+class DiscountListViewModel(private val discountRepository: DiscountRepository) : BaseViewModel<DiscountList>() {
 
     fun provideData() {
         uiScope.launch {
             provideLoading(true)
-            val resource = discountRepository.getDataResource()
+            val resource = discountRepository.loadDiscountList()
             provideResult(resource)
         }
     }

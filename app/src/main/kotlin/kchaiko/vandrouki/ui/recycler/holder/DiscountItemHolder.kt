@@ -9,16 +9,13 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintSet.PARENT_ID
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.extensions.*
+import kchaiko.vandrouki.ui.anko.ConstraintSetBuilder.Side.*
+import kchaiko.vandrouki.ui.anko.applyConstraintSet
 import kchaiko.vandrouki.ui.recycler.item.BaseItem
 import kchaiko.vandrouki.ui.recycler.item.DiscountItem
 import kchaiko.vandrouki.ui.styles.largeLightTextView
 import kchaiko.vandrouki.ui.styles.normalSecondaryTextView
 import org.jetbrains.anko.*
-import org.jetbrains.anko.cardview.v7.cardView
-import org.jetbrains.anko.constraint.layout.ConstraintSetBuilder.Side.BOTTOM
-import org.jetbrains.anko.constraint.layout.ConstraintSetBuilder.Side.TOP
-import org.jetbrains.anko.constraint.layout.applyConstraintSet
-import org.jetbrains.anko.constraint.layout.constraintLayout
 
 class DiscountItemViewHolder(context: Context, component: DiscountItemUI) : BaseViewHolder(component.createView(AnkoContext.create(context))) {
 
@@ -44,13 +41,13 @@ class DiscountItemUI : AnkoComponent<Context> {
     lateinit var tvDesc: TextView
 
     override fun createView(ui: AnkoContext<Context>): View = with(ui) {
-        cardView {
+        cardViewX {
             layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT).apply {
                 margin = dip(8)
             }
             radius = dip(4).toFloat()
             elevation = dip(4).toFloat()
-            constraintLayout {
+            constraintLayoutX {
                 var ivImageId = 0
                 var tvTitleId = 0
                 var tvDescId = 0

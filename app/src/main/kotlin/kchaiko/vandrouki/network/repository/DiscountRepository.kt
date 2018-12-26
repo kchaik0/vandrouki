@@ -16,13 +16,7 @@ class DiscountRepository(retrofitManager: RetrofitManager) : BaseRepository() {
 
     private val siteService = retrofitManager.create(VandSiteService::class.java)
 
-    private lateinit var discountListTask: Deferred<DiscountList>
-
-    fun loadDiscountList() {
-        discountListTask = siteService.htmlDiscountList()
-    }
-
-    suspend fun getDataResource(): Resource<DiscountList> = awaitWithException(discountListTask)
+    suspend fun loadDiscountList() = awaitWithException(siteService.htmlDiscountList())
 
     suspend fun loadDiscountsByPage(page: Int): Resource<DiscountList> {
         val deferred = siteService.htmlDiscountList(page)
