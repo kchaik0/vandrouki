@@ -40,6 +40,8 @@ class VandroukiApp : Application() {
         repositories()
         cicerone()
         database()
+
+
         retrofit()
     }
 
