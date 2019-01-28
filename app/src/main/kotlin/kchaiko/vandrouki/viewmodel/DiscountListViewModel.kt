@@ -12,10 +12,12 @@ import kotlinx.coroutines.launch
 class DiscountListViewModel(private val discountRepository: DiscountRepository) : BaseViewModel<DiscountList>() {
 
     fun provideData() {
-        uiScope.launch {
-            provideLoading(true)
-            val resource = discountRepository.loadDiscountList()
-            provideResult(resource)
+        if (modelLiveData.value == null && errorLiveData.value == null) {
+            uiScope.launch {
+                provideLoading(true)
+                val resource = discountRepository.loadDiscountList()
+                provideResult(resource)
+            }
         }
     }
 

@@ -1,5 +1,6 @@
 package kchaiko.vandrouki.viewmodel
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kchaiko.vandrouki.beans.Resource
 import kchaiko.vandrouki.enumes.request.RequestStatus
@@ -14,35 +15,29 @@ abstract class BaseViewModel<T> : ViewModel() {
     private val viewModelJob = SupervisorJob()
     protected val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
+    val modelLiveData = MutableLiveData<T>()
+    val loadingLiveData = MutableLiveData<Boolean>()
+    val errorLiveData = MutableLiveData<VandException>()
+
     override fun onCleared() {
         super.onCleared()
         uiScope.coroutineContext.cancelChildren()
     }
 
-    private lateinit var dataDelegate: (T) -> Unit
-    private lateinit var loadingDelegate: (Boolean) -> Unit
-    private lateinit var errorDelegate: (VandException) -> Unit
-
-    fun dataDelegate(function: (T) -> Unit) = apply { dataDelegate = function }
-    fun loadingDelegate(function: (Boolean) -> Unit) = apply { loadingDelegate = function }
-    fun errorDelegate(function: (VandException) -> Unit) = apply { errorDelegate = function }
-
-    protected fun provideLoading(loading: Boolean = false) {
-        loadingDelegate(loading)
+    protected fun provideLoading(loading: Boolean) {
+        loadingLiveData.value = loading
     }
 
-    protected fun provideResult(it: Resource<T>) {
-        when (it.status) {
+    protected fun provideResult(resource: Resource<T>) {
+        when (resource.status) {
             RequestStatus.SUCCESS -> {
-                it.data?.apply { dataDelegate(this) }
-                provideLoading()
+                modelLiveData.value = resource.data
             }
             RequestStatus.ERROR -> {
-                provideLoading()
-                it.exception?.apply { errorDelegate(this) }
+                errorLiveData.value = resource.exception
             }
-            RequestStatus.LOADING -> provideLoading(true)
         }
+        provideLoading(false)
     }
 
 }

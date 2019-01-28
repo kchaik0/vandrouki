@@ -8,6 +8,7 @@ import android.widget.ProgressBar
 import androidx.recyclerview.widget.RecyclerView
 import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.extensions.createView
+import kchaiko.vandrouki.extensions.observe
 import kchaiko.vandrouki.navigation.Screens
 import kchaiko.vandrouki.network.service.DEFAULT_PAGE
 import kchaiko.vandrouki.ui.component.fragment.DiscountListUI
@@ -24,21 +25,19 @@ class DiscountListFragment : BaseFragment() {
         fun newInstance() = DiscountListFragment()
     }
 
-    private val viewModel: DiscountListViewModel by viewModel()
+    override val viewModel: DiscountListViewModel by viewModel()
     private var page = DEFAULT_PAGE
     private lateinit var adapter: DiscountRecyclerAdapter
 
     lateinit var rvDiscountList: RecyclerView
     lateinit var pbLoading: ProgressBar
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel.loadingDelegate { showLoadingIndicator(it) }
-                .dataDelegate {
-                    rvDiscountList.scrollToPosition(0)
-                    adapter.addItems(getShowingItems(it))
-                }
-                .errorDelegate { proceedError(it) }
+    override fun bindLiveData() {
+        super.bindLiveData()
+        viewModel.modelLiveData.observe(this) {
+            rvDiscountList.scrollToPosition(0)
+            adapter.addItems(getShowingItems(this))
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
@@ -55,7 +54,7 @@ class DiscountListFragment : BaseFragment() {
         rvDiscountList.adapter = adapter
     }
 
-    private fun showLoadingIndicator(showLoading: Boolean) {
+    override fun showLoadingIndicator(showLoading: Boolean) {
         rvDiscountList.visibility = if (showLoading) View.GONE else View.VISIBLE
         pbLoading.visibility = if (showLoading) View.VISIBLE else View.GONE
     }

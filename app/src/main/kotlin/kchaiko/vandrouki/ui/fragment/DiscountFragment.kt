@@ -29,21 +29,18 @@ class DiscountFragment : BaseFragment() {
         }
     }
 
-    private val viewModel: DiscountViewModel by viewModel()
-    private lateinit var discount: Discount
+    override val viewModel: DiscountViewModel by viewModel()
+    private val discount: Discount by lazy { arguments?.getParcelable<Discount>(DISCOUNT_ARG)!! }
     private lateinit var favouriteDiscount: FavouriteDiscount
 
     lateinit var tvFullText: TextView
     lateinit var pbLoading: ProgressBar
     lateinit var cbFavourite: CheckBox
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        discount = arguments?.getParcelable(DISCOUNT_ARG)!!
-        with(viewModel) {
-            loadingDelegate { showLoadingIndicator(it) }
-            dataDelegate { populateData(it) }
-            errorDelegate { proceedError(it) }
+    override fun bindLiveData() {
+        super.bindLiveData()
+        viewModel.modelLiveData.observe(this) {
+            populateData(this)
         }
     }
 
@@ -66,7 +63,7 @@ class DiscountFragment : BaseFragment() {
         viewModel.provideData(discount.detailUrlPart)
     }
 
-    private fun showLoadingIndicator(showLoading: Boolean) {
+    override fun showLoadingIndicator(showLoading: Boolean) {
         tvFullText.visibility = if (showLoading) View.GONE else View.VISIBLE
         pbLoading.visibility = if (showLoading) View.VISIBLE else View.GONE
     }

@@ -25,7 +25,9 @@ class HomeActivity : FragmentActivity() {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         HomeActivityUI().setContentView(this)
-        router.newRootScreen(Screens.DiscountList)
+        if (savedInstanceState == null) {
+            router.newRootScreen(Screens.DiscountList)
+        }
     }
 
     override fun onResume() {
@@ -38,9 +40,9 @@ class HomeActivity : FragmentActivity() {
         super.onPause()
     }
 
-    fun proceedError(exception: VandException) {
+    fun proceedError(errorMessage: String?) {
         AlertDialog.Builder(this)
-                .setMessage(exception.message)
+                .setMessage(errorMessage)
                 .setCancelable(false)
                 .setPositiveButton(android.R.string.ok) { dialogInterface, _ ->
                     dialogInterface.dismiss()

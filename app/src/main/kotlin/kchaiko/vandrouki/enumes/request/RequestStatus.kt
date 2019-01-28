@@ -8,7 +8,6 @@ package kchaiko.vandrouki.enumes.request
 enum class RequestStatus {
 
     SUCCESS,
-    ERROR,
-    LOADING
+    ERROR
 
 }
