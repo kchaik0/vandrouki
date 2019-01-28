@@ -3,7 +3,6 @@ package kchaiko.vandrouki.ui.component.fragment
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
-import androidx.recyclerview.widget.LinearLayoutManager
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.extensions.MATCH_PARENT
 import kchaiko.vandrouki.extensions.WRAP_CONTENT
@@ -20,7 +19,6 @@ class DiscountListUI : AnkoComponent<DiscountListFragment> {
             backgroundColor = ui.ctx.getThemeAttrColor(R.attr.colorDefault)
             recyclerViewX {
                 ui.owner.rvDiscountList = this
-                layoutManager = LinearLayoutManager(ui.ctx)
                 clipToPadding = true
             }.lparams(width = MATCH_PARENT, height = MATCH_PARENT)
             progressBar {

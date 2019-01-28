@@ -47,7 +47,7 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.0.0")
     implementation("androidx.palette:palette:1.0.0")
     implementation("androidx.constraintlayout:constraintlayout:1.1.3")
-    implementation("org.jsoup:jsoup:1.10.3")
+    implementation("org.jsoup:jsoup:1.11.3")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.3.11")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.1")
@@ -61,6 +61,6 @@ dependencies {
     kapt("androidx.room:room-compiler:2.0.0")
     implementation("com.facebook.stetho:stetho:1.5.0")
     implementation("com.facebook.stetho:stetho-okhttp3:1.5.0")
-    implementation("ru.terrakok.cicerone:cicerone:4.0.2")
+    implementation("ru.terrakok.cicerone:cicerone:5.0.0")
     implementation("org.jetbrains.anko:anko-sdk25:0.10.8")
 }

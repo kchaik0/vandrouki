@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.extensions.createView
@@ -51,7 +52,16 @@ class DiscountListFragment : BaseFragment() {
             }
             viewModel.provideData()
         }
+        rvDiscountList.layoutManager = LinearLayoutManager(context)
         rvDiscountList.adapter = adapter
+        if (savedInstanceState != null) {
+            (rvDiscountList.layoutManager as LinearLayoutManager).onRestoreInstanceState(savedInstanceState.getParcelable("123"))
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable("123", rvDiscountList.layoutManager?.onSaveInstanceState())
     }
 
     override fun showLoadingIndicator(showLoading: Boolean) {
