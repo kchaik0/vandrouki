@@ -54,14 +54,6 @@ class DiscountListFragment : BaseFragment() {
         }
         rvDiscountList.layoutManager = LinearLayoutManager(context)
         rvDiscountList.adapter = adapter
-        if (savedInstanceState != null) {
-            (rvDiscountList.layoutManager as LinearLayoutManager).onRestoreInstanceState(savedInstanceState.getParcelable("123"))
-        }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putParcelable("123", rvDiscountList.layoutManager?.onSaveInstanceState())
     }
 
     override fun showLoadingIndicator(showLoading: Boolean) {
