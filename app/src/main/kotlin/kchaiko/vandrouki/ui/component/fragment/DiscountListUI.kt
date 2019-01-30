@@ -19,7 +19,7 @@ class DiscountListUI : AnkoComponent<DiscountListFragment> {
             layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT)
             backgroundColor = ui.ctx.getThemeAttrColor(R.attr.colorDefault)
             recyclerViewX {
-                id = ViewIds.RECYCLER_VIEW_DISCOUNT_LIST
+                id = ViewIds.DISCOUNT_LIST_RECYCLER_VIEW
                 ui.owner.rvDiscountList = this
                 clipToPadding = true
             }.lparams(width = MATCH_PARENT, height = MATCH_PARENT)

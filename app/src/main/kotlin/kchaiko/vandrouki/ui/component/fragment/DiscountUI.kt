@@ -10,6 +10,14 @@ import androidx.constraintlayout.widget.ConstraintSet.PARENT_ID
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.extensions.*
+import kchaiko.vandrouki.ui.ViewIds.DISCOUNT_AUTHOR
+import kchaiko.vandrouki.ui.ViewIds.DISCOUNT_CONTENT_CONTAINER
+import kchaiko.vandrouki.ui.ViewIds.DISCOUNT_CONTENT_DATE
+import kchaiko.vandrouki.ui.ViewIds.DISCOUNT_FAVOURITE_CHECK
+import kchaiko.vandrouki.ui.ViewIds.DISCOUNT_FULL_TEXT
+import kchaiko.vandrouki.ui.ViewIds.DISCOUNT_LOADING
+import kchaiko.vandrouki.ui.ViewIds.DISCOUNT_LOGO
+import kchaiko.vandrouki.ui.ViewIds.DISCOUNT_TITLE
 import kchaiko.vandrouki.ui.anko.ConstraintSetBuilder.Side.*
 import kchaiko.vandrouki.ui.anko.applyConstraintSet
 import kchaiko.vandrouki.ui.fragment.DiscountFragment
@@ -26,29 +34,21 @@ class DiscountUI(private val discount: Discount, private val checkedChangeFun: (
             backgroundColor = ui.ctx.getThemeAttrColor(R.attr.colorDefault)
             isFillViewport = true
             constraintLayoutX {
-                var ivImageId = 0
-                var clContainerId = 0
                 imageView {
-                    id = View.generateViewId().also { ivImageId = it }
+                    id = DISCOUNT_LOGO
                     scaleType = ImageView.ScaleType.CENTER_CROP
                     glideLoad(discount.image)
                 }.lparams(width = MATCH_PARENT, height = dip(320))
                 constraintLayoutX {
-                    var tvDateId = 0
-                    var cbFavouriteId = 0
-                    var tvAuthorId = 0
-                    var tvTitleId = 0
-                    var tvFullTextId = 0
-                    var pbLoadingId = 0
-                    id = View.generateViewId().also { clContainerId = it }
+                    id = DISCOUNT_CONTENT_CONTAINER
                     topPadding = dip(16)
                     horizontalPadding = dip(16)
                     smallSecondaryTextView {
-                        id = View.generateViewId().also { tvDateId = it }
+                        id = DISCOUNT_CONTENT_DATE
                         text = discount.getDateFormatted()
                     }.lparams(width = WRAP_CONTENT, height = WRAP_CONTENT)
                     checkBox {
-                        id = View.generateViewId().also { cbFavouriteId = it }
+                        id = DISCOUNT_FAVOURITE_CHECK
                         ui.owner.cbFavourite = this
                         buttonDrawableResource = R.drawable.favourite_selector
                         setOnCheckedChangeListener { _, isChecked ->
@@ -56,57 +56,57 @@ class DiscountUI(private val discount: Discount, private val checkedChangeFun: (
                         }
                     }.lparams(width = WRAP_CONTENT, height = WRAP_CONTENT)
                     smallSecondaryTextView {
-                        id = View.generateViewId().also { tvAuthorId = it }
+                        id = DISCOUNT_AUTHOR
                         text = discount.author
                         setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_user, 0, 0, 0)
                         compoundDrawablePadding = dip(3)
                         setTypeface(typeface, Typeface.BOLD)
                     }.lparams(width = WRAP_CONTENT, height = WRAP_CONTENT)
                     extraLargeDarkTextView {
-                        id = View.generateViewId().also { tvTitleId = it }
+                        id = DISCOUNT_TITLE
                         text = discount.title
                         setTypeface(typeface, Typeface.BOLD)
                     }.lparams(width = WRAP_CONTENT, height = WRAP_CONTENT)
                     normalSecondaryTextView {
-                        id = View.generateViewId().also { tvFullTextId = it }
+                        id = DISCOUNT_FULL_TEXT
                         movementMethod = LinkMovementMethod()
                         ui.owner.tvFullText = this
                     }.lparams(width = WRAP_CONTENT, height = WRAP_CONTENT)
                     progressBar {
-                        id = View.generateViewId().also { pbLoadingId = it }
+                        id = DISCOUNT_LOADING
                         ui.owner.pbLoading = this
                     }.lparams(width = WRAP_CONTENT, height = WRAP_CONTENT)
                     applyConstraintSet {
-                        tvDateId {
+                        DISCOUNT_CONTENT_DATE {
                             connect(
-                                    TOP to TOP of cbFavouriteId,
-                                    BOTTOM to BOTTOM of cbFavouriteId,
+                                    TOP to TOP of DISCOUNT_FAVOURITE_CHECK,
+                                    BOTTOM to BOTTOM of DISCOUNT_FAVOURITE_CHECK,
                                     START to START of PARENT_ID
                             )
                         }
-                        cbFavouriteId {
+                        DISCOUNT_FAVOURITE_CHECK {
                             connect(
                                     END to END of PARENT_ID
                             )
                         }
-                        tvAuthorId {
+                        DISCOUNT_AUTHOR {
                             connect(
-                                    TOP to BOTTOM of cbFavouriteId margin dip(8)
+                                    TOP to BOTTOM of DISCOUNT_FAVOURITE_CHECK margin dip(8)
                             )
                         }
-                        tvTitleId {
+                        DISCOUNT_TITLE {
                             connect(
-                                    TOP to BOTTOM of tvAuthorId margin dip(14)
+                                    TOP to BOTTOM of DISCOUNT_AUTHOR margin dip(14)
                             )
                         }
-                        tvFullTextId {
+                        DISCOUNT_FULL_TEXT {
                             connect(
-                                    TOP to BOTTOM of tvTitleId margin dip(10)
+                                    TOP to BOTTOM of DISCOUNT_TITLE margin dip(10)
                             )
                         }
-                        pbLoadingId {
+                        DISCOUNT_LOADING {
                             connect(
-                                    TOP to BOTTOM of tvTitleId margin dip(40),
+                                    TOP to BOTTOM of DISCOUNT_TITLE margin dip(40),
                                     START to START of PARENT_ID,
                                     END to END of PARENT_ID
                             )
@@ -114,14 +114,14 @@ class DiscountUI(private val discount: Discount, private val checkedChangeFun: (
                     }
                 }.lparams(width = MATCH_PARENT, height = WRAP_CONTENT)
                 applyConstraintSet {
-                    ivImageId {
+                    DISCOUNT_LOGO {
                         connect(
                                 TOP to TOP of ConstraintSet.PARENT_ID
                         )
                     }
-                    clContainerId {
+                    DISCOUNT_CONTENT_CONTAINER {
                         connect(
-                                TOP to BOTTOM of ivImageId
+                                TOP to BOTTOM of DISCOUNT_LOGO
                         )
                     }
                 }

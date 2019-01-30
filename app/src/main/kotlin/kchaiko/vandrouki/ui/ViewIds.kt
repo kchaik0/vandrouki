@@ -5,6 +5,17 @@ object ViewIds {
 
     private var n = 1
 
-    val RECYCLER_VIEW_DISCOUNT_LIST = n++
+    //DiscountList
+    val DISCOUNT_LIST_RECYCLER_VIEW = n++
+
+    //Discount content
+    val DISCOUNT_LOGO = n++
+    val DISCOUNT_CONTENT_CONTAINER = n++
+    val DISCOUNT_CONTENT_DATE = n++
+    val DISCOUNT_FAVOURITE_CHECK = n++
+    val DISCOUNT_AUTHOR = n++
+    val DISCOUNT_TITLE = n++
+    val DISCOUNT_FULL_TEXT = n++
+    val DISCOUNT_LOADING = n++
 
 }
