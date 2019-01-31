@@ -2,13 +2,12 @@ package kchaiko.vandrouki.ui.activity
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.FragmentActivity
 import kchaiko.vandrouki.R
 import kchaiko.vandrouki.navigation.Screens
 import kchaiko.vandrouki.navigation.VandAppNavigator
 import kchaiko.vandrouki.navigation.VandAppRouter
-import kchaiko.vandrouki.network.exception.VandException
+import kchaiko.vandrouki.ui.ViewIds
 import kchaiko.vandrouki.ui.component.activity.HomeActivityUI
 import org.jetbrains.anko.setContentView
 import org.koin.android.ext.android.inject
@@ -17,7 +16,7 @@ import ru.terrakok.cicerone.NavigatorHolder
 class HomeActivity : FragmentActivity() {
 
     private val navigatorHolder by inject<NavigatorHolder>()
-    val containerId: Int = View.generateViewId()
+    val containerId: Int = ViewIds.FRAGMENT_CONTAINER
     private val navigator by lazy { VandAppNavigator(this, containerId) }
     val router by inject<VandAppRouter>()
 

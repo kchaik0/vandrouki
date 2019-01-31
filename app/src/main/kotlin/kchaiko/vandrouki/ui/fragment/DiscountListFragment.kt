@@ -11,7 +11,6 @@ import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.extensions.createView
 import kchaiko.vandrouki.extensions.observe
 import kchaiko.vandrouki.navigation.Screens
-import kchaiko.vandrouki.network.service.DEFAULT_PAGE
 import kchaiko.vandrouki.ui.component.fragment.DiscountListUI
 import kchaiko.vandrouki.ui.recycler.adapter.DiscountRecyclerAdapter
 import kchaiko.vandrouki.ui.recycler.item.BaseItem
@@ -27,7 +26,6 @@ class DiscountListFragment : BaseFragment() {
     }
 
     override val viewModel: DiscountListViewModel by viewModel()
-    private var page = DEFAULT_PAGE
     private lateinit var adapter: DiscountRecyclerAdapter
 
     lateinit var rvDiscountList: RecyclerView
@@ -36,7 +34,6 @@ class DiscountListFragment : BaseFragment() {
     override fun bindLiveData() {
         super.bindLiveData()
         viewModel.modelLiveData.observe(this) {
-            rvDiscountList.scrollToPosition(0)
             adapter.addItems(getShowingItems(this))
         }
     }
@@ -63,9 +60,9 @@ class DiscountListFragment : BaseFragment() {
 
     private fun getShowingItems(discountList: List<Discount>): MutableList<BaseItem> = discountList.map { discount ->
         DiscountItem(discount)
-    }.plus(NavigationItem(page) {
-        page = it
-        viewModel.loadDataByPage(page)
+    }.plus(NavigationItem(viewModel.page) {
+        viewModel.loadDataByPage(it)
+        rvDiscountList.scrollToPosition(0)
     }).toMutableList()
 
 }

@@ -18,7 +18,6 @@
 
         <activity
             android:name=".ui.activity.HomeActivity"
-            android:configChanges="orientation"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

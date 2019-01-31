@@ -38,6 +38,6 @@ abstract class BaseFragment : Fragment() {
     private val baseActivity: HomeActivity
         get() =
             if (activity is HomeActivity) activity as HomeActivity
-            else throw VandException("All fragment must be in BaseActivity")
+            else throw VandException("All fragment must be in HomeActivity")
 
 }

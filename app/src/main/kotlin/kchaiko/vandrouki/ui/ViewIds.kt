@@ -5,6 +5,9 @@ object ViewIds {
 
     private var n = 1
 
+    //Fragment container
+    val FRAGMENT_CONTAINER = n++
+
     //DiscountList
     val DISCOUNT_LIST_RECYCLER_VIEW = n++
 

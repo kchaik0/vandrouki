@@ -5,7 +5,6 @@ import kchaiko.vandrouki.beans.DiscountList
 import kchaiko.vandrouki.beans.Resource
 import kchaiko.vandrouki.network.RetrofitManager
 import kchaiko.vandrouki.network.service.VandSiteService
-import kotlinx.coroutines.Deferred
 
 /**
  * Manager for subscribe url request
