@@ -17,6 +17,7 @@ import kchaiko.vandrouki.extensions.observe
 import kchaiko.vandrouki.ui.component.fragment.DiscountUI
 import kchaiko.vandrouki.viewmodel.DiscountViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class DiscountFragment : BaseFragment() {
 
@@ -29,7 +30,7 @@ class DiscountFragment : BaseFragment() {
         }
     }
 
-    override val viewModel: DiscountViewModel by viewModel()
+    override val viewModel: DiscountViewModel by viewModel { parametersOf(discount.detailUrlPart) }
     private val discount: Discount by lazy { arguments?.getParcelable<Discount>(DISCOUNT_ARG)!! }
     private lateinit var favouriteDiscount: FavouriteDiscount
 
@@ -39,7 +40,7 @@ class DiscountFragment : BaseFragment() {
 
     override fun bindLiveData() {
         super.bindLiveData()
-        viewModel.modelLiveData.observe(this) {
+        viewModel.modelLiveData.observe(viewLifecycleOwner) {
             populateData(this)
         }
     }
@@ -54,13 +55,12 @@ class DiscountFragment : BaseFragment() {
                 }
             }.createView(this)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewModel.getFavourite(discount.detailUrlPart).observe(this) {
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel.getFavourite(discount.detailUrlPart).observe(viewLifecycleOwner) {
             favouriteDiscount = this
             cbFavourite.isChecked = isFavourite
         }
-        viewModel.provideData(discount.detailUrlPart)
     }
 
     override fun showLoadingIndicator(showLoading: Boolean) {

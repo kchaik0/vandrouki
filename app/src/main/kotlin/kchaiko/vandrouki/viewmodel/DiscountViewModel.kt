@@ -15,9 +15,10 @@ import kotlinx.coroutines.withContext
  * Created by kchaiko on 28.07.2017.
  */
 class DiscountViewModel(private val discountRepository: DiscountRepository,
-                        private val favouriteRepository: FavouriteRepository) : BaseViewModel<DetailedDiscount>() {
+                        private val favouriteRepository: FavouriteRepository,
+                        private val detailUrlPart: String) : BaseViewModel<DetailedDiscount>() {
 
-    fun provideData(detailUrlPart: String) {
+    init {
         uiScope.launch {
             provideLoading(true)
             val dataResource = discountRepository.loadDetailedDiscount(detailUrlPart)

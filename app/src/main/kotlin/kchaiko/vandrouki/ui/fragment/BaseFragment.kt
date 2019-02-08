@@ -21,16 +21,16 @@ abstract class BaseFragment : Fragment() {
 
     abstract fun showLoadingIndicator(showLoading: Boolean)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         bindLiveData()
     }
 
     open fun bindLiveData() {
-        viewModel.loadingLiveData.observe(this) {
+        viewModel.loadingLiveData.observe(viewLifecycleOwner) {
             showLoadingIndicator(this)
         }
-        viewModel.errorLiveData.observe(this) {
+        viewModel.errorLiveData.observe(viewLifecycleOwner) {
             proceedError(this)
         }
     }

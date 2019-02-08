@@ -45,7 +45,7 @@ class VandroukiApp : Application() {
 
     private fun ModuleDefinition.viewModels() {
         viewModel { DiscountListViewModel(get()) }
-        viewModel { DiscountViewModel(get(), get()) }
+        viewModel { (detailUrlPart: String) -> DiscountViewModel(get(), get(), detailUrlPart) }
     }
 
     private fun ModuleDefinition.repositories() {

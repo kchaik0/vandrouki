@@ -33,7 +33,7 @@ class DiscountListFragment : BaseFragment() {
 
     override fun bindLiveData() {
         super.bindLiveData()
-        viewModel.modelLiveData.observe(this) {
+        viewModel.modelLiveData.observe(viewLifecycleOwner) {
             adapter.addItems(getShowingItems(this))
         }
     }
@@ -41,13 +41,12 @@ class DiscountListFragment : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
             DiscountListUI().createView(this)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         if (!::adapter.isInitialized) {
             adapter = DiscountRecyclerAdapter {
                 router.navigateTo(Screens.Discount((this as DiscountItem).discount))
             }
-            viewModel.provideData()
         }
         rvDiscountList.layoutManager = LinearLayoutManager(context)
         rvDiscountList.adapter = adapter

@@ -1,5 +1,6 @@
 package kchaiko.vandrouki.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kchaiko.vandrouki.beans.Resource
@@ -15,9 +16,14 @@ abstract class BaseViewModel<T> : ViewModel() {
     private val viewModelJob = SupervisorJob()
     protected val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    val modelLiveData = MutableLiveData<T>()
-    val loadingLiveData = MutableLiveData<Boolean>()
-    val errorLiveData = MutableLiveData<VandException>()
+    private val _modelLiveData = MutableLiveData<T>()
+    val modelLiveData: LiveData<T> = _modelLiveData
+
+    private val _loadingLiveData = MutableLiveData<Boolean>()
+    val loadingLiveData: LiveData<Boolean> = _loadingLiveData
+
+    private val _errorLiveData = MutableLiveData<VandException>()
+    val errorLiveData: LiveData<VandException> = _errorLiveData
 
     override fun onCleared() {
         super.onCleared()
@@ -25,16 +31,16 @@ abstract class BaseViewModel<T> : ViewModel() {
     }
 
     protected fun provideLoading(loading: Boolean) {
-        loadingLiveData.value = loading
+        _loadingLiveData.value = loading
     }
 
     protected fun provideResult(resource: Resource<T>) {
         when (resource.status) {
             RequestStatus.SUCCESS -> {
-                modelLiveData.value = resource.data
+                _modelLiveData.value = resource.data
             }
             RequestStatus.ERROR -> {
-                errorLiveData.value = resource.exception
+                _errorLiveData.value = resource.exception
             }
         }
         provideLoading(false)
