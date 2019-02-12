@@ -6,7 +6,6 @@ import android.net.ConnectivityManager
 import androidx.room.Room
 import com.facebook.stetho.Stetho
 import kchaiko.vandrouki.db.VandDatabase
-import kchaiko.vandrouki.navigation.VandAppRouter
 import kchaiko.vandrouki.network.RetrofitManager
 import kchaiko.vandrouki.network.repository.DiscountRepository
 import kchaiko.vandrouki.network.repository.FavouriteRepository
@@ -17,7 +16,6 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.context.ModuleDefinition
 import org.koin.dsl.module.module
-import ru.terrakok.cicerone.Cicerone
 
 /**
  * Application
@@ -38,13 +36,12 @@ class VandroukiApp : Application() {
     private val appModule = module {
         viewModels()
         repositories()
-        cicerone()
         database()
         retrofit()
     }
 
     private fun ModuleDefinition.viewModels() {
-        viewModel { DiscountListViewModel(get()) }
+        viewModel { (page: Int) -> DiscountListViewModel(get(), page) }
         viewModel { (detailUrlPart: String) -> DiscountViewModel(get(), get(), detailUrlPart) }
     }
 
@@ -60,12 +57,6 @@ class VandroukiApp : Application() {
     private fun ModuleDefinition.retrofit() {
         factory { androidContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager }
         single { RetrofitManager() }
-    }
-
-    private fun ModuleDefinition.cicerone() {
-        single { Cicerone.create(VandAppRouter()) }
-        factory { get<Cicerone<VandAppRouter>>().navigatorHolder }
-        factory { get<Cicerone<VandAppRouter>>().router }
     }
 
 }

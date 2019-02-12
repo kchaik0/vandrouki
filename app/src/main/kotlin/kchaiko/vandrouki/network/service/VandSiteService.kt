@@ -12,7 +12,7 @@ const val DEFAULT_PAGE = 1
 interface VandSiteService {
 
     @GET("/page/{page}")
-    fun htmlDiscountList(@Path("page") page: Int = DEFAULT_PAGE): Deferred<DiscountList>
+    fun htmlDiscountList(@Path("page") page: Int): Deferred<DiscountList>
 
     @GET("/{urlPart}")
     fun htmlDetailedDiscount(@Path("urlPart") urlPart: String): Deferred<DetailedDiscount>

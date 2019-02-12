@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kchaiko.vandrouki.R
 import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.extensions.createView
 import kchaiko.vandrouki.extensions.observe
-import kchaiko.vandrouki.navigation.Screens
 import kchaiko.vandrouki.ui.component.fragment.DiscountListUI
 import kchaiko.vandrouki.ui.recycler.adapter.DiscountRecyclerAdapter
 import kchaiko.vandrouki.ui.recycler.item.BaseItem
@@ -18,14 +20,17 @@ import kchaiko.vandrouki.ui.recycler.item.DiscountItem
 import kchaiko.vandrouki.ui.recycler.item.NavigationItem
 import kchaiko.vandrouki.viewmodel.DiscountListViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class DiscountListFragment : BaseFragment() {
 
     companion object {
-        fun newInstance() = DiscountListFragment()
+        private const val PAGE_ARG = "page"
     }
 
-    override val viewModel: DiscountListViewModel by viewModel()
+    override val viewModel: DiscountListViewModel by viewModel {
+        parametersOf(arguments?.getInt(PAGE_ARG))
+    }
     private lateinit var adapter: DiscountRecyclerAdapter
 
     lateinit var rvDiscountList: RecyclerView
@@ -45,7 +50,7 @@ class DiscountListFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         if (!::adapter.isInitialized) {
             adapter = DiscountRecyclerAdapter {
-                router.navigateTo(Screens.Discount((this as DiscountItem).discount))
+                navigateToDiscountDetailed((this as DiscountItem).discount)
             }
         }
         rvDiscountList.layoutManager = LinearLayoutManager(context)
@@ -63,5 +68,12 @@ class DiscountListFragment : BaseFragment() {
         viewModel.loadDataByPage(it)
         rvDiscountList.scrollToPosition(0)
     }).toMutableList()
+
+    private fun navigateToDiscountDetailed(discount: Discount) {
+        findNavController().navigate(
+                R.id.toDiscountFragment,
+                bundleOf(DiscountFragment.DISCOUNT_ARG to discount)
+        )
+    }
 
 }

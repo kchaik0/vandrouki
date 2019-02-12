@@ -2,7 +2,6 @@ package kchaiko.vandrouki.viewmodel
 
 import kchaiko.vandrouki.beans.DiscountList
 import kchaiko.vandrouki.network.repository.DiscountRepository
-import kchaiko.vandrouki.network.service.DEFAULT_PAGE
 import kotlinx.coroutines.launch
 
 /**
@@ -10,18 +9,18 @@ import kotlinx.coroutines.launch
  *
  * Created by kchaiko on 28.07.2017.
  */
-class DiscountListViewModel(private val discountRepository: DiscountRepository, var page: Int = DEFAULT_PAGE) : BaseViewModel<DiscountList>() {
+class DiscountListViewModel(private val discountRepository: DiscountRepository, var page: Int) : BaseViewModel<DiscountList>() {
 
     init {
-        uiScope.launch {
-            provideLoading(true)
-            val resource = discountRepository.loadDiscountList()
-            provideResult(resource)
-        }
+        loadDiscountDataByPage()
     }
 
     fun loadDataByPage(page: Int) {
         this.page = page
+        loadDiscountDataByPage()
+    }
+
+    private fun loadDiscountDataByPage() {
         uiScope.launch {
             provideLoading(true)
             val resource = discountRepository.loadDiscountsByPage(page)

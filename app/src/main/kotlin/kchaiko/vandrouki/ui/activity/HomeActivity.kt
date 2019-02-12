@@ -3,40 +3,26 @@ package kchaiko.vandrouki.ui.activity
 import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.commit
+import androidx.navigation.fragment.NavHostFragment
 import kchaiko.vandrouki.R
-import kchaiko.vandrouki.navigation.Screens
-import kchaiko.vandrouki.navigation.VandAppNavigator
-import kchaiko.vandrouki.navigation.VandAppRouter
 import kchaiko.vandrouki.ui.ViewIds
 import kchaiko.vandrouki.ui.component.activity.HomeActivityUI
 import org.jetbrains.anko.setContentView
-import org.koin.android.ext.android.inject
-import ru.terrakok.cicerone.NavigatorHolder
 
 class HomeActivity : FragmentActivity() {
-
-    private val navigatorHolder by inject<NavigatorHolder>()
-    val containerId: Int = ViewIds.FRAGMENT_CONTAINER
-    private val navigator by lazy { VandAppNavigator(this, containerId) }
-    val router by inject<VandAppRouter>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         HomeActivityUI().setContentView(this)
         if (savedInstanceState == null) {
-            router.newRootScreen(Screens.DiscountList)
+            val mainHost = NavHostFragment.create(R.navigation.main_graph)
+            supportFragmentManager.commit {
+                replace(ViewIds.FRAGMENT_CONTAINER, mainHost)
+                setPrimaryNavigationFragment(mainHost)
+            }
         }
-    }
-
-    override fun onResumeFragments() {
-        super.onResumeFragments()
-        navigatorHolder.setNavigator(navigator)
-    }
-
-    override fun onPause() {
-        navigatorHolder.removeNavigator()
-        super.onPause()
     }
 
     fun proceedError(errorMessage: String?) {

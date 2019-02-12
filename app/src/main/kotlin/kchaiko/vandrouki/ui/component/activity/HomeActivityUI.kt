@@ -3,6 +3,7 @@ package kchaiko.vandrouki.ui.component.activity
 import android.view.View
 import android.widget.FrameLayout
 import kchaiko.vandrouki.extensions.MATCH_PARENT
+import kchaiko.vandrouki.ui.ViewIds
 import kchaiko.vandrouki.ui.activity.HomeActivity
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
@@ -14,7 +15,7 @@ class HomeActivityUI : AnkoComponent<HomeActivity> {
         frameLayout {
             layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT)
             fitsSystemWindows = true
-            id = ui.owner.containerId
+            id = ViewIds.FRAGMENT_CONTAINER
         }
     }
 

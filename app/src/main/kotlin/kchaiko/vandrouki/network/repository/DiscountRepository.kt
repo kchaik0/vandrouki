@@ -1,8 +1,5 @@
 package kchaiko.vandrouki.network.repository
 
-import kchaiko.vandrouki.beans.DetailedDiscount
-import kchaiko.vandrouki.beans.DiscountList
-import kchaiko.vandrouki.beans.Resource
 import kchaiko.vandrouki.network.RetrofitManager
 import kchaiko.vandrouki.network.service.VandSiteService
 
@@ -15,15 +12,8 @@ class DiscountRepository(retrofitManager: RetrofitManager) : BaseRepository() {
 
     private val siteService = retrofitManager.create(VandSiteService::class.java)
 
-    suspend fun loadDiscountList() = awaitWithException(siteService.htmlDiscountList())
+    suspend fun loadDiscountsByPage(page: Int) = awaitWithException(siteService.htmlDiscountList(page))
 
-    suspend fun loadDiscountsByPage(page: Int): Resource<DiscountList> {
-        val deferred = siteService.htmlDiscountList(page)
-        return awaitWithException(deferred)
-    }
+    suspend fun loadDetailedDiscount(detailedUrl: String) = awaitWithException(siteService.htmlDetailedDiscount(detailedUrl))
 
-    suspend fun loadDetailedDiscount(detailedUrl: String): Resource<DetailedDiscount> {
-        val deferred = siteService.htmlDetailedDiscount(detailedUrl)
-        return awaitWithException(deferred)
-    }
 }

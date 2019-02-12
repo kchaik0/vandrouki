@@ -3,7 +3,6 @@ package kchaiko.vandrouki.ui.fragment
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import kchaiko.vandrouki.extensions.observe
-import kchaiko.vandrouki.navigation.VandAppRouter
 import kchaiko.vandrouki.network.exception.VandException
 import kchaiko.vandrouki.ui.activity.HomeActivity
 import kchaiko.vandrouki.viewmodel.BaseViewModel
@@ -15,9 +14,6 @@ abstract class BaseFragment : Fragment() {
     private fun proceedError(exception: VandException) {
         baseActivity.proceedError(exception.message)
     }
-
-    protected val router: VandAppRouter
-        get() = baseActivity.router
 
     abstract fun showLoadingIndicator(showLoading: Boolean)
 

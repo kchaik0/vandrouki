@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/discountListFragment">
+
+    <fragment
+        android:id="@+id/discountListFragment"
+        android:name="kchaiko.vandrouki.ui.fragment.DiscountListFragment"
+        android:label="DiscountListFragment">
+        <action
+            android:id="@+id/toDiscountFragment"
+            app:destination="@id/discountFragment" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="vandrouki.by/" />
+        <deepLink
+            android:id="@+id/deepLink2"
+            app:uri="vandrouki.by/page/{page}" />
+        <argument
+            android:name="page"
+            app:argType="integer"
+            android:defaultValue="1" />
+    </fragment>
+    <fragment
+        android:id="@+id/discountFragment"
+        android:name="kchaiko.vandrouki.ui.fragment.DiscountFragment"
+        android:label="DiscountFragment">
+        <argument
+            android:name="discount"
+            app:argType="kchaiko.vandrouki.beans.Discount" />
+    </fragment>
+</navigation>

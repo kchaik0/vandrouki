@@ -22,12 +22,7 @@ import org.koin.core.parameter.parametersOf
 class DiscountFragment : BaseFragment() {
 
     companion object {
-        private const val DISCOUNT_ARG = "discount"
-        fun newInstance(discount: Discount) = DiscountFragment().apply {
-            arguments = Bundle().apply {
-                putParcelable(DISCOUNT_ARG, discount)
-            }
-        }
+        const val DISCOUNT_ARG = "discount"
     }
 
     override val viewModel: DiscountViewModel by viewModel { parametersOf(discount.detailUrlPart) }
