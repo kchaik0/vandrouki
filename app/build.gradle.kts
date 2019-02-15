@@ -42,6 +42,7 @@ android {
 dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.1.1")
     testImplementation("junit:junit:4.12")
+    testImplementation("org.koin:koin-test:1.0.2")
     implementation("androidx.appcompat:appcompat:1.0.2")
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.recyclerview:recyclerview:1.0.0")
@@ -49,8 +50,8 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:1.1.3")
     implementation("org.jsoup:jsoup:1.11.3")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.3.21")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1")
     implementation("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2")
     implementation("org.koin:koin-android:1.0.2")
     implementation("org.koin:koin-androidx-viewmodel:1.0.2")
