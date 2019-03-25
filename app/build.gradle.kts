@@ -64,6 +64,6 @@ dependencies {
     implementation("com.facebook.stetho:stetho-okhttp3:1.5.0")
     implementation("org.jetbrains.anko:anko-sdk25:0.10.8")
     implementation("androidx.core:core-ktx:1.0.1")
-    implementation("androidx.fragment:fragment-ktx:1.1.0-alpha04")
-    implementation("android.arch.navigation:navigation-fragment-ktx:1.0.0-beta01")
+    implementation("androidx.fragment:fragment-ktx:1.1.0-alpha05")
+    implementation("android.arch.navigation:navigation-fragment-ktx:1.0.0")
 }

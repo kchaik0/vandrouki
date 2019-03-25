@@ -28,13 +28,13 @@ class NetworkTest : AutoCloseKoinTest() {
     }
 
     @Test
-    fun `pre-condition dependency`() {
+    fun `check DI graph`() {
         val koinContext = StandAloneContext.getKoin().koinContext
         koinContext.instanceRegistry.createInstances(koinContext.beanDefinitions(), emptyParameterDefinition())
     }
 
     @Test
-    fun `pre-condition requests`() {
+    fun `check requests`() {
         val service = get<RetrofitManager>().create(VandSiteService::class.java)
         runBlocking {
             val discountList = service.htmlDiscountList(1).await()
