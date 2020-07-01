@@ -6,11 +6,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion(28)
+    compileSdkVersion(29)
+    buildToolsVersion = "29.0.3"
     defaultConfig {
         applicationId = "kchaiko.vandrouki"
         minSdkVersion(21)
-        targetSdkVersion(28)
+        targetSdkVersion(29)
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -37,80 +38,62 @@ android {
     kapt {
         generateStubs = true
     }
-}
-
-object Versions {
-    object Tests {
-        const val espresso = "3.1.1"
-        const val junit = "4.12"
-        const val koin_test = "1.0.2"
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
-    const val appcompat = "1.0.2"
-    const val cardview = "1.0.0"
-    const val recyclerview = "1.0.0"
-    const val palette = "1.0.0"
-    const val constraintlayout = "1.1.3"
-    const val core_ktx = "1.0.1"
-    const val fragment_ktx = "1.1.0-alpha06"
-    const val jsoup = "1.11.3"
-    const val kotlin_stdlib = "1.3.21"
-    const val kotlin_coroutines = "1.1.1"
-    const val retrofit = "2.5.0"
-    const val retrofit_coroutines = "0.9.2"
-    const val koin = "1.0.2"
-    const val glide = "4.8.0"
-    const val room = "2.0.0"
-    const val stetho = "1.5.0"
-    const val anko = "0.10.8"
-    const val navigation = "1.0.0"
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 }
 
+@kotlin.Suppress("GradleDependency")
 dependencies {
     //tests
-    androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.Tests.espresso}")
-    testImplementation("junit:junit:${Versions.Tests.junit}")
-    testImplementation("org.koin:koin-test:${Versions.Tests.koin_test}")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
+    testImplementation("junit:junit:4.13")
+    testImplementation("org.koin:koin-test:1.0.2")
 
     //androidx
-    implementation("androidx.appcompat:appcompat:${Versions.appcompat}")
-    implementation("androidx.cardview:cardview:${Versions.cardview}")
-    implementation("androidx.recyclerview:recyclerview:${Versions.recyclerview}")
-    implementation("androidx.palette:palette:${Versions.palette}")
-    implementation("androidx.constraintlayout:constraintlayout:${Versions.constraintlayout}")
-    implementation("androidx.core:core-ktx:${Versions.core_ktx}")
-    implementation("androidx.fragment:fragment-ktx:${Versions.fragment_ktx}")
+    implementation("androidx.appcompat:appcompat:1.1.0")
+    implementation("androidx.cardview:cardview:1.0.0")
+    implementation("androidx.recyclerview:recyclerview:1.1.0")
+    implementation("androidx.palette:palette:1.0.0")
+    implementation("androidx.constraintlayout:constraintlayout:1.1.3")
+    implementation("androidx.core:core-ktx:1.3.0")
+    implementation("androidx.fragment:fragment-ktx:1.2.5")
 
     //jsoup
-    implementation("org.jsoup:jsoup:${Versions.jsoup}")
+    implementation("org.jsoup:jsoup:1.13.1")
 
     //jetbrains kotlin, coroutines
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin_stdlib}")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlin_coroutines}")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlin_coroutines}")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.3.72")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0")
 
     //retrofit
-    implementation("com.squareup.retrofit2:retrofit:${Versions.retrofit}")
-    implementation("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:${Versions.retrofit_coroutines}")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2")
 
     //koin
-    implementation("org.koin:koin-android:${Versions.koin}")
-    implementation("org.koin:koin-androidx-viewmodel:${Versions.koin}")
+    implementation("org.koin:koin-android:1.0.2")
+    implementation("org.koin:koin-androidx-viewmodel:1.0.2")
 
     //glide
-    implementation("com.github.bumptech.glide:glide:${Versions.glide}")
-    kapt("com.github.bumptech.glide:compiler:${Versions.glide}")
+    implementation("com.github.bumptech.glide:glide:4.11.0")
+    kapt("com.github.bumptech.glide:compiler:4.11.0")
 
     //room
-    implementation("androidx.room:room-runtime:${Versions.room}")
-    kapt("androidx.room:room-compiler:${Versions.room}")
+    implementation("androidx.room:room-runtime:2.2.5")
+    kapt("androidx.room:room-compiler:2.2.5")
 
     //stetho
-    implementation("com.facebook.stetho:stetho:${Versions.stetho}")
-    implementation("com.facebook.stetho:stetho-okhttp3:${Versions.stetho}")
+    implementation("com.facebook.stetho:stetho:1.5.1")
+    implementation("com.facebook.stetho:stetho-okhttp3:1.5.1")
 
     //anko
-    implementation("org.jetbrains.anko:anko-sdk25:${Versions.anko}")
+    implementation("org.jetbrains.anko:anko-sdk25:0.10.8")
 
     //navigation component
-    implementation("android.arch.navigation:navigation-fragment-ktx:${Versions.navigation}")
+    implementation("android.arch.navigation:navigation-fragment-ktx:1.0.0")
 }
