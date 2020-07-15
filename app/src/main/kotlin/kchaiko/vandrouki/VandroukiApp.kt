@@ -14,7 +14,6 @@ class VandroukiApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        Stetho.initializeWithDefaults(this)
         startKoin(this, getFullGraph())
         if (BuildConfig.DEBUG) {
             Stetho.initializeWithDefaults(this)
