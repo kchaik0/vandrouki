@@ -39,6 +39,13 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+        useIR = true
+    }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = rootProject.extra["composeVersion"] as String
     }
 }
 
@@ -90,4 +97,10 @@ dependencies {
 
     //navigation component
     implementation("android.arch.navigation:navigation-fragment-ktx:1.0.0")
+
+    //compose
+    implementation("androidx.activity:activity-compose:1.3.0-alpha08")
+    implementation("androidx.compose.ui:ui:${rootProject.extra["composeVersion"]}")
+    implementation("androidx.compose.ui:ui-tooling:${rootProject.extra["composeVersion"]}")
+    implementation("androidx.compose.material:material:${rootProject.extra["composeVersion"]}")
 }

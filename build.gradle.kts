@@ -1,8 +1,9 @@
 buildscript {
 
-    rootProject.extra["storePassword"]      = "79ppdb3g"
-    rootProject.extra["debugKeyAlias"]      = "debug_key"
-    rootProject.extra["debugKeyPassword"]   = "4tuab6sv"
+    val composeVersion by extra("1.0.0-beta07")
+    val storePassword by extra("79ppdb3g")
+    val debugKeyAlias by extra("debug_key")
+    val debugKeyPassword by extra("4tuab6sv")
 
     repositories {
         google()
@@ -10,7 +11,7 @@ buildscript {
     }
     dependencies {
         classpath("com.android.tools.build:gradle:7.0.0-beta01")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.0")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.32")
     }
 }
 
