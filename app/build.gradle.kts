@@ -39,13 +39,12 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
-        useIR = true
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = rootProject.extra["composeVersion"] as String
+        kotlinCompilerExtensionVersion = "1.0.0-beta08"
     }
 }
 
@@ -58,8 +57,8 @@ dependencies {
     //androidx
     implementation("androidx.appcompat:appcompat:1.3.0")
     implementation("androidx.cardview:cardview:1.0.0")
-    implementation("androidx.recyclerview:recyclerview:1.2.0")
-    implementation("androidx.palette:palette:1.0.0")
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
+    implementation("androidx.palette:palette-ktx:1.0.0")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
     implementation("androidx.core:core-ktx:1.5.0")
     implementation("androidx.fragment:fragment-ktx:1.3.4")
@@ -68,9 +67,9 @@ dependencies {
     implementation("org.jsoup:jsoup:1.13.1")
 
     //jetbrains kotlin, coroutines
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.10")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0")
 
     //retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -99,8 +98,8 @@ dependencies {
     implementation("android.arch.navigation:navigation-fragment-ktx:1.0.0")
 
     //compose
-    implementation("androidx.activity:activity-compose:1.3.0-alpha08")
-    implementation("androidx.compose.ui:ui:${rootProject.extra["composeVersion"]}")
-    implementation("androidx.compose.ui:ui-tooling:${rootProject.extra["composeVersion"]}")
-    implementation("androidx.compose.material:material:${rootProject.extra["composeVersion"]}")
+    implementation("androidx.activity:activity-compose:1.3.0-beta01")
+    implementation("androidx.compose.ui:ui:1.0.0-beta08")
+    implementation("androidx.compose.ui:ui-tooling:1.0.0-beta08")
+    implementation("androidx.compose.material:material:1.0.0-beta08")
 }
