@@ -82,6 +82,7 @@ dependencies {
     //glide
     implementation("com.github.bumptech.glide:glide:4.11.0")
     kapt("com.github.bumptech.glide:compiler:4.11.0")
+    implementation("com.google.accompanist:accompanist-glide:0.11.1")
 
     //room
     implementation("androidx.room:room-runtime:2.3.0")
