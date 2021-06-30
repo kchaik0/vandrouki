@@ -8,7 +8,7 @@ android {
     compileSdk = 30
     defaultConfig {
         applicationId = "kchaiko.vandrouki"
-        minSdk = 21
+        minSdk = 24
         targetSdk = 30
         versionCode = 1
         versionName = "1.0"
@@ -61,7 +61,7 @@ dependencies {
     implementation("androidx.palette:palette-ktx:1.0.0")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
     implementation("androidx.core:core-ktx:1.5.0")
-    implementation("androidx.fragment:fragment-ktx:1.3.4")
+    implementation("androidx.fragment:fragment-ktx:1.3.5")
 
     //jsoup
     implementation("org.jsoup:jsoup:1.13.1")
@@ -84,6 +84,9 @@ dependencies {
     kapt("com.github.bumptech.glide:compiler:4.11.0")
     implementation("com.google.accompanist:accompanist-glide:0.11.1")
 
+    //coil
+    implementation("com.google.accompanist:accompanist-coil:0.12.0")
+
     //room
     implementation("androidx.room:room-runtime:2.3.0")
     kapt("androidx.room:room-compiler:2.3.0")
@@ -99,8 +102,9 @@ dependencies {
     implementation("android.arch.navigation:navigation-fragment-ktx:1.0.0")
 
     //compose
-    implementation("androidx.activity:activity-compose:1.3.0-beta01")
-    implementation("androidx.compose.ui:ui:1.0.0-beta08")
-    implementation("androidx.compose.ui:ui-tooling:1.0.0-beta08")
-    implementation("androidx.compose.material:material:1.0.0-beta08")
+    implementation("androidx.activity:activity-compose:1.3.0-beta02")
+    implementation("androidx.compose.ui:ui:1.0.0-beta09")
+    implementation("androidx.compose.ui:ui-tooling:1.0.0-beta09")
+    implementation("androidx.compose.material:material:1.0.0-beta09")
+    implementation("androidx.compose.runtime:runtime-livedata:1.0.0-beta09")
 }
