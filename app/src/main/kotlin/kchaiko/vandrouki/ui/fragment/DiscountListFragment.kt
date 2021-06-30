@@ -14,7 +14,6 @@ import kchaiko.vandrouki.beans.Discount
 import kchaiko.vandrouki.extensions.createView
 import kchaiko.vandrouki.extensions.observe
 import kchaiko.vandrouki.ui.component.fragment.DiscountListUI
-import kchaiko.vandrouki.ui.compose.ComposeDiscountFragment
 import kchaiko.vandrouki.ui.recycler.adapter.DiscountRecyclerAdapter
 import kchaiko.vandrouki.ui.recycler.item.BaseItem
 import kchaiko.vandrouki.ui.recycler.item.DiscountItem

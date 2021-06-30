@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/discountFragment"
-        android:name="kchaiko.vandrouki.ui.compose.ComposeDiscountFragment"
+        android:name="kchaiko.vandrouki.ui.fragment.ComposeDiscountFragment"
         android:label="DiscountFragment">
         <argument
             android:name="discount"

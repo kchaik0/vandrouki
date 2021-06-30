@@ -14,9 +14,11 @@ import kotlinx.coroutines.withContext
  *
  * Created by kchaiko on 28.07.2017.
  */
-class DiscountViewModel(private val discountRepository: DiscountRepository,
-                        private val favouriteRepository: FavouriteRepository,
-                        private val detailUrlPart: String) : BaseViewModel<DetailedDiscount>() {
+class DiscountViewModel(
+    private val discountRepository: DiscountRepository,
+    private val favouriteRepository: FavouriteRepository,
+    private val detailUrlPart: String
+) : BaseViewModel<DetailedDiscount>() {
 
     init {
         uiScope.launch {
@@ -27,6 +29,19 @@ class DiscountViewModel(private val discountRepository: DiscountRepository,
     }
 
     fun getFavourite(detailUrlPart: String) = favouriteRepository.getFavourite(detailUrlPart)
+
+    fun updateFavorite(
+        favoriteDiscount: FavouriteDiscount?,
+        discountModel: Discount,
+        isFavorite: Boolean
+    ) {
+        if (favoriteDiscount == null) {
+            saveData(discount = discountModel, checked = isFavorite)
+        } else {
+            favoriteDiscount.isFavourite = isFavorite
+            updateData(favoriteDiscount)
+        }
+    }
 
     fun saveData(discount: Discount, checked: Boolean) {
         uiScope.launch {

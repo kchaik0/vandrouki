@@ -1,4 +1,4 @@
-package kchaiko.vandrouki.ui.compose
+package kchaiko.vandrouki.extensions
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.painter.Painter
@@ -6,7 +6,7 @@ import com.google.accompanist.coil.rememberCoilPainter
 import kchaiko.vandrouki.R
 
 @Composable
-fun getCoilPainter(imageUrl: String): Painter = rememberCoilPainter(
-    request = imageUrl,
+fun String.toCoilPainter(): Painter = rememberCoilPainter(
+    request = this,
     previewPlaceholder = R.drawable.placeholder_img_discount
 )
